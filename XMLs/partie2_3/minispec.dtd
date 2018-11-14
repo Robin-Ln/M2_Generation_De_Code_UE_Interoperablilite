@@ -1,0 +1,33 @@
+<!ELEMENT modele (entity)*>
+<!ATTLIST modele >
+
+<!ELEMENT entity (attribute
+					|array
+					|collection)*>
+<!ATTLIST entity 
+	name CDATA #REQUIRED
+	subtype CDATA #IMPLIED	
+>
+
+<!ELEMENT attribute EMPTY>
+<!ATTLIST attribute 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+>
+
+<!ELEMENT array EMPTY>
+<!ATTLIST array 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	size CDATA #REQUIRED
+	typeElements CDATA #REQUIRED	
+>
+
+<!ELEMENT collection EMPTY>
+<!ATTLIST collection 
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	typeElements CDATA #REQUIRED
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+>

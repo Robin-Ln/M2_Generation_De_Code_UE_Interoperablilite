@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE modele SYSTEM "minispec.dtd">
+
+<modele>
+
+	<entity name="Satelite">
+
+		<attribute name="nom" type="String" />
+
+		<attribute name="id" type="Integer" />
+
+		<attribute name="parent" type="Flotte" />
+
+	</entity>
+
+	<entity name="Flotte">
+
+		<collection name="satelites" type="List"
+			typeElements="Satelite" />
+		<array name="satelites" size="10" type="Satelite" typeElements="Satelite"/>
+
+	</entity>
+
+</modele>

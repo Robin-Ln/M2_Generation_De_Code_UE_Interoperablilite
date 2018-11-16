@@ -1,7 +1,7 @@
 package meta.modele;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import visiteurs.Visitable;
 import visiteurs.Visitor;
@@ -18,10 +18,8 @@ public class Entity implements Visitable{
 	/*
 	 * Constructeur
 	 */
-	public Entity(String name) {
+	public Entity() {
 		super();
-		this.name = name;
-		this.attributes = new ArrayList<>();
 	}
 	
 	/*
@@ -31,7 +29,15 @@ public class Entity implements Visitable{
 	public void accept(Visitor visiteur) {
 		visiteur.visite(this);
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Entity entity = (Entity) o;
+		return Objects.equals(name, entity.name);
+	}
+
 	/*
 	 * Accesseurs
 	 */

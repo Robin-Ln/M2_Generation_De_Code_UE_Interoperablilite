@@ -2,16 +2,11 @@ package xml;
 
 import java.util.List;
 
+import meta.modele.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import meta.modele.Array;
-import meta.modele.Attribute;
-import meta.modele.Collection;
-import meta.modele.Entity;
-import meta.modele.Modele;
 
 public class ParserXml {
 
@@ -48,7 +43,8 @@ public class ParserXml {
 	}
 	
 	private Entity getEntity(Element element) {
-		Entity entity = new Entity(element.getAttribute("name"));
+		Entity entity = new Entity();
+		entity.setName(element.getAttribute("name"));
 		
 		String subtype = element.getAttribute("subtype");
 		if( subtype != null) {
@@ -59,44 +55,42 @@ public class ParserXml {
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element elementNode = (Element)node;
-				switch (elementNode.getNodeName()) {
-				case "attribute":
-					entity.getAttributes().add(this.getAttribute(elementNode));
-					break;
-				case "array":
-					entity.getAttributes().add(this.getArray(elementNode));
-					break;
-				case "collection":
-					entity.getAttributes().add(this.getColellection(elementNode));
-					break;
-				default:
-					break;
-				}
+				Element elementAttribute = (Element) node;
+				entity.getAttributes().add(this.getAttribute(elementAttribute));
 			}
 		}
 		return entity;
 	}
+
+
 	
 	private Attribute getAttribute(Element element) {
-		String name = element.getAttribute("name");
-		String type = element.getAttribute("type");
-		return new Attribute(name, type);
+		Attribute attribute = new Attribute();
+		attribute.setName(element.getAttribute("name"));
+
+		Element elementType =(Element) element.getFirstChild();
+
+		attribute.setType(this.getType(elementType));
+		return attribute;
 	}
-	
-	private Array getArray(Element element) {
-		String name = element.getAttribute("name");
-		String type = element.getAttribute("type");
-		String typeElements = element.getAttribute("typeElements");
-		Integer size = new Integer(element.getAttribute("size"));
-		return new Array(name, type, size, typeElements);
-	}
-	
-	private Collection getColellection(Element element) {
-		String name = element.getAttribute("name");
-		String type = element.getAttribute("type");
-		String typeElements = element.getAttribute("typeElements");
-		return new Collection(name, type, typeElements);
+
+	private Type getType(Element element){
+		switch (element.getNodeName()) {
+			case "typeElement":
+				TypeElement typeElement = new TypeElement();
+				typeElement.setType(element.getAttribute("type"));
+				return typeElement;
+			case "array":
+				Array array = new Array();
+				array.setType(this.getType(element));
+				return array;
+			case "collection":
+				Collection collection = new Collection();
+				collection.setType(this.getType(element));
+			default:
+				break;
+		}
+		return null;
 	}
 
 	/*

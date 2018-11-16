@@ -2,58 +2,56 @@ package meta.modele;
 
 import visiteurs.Visitor;
 
-public class Collection extends Attribute{
-	
-	/*
-	 * Attributs
-	 */
-	private String typeElements;
-	private Integer min;
-	private Integer max;
-	
-	/*
-	 * Constructeurs
-	 */
-	public Collection(String name, String type, String typeElements) {
-		super(name, type);
-		this.typeElements = typeElements;
-	}
+public class Collection implements Type {
 
-	/*
-	 * Methodes
-	 */
-	@Override
-	public void accept(Visitor visiteur) {
-		visiteur.visite(this);
-	}
+    /*
+     * Attributs
+     */
+    private Type type;
+    private Integer min;
+    private Integer max;
 
-	
-	
-	/*
-	 * Accesseurs
-	 */
-	public String getTypeElements() {
-		return typeElements;
-	}
+    /*
+     * Constructeurs
+     */
+    public Collection() {
+        super();
+    }
 
-	public void setTypeElements(String typeElements) {
-		this.typeElements = typeElements;
-	}
-	
-	public Integer getMin() {
-		return min;
-	}
+    /*
+     * Methodes
+     */
+    @Override
+    public void accept(Visitor visiteur) {
+        visiteur.visite(this);
+    }
 
-	public void setMin(Integer min) {
-		this.min = min;
-	}
 
-	public Integer getMax() {
-		return max;
-	}
+    /*
+     * Accesseurs
+     */
+    public Type getType() {
+        return type;
+    }
 
-	public void setMax(Integer max) {
-		this.max = max;
-	}
-	
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Integer getMin() {
+        return min;
+    }
+
+    public void setMin(Integer min) {
+        this.min = min;
+    }
+
+    public Integer getMax() {
+        return max;
+    }
+
+    public void setMax(Integer max) {
+        this.max = max;
+    }
+
 }

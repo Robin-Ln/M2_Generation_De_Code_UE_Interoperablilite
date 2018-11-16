@@ -4,22 +4,26 @@
 
 <modele>
 
-	<entity name="Satelite">
+    <entity name="Satelite">
 
-		<attribute name="nom" type="String" />
+        <attribute name="nom">
+            <typeElement type="String"/>
+        </attribute>
 
-		<attribute name="id" type="Integer" />
+        <attribute name="id">
+            <typeElement type="Integer"/>
+        </attribute>
 
-		<attribute name="parent" type="Flotte" />
+        <attribute name="parent">
+            <typeElement type="Flotte"/>
+        </attribute>
 
-	</entity>
+    </entity>
 
-	<entity name="Flotte">
-
-		<collection name="satelites" type="List"
-			typeElements="Satelite" />
-		<array name="satelites" size="10" type="Satelite" typeElements="Satelite"/>
-
-	</entity>
+    <entity name="Flotte">
+        <collection name="satelites">
+            <typeElement type="Satelite"/>
+        </collection>
+    </entity>
 
 </modele>

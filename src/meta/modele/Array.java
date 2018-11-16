@@ -1,49 +1,49 @@
 package meta.modele;
 
+import java.lang.reflect.Type;
+
 import visiteurs.Visitor;
 
-public class Array extends Attribute{
-	
-	/*
-	 * Attributs
-	 */
-	private Integer size;
-	private String typeElements;
-	
-	/*
-	 * Constructeurs
-	 */
-	public Array(String name, String type, Integer size, String typeElements) {
-		super(name, type);
-		this.size = size;
-		this.typeElements = typeElements;
-	}
+public class Array implements Type {
 
-	/*
-	 * Methodes
-	 */
-	@Override
-	public void accept(Visitor visiteur) {
-		visiteur.visite(this);
-	}
+    /*
+     * Attributs
+     */
+    private Integer size;
+    private Type type;
 
-	
-	/*
-	 * Accesseurs
-	 */
-	public Integer getSize() {
-		return size;
-	}
+    /*
+     * Constructeurs
+     */
+    public Array() {
+        super();
+    }
 
-	public void setSize(Integer size) {
-		this.size = size;
-	}
+    /*
+     * Methodes
+     */
+    @Override
+    public void accept(Visitor visiteur) {
+        visiteur.visite(this);
+    }
 
-	public String getTypeElements() {
-		return typeElements;
-	}
 
-	public void setTypeElements(String typeElements) {
-		this.typeElements = typeElements;
-	}
+    /*
+     * Accesseurs
+     */
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

@@ -3,48 +3,61 @@ package meta.modele;
 import visiteurs.Visitable;
 import visiteurs.Visitor;
 
+import java.util.Objects;
+
 public class Attribute implements Visitable {
 
-	/*
-	 * Attributs
-	 */
-	private String name;
-	private String type;
+    /*
+     * Attributs
+     */
+    private String name;
+    private Type type;
 
-	/*
-	 * Constructeur
-	 */
-	public Attribute(String name, String type) {
-		super();
-		this.name = name;
-		this.type = type;
-	}
-	
-	/*
-	 * Methodes
-	 */
-	@Override
-	public void accept(Visitor visiteur) {
-		visiteur.visite(this);
-	}
+    /*
+     * Constructeur
+     */
+    public Attribute() {
+        super();
+    }
 
-	/*
-	 * Accesseurs
-	 */
-	public String getName() {
-		return name;
-	}
+    /*
+     * Methodes
+     */
+    @Override
+    public void accept(Visitor visiteur) {
+        visiteur.visite(this);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Attribute attribute = (Attribute) o;
+        return Objects.equals(name, attribute.name);
+    }
 
-	public String getType() {
-		return type;
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    /*
+     * Accesseurs
+     */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 
 }

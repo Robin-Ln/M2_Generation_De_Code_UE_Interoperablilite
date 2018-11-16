@@ -1,33 +1,44 @@
 <!ELEMENT modele (entity)*>
-<!ATTLIST modele >
+        <!ATTLIST modele >
 
-<!ELEMENT entity (attribute
-					|array
-					|collection)*>
-<!ATTLIST entity 
-	name CDATA #REQUIRED
-	subtype CDATA #IMPLIED	
->
-
-<!ELEMENT attribute EMPTY>
-<!ATTLIST attribute 
-	name CDATA #REQUIRED
-	type CDATA #REQUIRED
->
-
-<!ELEMENT array EMPTY>
-<!ATTLIST array 
-	name CDATA #REQUIRED
-	type CDATA #REQUIRED
-	size CDATA #REQUIRED
-	typeElements CDATA #REQUIRED	
->
-
-<!ELEMENT collection EMPTY>
-<!ATTLIST collection 
-	name CDATA #REQUIRED
-	type CDATA #REQUIRED
-	typeElements CDATA #REQUIRED
-	min CDATA #IMPLIED
-	max CDATA #IMPLIED
->
+        <!-- entity -->
+        <!ELEMENT entity (attribute
+                |array
+                |collection
+                |typeElement)*>
+        <!ATTLIST entity
+                name CDATA #REQUIRED
+                subtype CDATA #IMPLIED
+                >
+        <!-- attribute -->
+        <!ELEMENT attribute (attribute
+                |array
+                |collection
+                |typeElement)*>
+        <!ATTLIST attribute
+                name CDATA #REQUIRED
+                >
+        <!-- typeElement -->
+        <!ELEMENT typeElement EMPTY>
+        <!ATTLIST typeElement
+                type CDATA #REQUIRED
+                >
+        <!-- array -->
+        <!ELEMENT array (attribute
+                |array
+                |collection
+                |typeElement)*>
+        <!ATTLIST array
+                name CDATA #REQUIRED
+                size CDATA #REQUIRED
+                >
+        <!-- collection -->
+        <!ELEMENT collection (attribute
+                |array
+                |collection
+                |typeElement)*>
+        <!ATTLIST collection
+                name CDATA #REQUIRED
+                min CDATA #IMPLIED
+                max CDATA #IMPLIED
+                >

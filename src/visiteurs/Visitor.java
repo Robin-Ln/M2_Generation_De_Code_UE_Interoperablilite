@@ -5,6 +5,7 @@ import meta.modele.Attribute;
 import meta.modele.Collection;
 import meta.modele.Entity;
 import meta.modele.Modele;
+import meta.modele.TypeElement;
 
 public interface Visitor {
 
@@ -17,5 +18,7 @@ public interface Visitor {
 	void visite(Array array);
 
 	void visite(Collection associationMultiple);
+
+	void visite(TypeElement object);
 
 }

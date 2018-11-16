@@ -1,5 +1,6 @@
 package meta.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class Entity implements Visitable{
 	 */
 	public Entity() {
 		super();
+		this.attributes = new ArrayList<>();
 	}
 	
 	/*

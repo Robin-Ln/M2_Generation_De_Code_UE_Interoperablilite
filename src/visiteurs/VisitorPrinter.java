@@ -76,15 +76,16 @@ public class VisitorPrinter implements Visitor {
             Integer nameSize = attribute.getName().length();
             String name = attribute.getName().substring(0, 1).toUpperCase()
                     + attribute.getName().substring(1, nameSize);
-            out.println("\tpublic ");
+            
+            out.print("\tpublic ");
             attribute.getType().accept(this);
-            out.print(" get" + name + "() {");
+            out.println(" get" + name + "() {");
             out.println("\t\treturn this." + attribute.getName() + ";");
             out.println("\t}");
 
-            out.println("\tpublic void set" + name + "(");
+            out.print("\tpublic void set" + name + "(");
             attribute.getType().accept(this);
-            out.print(" " + attribute.getName() + ") {");
+            out.println(" " + attribute.getName() + ") {");
             out.println("\t\tthis." + attribute.getName() + " = " + attribute.getName() + ";");
             out.println("\t}");
         }

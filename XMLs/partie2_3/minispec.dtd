@@ -39,6 +39,7 @@
                 |typeElement)*>
         <!ATTLIST collection
                 name CDATA #REQUIRED
+                typeCollection CDATA #REQUIRED
                 min CDATA #IMPLIED
                 max CDATA #IMPLIED
                 >

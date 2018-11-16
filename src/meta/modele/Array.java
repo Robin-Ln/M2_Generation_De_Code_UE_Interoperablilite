@@ -1,7 +1,5 @@
 package meta.modele;
 
-import java.lang.reflect.Type;
-
 import visiteurs.Visitor;
 
 public class Array implements Type {

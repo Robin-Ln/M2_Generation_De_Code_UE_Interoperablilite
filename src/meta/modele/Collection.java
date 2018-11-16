@@ -7,6 +7,7 @@ public class Collection implements Type {
     /*
      * Attributs
      */
+	private String typeCollection;
     private Type type;
     private Integer min;
     private Integer max;
@@ -53,5 +54,13 @@ public class Collection implements Type {
     public void setMax(Integer max) {
         this.max = max;
     }
+
+	public String getTypeCollection() {
+		return typeCollection;
+	}
+
+	public void setTypeCollection(String typeCollection) {
+		this.typeCollection = typeCollection;
+	}
 
 }

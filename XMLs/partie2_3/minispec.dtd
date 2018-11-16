@@ -2,10 +2,7 @@
         <!ATTLIST modele >
 
         <!-- entity -->
-        <!ELEMENT entity (attribute
-                |array
-                |collection
-                |typeElement)*>
+        <!ELEMENT entity (attribute)*>
         <!ATTLIST entity
                 name CDATA #REQUIRED
                 subtype CDATA #IMPLIED
@@ -14,7 +11,7 @@
         <!ELEMENT attribute (attribute
                 |array
                 |collection
-                |typeElement)*>
+                |typeElement)>
         <!ATTLIST attribute
                 name CDATA #REQUIRED
                 >
@@ -27,7 +24,7 @@
         <!ELEMENT array (attribute
                 |array
                 |collection
-                |typeElement)*>
+                |typeElement)>
         <!ATTLIST array
                 name CDATA #REQUIRED
                 size CDATA #REQUIRED
@@ -36,9 +33,8 @@
         <!ELEMENT collection (attribute
                 |array
                 |collection
-                |typeElement)*>
+                |typeElement)>
         <!ATTLIST collection
-                name CDATA #REQUIRED
                 typeCollection CDATA #REQUIRED
                 min CDATA #IMPLIED
                 max CDATA #IMPLIED

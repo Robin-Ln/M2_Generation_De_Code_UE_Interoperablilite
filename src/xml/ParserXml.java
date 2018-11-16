@@ -16,7 +16,6 @@ public class ParserXml {
 
 	private Document document;
 	private Modele modele;
-	private List<Attribute> attributes;
 
 	/*
 	 * Constructeur
@@ -76,24 +75,42 @@ public class ParserXml {
 				attribute.setType(this.getType(elementType));
 			}
 		}
+
+		//attribute.setType(this.getType(element));
+
 		return attribute;
 	}
 
 	private Type getType(Element element){
 		switch (element.getNodeName()) {
+			case "array":
+				Array array = new Array();
+				array.setType(this.getTypeElement(element));
+				return array;
+			case "collection":
+				Collection collection = new Collection();
+				collection.setTypeCollection(element.getAttribute("typeCollection"));
+				collection.setType(this.getTypeElement(element));
+				return collection;
 			case "typeElement":
 				TypeElement typeElement = new TypeElement();
 				typeElement.setType(element.getAttribute("type"));
 				return typeElement;
-			case "array":
-				Array array = new Array();
-				array.setType(this.getType(element));
-				return array;
-			case "collection":
-				Collection collection = new Collection();
-				collection.setType(this.getType(element));
 			default:
+				System.out.println("Problème switch private Type getType(Element element)");
 				break;
+		}
+		return null;
+	}
+
+	private Type getTypeElement(Element element){
+		NodeList nodeList = element.getChildNodes();
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element elementType = (Element) node;
+				return this.getType(elementType);
+			}
 		}
 		return null;
 	}
@@ -115,14 +132,6 @@ public class ParserXml {
 
 	public void setModele(Modele modele) {
 		this.modele = modele;
-	}
-
-	public List<Attribute> getAttributes() {
-		return attributes;
-	}
-
-	public void setAttributes(List<Attribute> attributes) {
-		this.attributes = attributes;
 	}
 
 }

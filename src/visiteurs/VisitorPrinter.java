@@ -52,11 +52,10 @@ public class VisitorPrinter implements Visitor {
 
     @Override
     public void visite(Collection collection) {
-        out.print("\t");
-        collection.getType().accept(this);
+        out.print(collection.getTypeCollection());
         out.print("<");
         collection.getType().accept(this);
-        out.println(">");
+        out.print(">");
     }
 
     @Override
@@ -66,7 +65,6 @@ public class VisitorPrinter implements Visitor {
 
     @Override
     public void visite(Array array) {
-        out.println("\t");
         array.getType().accept(this);
         out.print("[]");
     }

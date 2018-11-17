@@ -1,8 +1,8 @@
 package visiteurs;
 
-import java.io.PrintStream;
+import meta.modele.generateClass.*;
 
-import meta.modele.*;
+import java.io.PrintStream;
 
 public class VisitorPrinter implements Visitor {
 
@@ -56,6 +56,8 @@ public class VisitorPrinter implements Visitor {
         out.print("<");
         collection.getType().accept(this);
         out.print(">");
+        if (collection.getMin() != null && collection.getMax() != null)
+        out.print("/* min : "+collection.getMin()+", max : "+collection.getMax()+"*/");
     }
 
     @Override
@@ -66,7 +68,7 @@ public class VisitorPrinter implements Visitor {
     @Override
     public void visite(Array array) {
         array.getType().accept(this);
-        out.print("[]");
+        out.print("["+array.getSize()+"]");
     }
 
     private void printAccesseurs(Entity entity) {

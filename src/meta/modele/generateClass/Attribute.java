@@ -1,4 +1,4 @@
-package meta.modele;
+package meta.modele.generateClass;
 
 import visiteurs.Visitable;
 import visiteurs.Visitor;

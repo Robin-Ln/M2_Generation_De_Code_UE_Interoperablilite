@@ -1,10 +1,5 @@
 package tests;
 
-import meta.modele.Attribute;
-import meta.modele.Entity;
-import meta.modele.Modele;
-import visiteurs.VisitorPrinter;
-
 public class Test1 {
 
 	public static void main(String[] args) {

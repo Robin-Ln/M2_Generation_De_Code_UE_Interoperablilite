@@ -22,7 +22,7 @@
 
     <entity name="Flotte">
         <attribute name="satelites">
-            <collection typeCollection="List">
+            <collection typeCollection="List" max="10">
                 <typeElement type="Satelite"/>
             </collection>
         </attribute>

@@ -8,8 +8,8 @@
                 subtype CDATA #IMPLIED
                 >
         <!-- attribute -->
-        <!ELEMENT attribute (attribute
-                |array
+        <!ELEMENT attribute (
+                array
                 |collection
                 |typeElement)>
         <!ATTLIST attribute
@@ -21,17 +21,16 @@
                 type CDATA #REQUIRED
                 >
         <!-- array -->
-        <!ELEMENT array (attribute
-                |array
+        <!ELEMENT array (
+                array
                 |collection
                 |typeElement)>
         <!ATTLIST array
-                name CDATA #REQUIRED
                 size CDATA #REQUIRED
                 >
         <!-- collection -->
-        <!ELEMENT collection (attribute
-                |array
+        <!ELEMENT collection (
+                array
                 |collection
                 |typeElement)>
         <!ATTLIST collection

@@ -1,9 +1,9 @@
 package visiteurs;
 
+import meta.modele.generateClass.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import meta.modele.*;
 
 public class VisitorCheckHeritage implements Visitor {
 

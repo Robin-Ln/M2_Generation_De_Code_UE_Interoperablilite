@@ -1,4 +1,4 @@
-package meta.modele;
+package meta.modele.generateClass;
 
 import visiteurs.Visitor;
 
@@ -13,7 +13,6 @@ public class TypeElement implements Type {
     /*
      * Constructeurs
      */
-
     public TypeElement() {
         super();
     }

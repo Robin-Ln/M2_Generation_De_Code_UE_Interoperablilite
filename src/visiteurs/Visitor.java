@@ -1,11 +1,11 @@
 package visiteurs;
 
-import meta.modele.Array;
-import meta.modele.Attribute;
-import meta.modele.Collection;
-import meta.modele.Entity;
-import meta.modele.Modele;
-import meta.modele.TypeElement;
+import meta.modele.generateClass.Array;
+import meta.modele.generateClass.Attribute;
+import meta.modele.generateClass.Collection;
+import meta.modele.generateClass.Entity;
+import meta.modele.generateClass.Modele;
+import meta.modele.generateClass.TypeElement;
 
 public interface Visitor {
 

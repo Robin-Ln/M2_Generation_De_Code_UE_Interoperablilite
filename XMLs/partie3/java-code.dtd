@@ -3,6 +3,7 @@
         <!ATTLIST model
                 name CDATA #REQUIRED
                 package CDATA #REQUIRED>
+
         <!ELEMENT primitive (#PCDATA)>
         <!ATTLIST primitive
                 name CDATA #REQUIRED

@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ParserXml {
+public class ParserXmlClass {
 
     /*
      * Attribut
@@ -18,7 +18,7 @@ public class ParserXml {
     /*
      * Constructeur
      */
-    public ParserXml(Document document) {
+    public ParserXmlClass(Document document) {
         super();
         this.document = document;
         this.modele = new Modele();

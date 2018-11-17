@@ -1,11 +1,6 @@
 package visiteurs;
 
-import meta.modele.generateClass.Array;
-import meta.modele.generateClass.Attribute;
-import meta.modele.generateClass.Collection;
-import meta.modele.generateClass.Entity;
-import meta.modele.generateClass.Modele;
-import meta.modele.generateClass.TypeElement;
+import meta.modele.generateClass.*;
 
 public interface Visitor {
 
@@ -17,8 +12,8 @@ public interface Visitor {
 
 	void visite(Array array);
 
-	void visite(Collection associationMultiple);
+	void visite(Collection collection);
 
-	void visite(TypeElement object);
+	void visite(TypeElement typeElement);
 
 }

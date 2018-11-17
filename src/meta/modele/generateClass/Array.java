@@ -21,8 +21,8 @@ public class Array implements Type {
      * Methodes
      */
     @Override
-    public void accept(Visitor visiteur) {
-        visiteur.visite(this);
+    public void accept(Visitor visitor) {
+        visitor.visite(this);
     }
 
 

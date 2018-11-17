@@ -73,11 +73,11 @@ public class VisitorCheckHeritage implements Visitor {
     }
 
     @Override
-    public void visite(Collection associationMultiple) {// inutile
+    public void visite(Collection collection) {// inutile
     }
 
     @Override
-    public void visite(TypeElement object) {// inutile
+    public void visite(TypeElement typeElement) {// inutile
     }
 
     /*

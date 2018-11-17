@@ -22,8 +22,8 @@ public class TypeElement implements Type {
      */
 
     @Override
-    public void accept(Visitor visiteur) {
-        visiteur.visite(this);
+    public void accept(Visitor visitor) {
+        visitor.visite(this);
     }
 
     /*

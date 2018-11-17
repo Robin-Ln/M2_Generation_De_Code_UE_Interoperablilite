@@ -14,7 +14,7 @@ import org.xml.sax.SAXParseException;
 
 import visiteurs.VisitorCheckHeritage;
 import visiteurs.VisitorPrinter;
-import xml.ParserXml;
+import xml.ParserXmlClass;
 import xml.XmlErrorHandler;
 
 public class Test2 {
@@ -32,7 +32,7 @@ public class Test2 {
          * Validation de la DTD
          */
         if (xmlErrorHandler.isValide()) {
-            ParserXml parserXml = new ParserXml(document);
+            ParserXmlClass parserXml = new ParserXmlClass(document);
             parserXml.lire();
 
             Modele modele = parserXml.getModele();

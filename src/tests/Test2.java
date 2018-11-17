@@ -25,7 +25,7 @@ public class Test2 {
         DocumentBuilder builder = factory.newDocumentBuilder();
         XmlErrorHandler xmlErrorHandler = new XmlErrorHandler();
         builder.setErrorHandler(xmlErrorHandler);
-        File xml = new File("XMLs/partie2_3/figure10.xml");
+        File xml = new File("XMLs/partie2/figure10.xml");
         Document document = builder.parse(xml);
 
         /*

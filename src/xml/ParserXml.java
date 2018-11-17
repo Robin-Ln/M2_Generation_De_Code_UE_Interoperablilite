@@ -1,7 +1,5 @@
 package xml;
 
-import java.util.List;
-
 import meta.modele.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -75,9 +73,6 @@ public class ParserXml {
 				attribute.setType(this.getType(elementType));
 			}
 		}
-
-		//attribute.setType(this.getType(element));
-
 		return attribute;
 	}
 

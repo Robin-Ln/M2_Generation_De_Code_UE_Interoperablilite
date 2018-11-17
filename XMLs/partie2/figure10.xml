@@ -23,9 +23,7 @@
     <entity name="Flotte">
         <attribute name="parent">
             <collection typeCollection="List">
-                <collection typeCollection="List">
-                    <typeElement type="Satelite"/>
-                </collection>
+                <typeElement type="Satelite"/>
             </collection>
         </attribute>
     </entity>

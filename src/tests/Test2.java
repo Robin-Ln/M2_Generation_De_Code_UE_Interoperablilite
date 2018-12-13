@@ -19,6 +19,7 @@ import xml.XmlErrorHandler;
 
 public class Test2 {
 
+
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(true);

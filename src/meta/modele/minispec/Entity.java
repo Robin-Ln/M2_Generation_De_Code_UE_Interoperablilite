@@ -1,35 +1,35 @@
-package meta.modele.generateClass;
+package meta.modele.minispec;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import visiteurs.Visitable;
-import visiteurs.Visitor;
+import visiteurs.minispec.VisitableMinispec;
+import visiteurs.minispec.VisitorMinispec;
 
-public class Entity implements Visitable{
+public class Entity implements VisitableMinispec {
 	
 	/*
 	 * Attributs
 	 */
 	private String name;
 	private String subtype;
-	private List<Attribute> attributes;
+	private List<AttributeMinispec> attributeMinispecs;
 	
 	/*
 	 * Constructeur
 	 */
 	public Entity() {
 		super();
-		this.attributes = new ArrayList<>();
+		this.attributeMinispecs = new ArrayList<>();
 	}
 	
 	/*
 	 * Methodes
 	 */
 	@Override
-	public void accept(Visitor visitor) {
-		visitor.visite(this);
+	public void accept(VisitorMinispec visitorMinispec) {
+		visitorMinispec.visite(this);
 	}
 
 	@Override
@@ -52,12 +52,12 @@ public class Entity implements Visitable{
 		this.name = name;
 	}
 
-	public List<Attribute> getAttributes() {
-		return attributes;
+	public List<AttributeMinispec> getAttributeMinispecs() {
+		return attributeMinispecs;
 	}
 
-	public void setAttributes(List<Attribute> attributes) {
-		this.attributes = attributes;
+	public void setAttributeMinispecs(List<AttributeMinispec> attributeMinispecs) {
+		this.attributeMinispecs = attributeMinispecs;
 	}
 
 	public String getSubtype() {

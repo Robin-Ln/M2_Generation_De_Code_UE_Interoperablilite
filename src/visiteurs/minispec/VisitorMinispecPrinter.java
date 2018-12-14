@@ -1,10 +1,13 @@
-package visiteurs;
+package visiteurs.minispec;
 
-import meta.modele.generateClass.*;
+import meta.modele.commun.Array;
+import meta.modele.commun.Collection;
+import meta.modele.commun.TypeElement;
+import meta.modele.minispec.*;
 
 import java.io.PrintStream;
 
-public class VisitorPrinter implements Visitor {
+public class VisitorMinispecPrinter implements VisitorMinispec {
 
     /*
      * Attributs
@@ -14,7 +17,7 @@ public class VisitorPrinter implements Visitor {
     /*
      * Constructeur
      */
-    public VisitorPrinter(PrintStream out) {
+    public VisitorMinispecPrinter(PrintStream out) {
         this.out = out;
     }
 
@@ -22,8 +25,8 @@ public class VisitorPrinter implements Visitor {
      * Merhode de l'interface Visotor
      */
     @Override
-    public void visite(Modele modele) {
-        for (Entity entity : modele.getEntities()) {
+    public void visite(ModeleMinispec modeleMinispec) {
+        for (Entity entity : modeleMinispec.getEntities()) {
             entity.accept(this);
         }
     }
@@ -35,8 +38,8 @@ public class VisitorPrinter implements Visitor {
             out.print(" extends " + entity.getSubtype());
         }
         out.println(" {");
-        for (Attribute attribute : entity.getAttributes()) {
-            attribute.accept(this);
+        for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
+            attributeMinispec.accept(this);
         }
         out.println("\tpublic " + entity.getName() + "() {}");
         this.printAccesseurs(entity);
@@ -44,10 +47,10 @@ public class VisitorPrinter implements Visitor {
     }
 
     @Override
-    public void visite(Attribute attribute) {
+    public void visite(AttributeMinispec attributeMinispec) {
         out.print("\t");
-        attribute.getType().accept(this);
-        out.println(" " + attribute.getName() + ";");
+        attributeMinispec.getType().accept(this);
+        out.println(" " + attributeMinispec.getName() + ";");
     }
 
     @Override
@@ -72,21 +75,21 @@ public class VisitorPrinter implements Visitor {
     }
 
     private void printAccesseurs(Entity entity) {
-        for (Attribute attribute : entity.getAttributes()) {
-            Integer nameSize = attribute.getName().length();
-            String name = attribute.getName().substring(0, 1).toUpperCase()
-                    + attribute.getName().substring(1, nameSize);
+        for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
+            Integer nameSize = attributeMinispec.getName().length();
+            String name = attributeMinispec.getName().substring(0, 1).toUpperCase()
+                    + attributeMinispec.getName().substring(1, nameSize);
             
             out.print("\tpublic ");
-            attribute.getType().accept(this);
+            attributeMinispec.getType().accept(this);
             out.println(" get" + name + "() {");
-            out.println("\t\treturn this." + attribute.getName() + ";");
+            out.println("\t\treturn this." + attributeMinispec.getName() + ";");
             out.println("\t}");
 
             out.print("\tpublic void set" + name + "(");
-            attribute.getType().accept(this);
-            out.println(" " + attribute.getName() + ") {");
-            out.println("\t\tthis." + attribute.getName() + " = " + attribute.getName() + ";");
+            attributeMinispec.getType().accept(this);
+            out.println(" " + attributeMinispec.getName() + ") {");
+            out.println("\t\tthis." + attributeMinispec.getName() + " = " + attributeMinispec.getName() + ";");
             out.println("\t}");
         }
 

@@ -1,6 +1,7 @@
-package meta.modele.generateClass;
+package meta.modele.commun;
 
-import visiteurs.Visitor;
+import visiteurs.javacode.VisitorJava;
+import visiteurs.minispec.VisitorMinispec;
 
 public class TypeElement implements Type {
 
@@ -20,10 +21,14 @@ public class TypeElement implements Type {
     /*
      * Methodes
      */
+    @Override
+    public void accept(VisitorMinispec visitorMinispec) {
+        visitorMinispec.visite(this);
+    }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visite(this);
+    public void accept(VisitorJava visitorJava) {
+        visitorJava.visite(this);
     }
 
     /*

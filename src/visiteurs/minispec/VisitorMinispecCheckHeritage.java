@@ -1,34 +1,37 @@
-package visiteurs;
+package visiteurs.minispec;
 
-import meta.modele.generateClass.*;
+import meta.modele.commun.Array;
+import meta.modele.commun.Collection;
+import meta.modele.commun.TypeElement;
+import meta.modele.minispec.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitorCheckHeritage implements Visitor {
+public class VisitorMinispecCheckHeritage implements VisitorMinispec {
 
     /*
      * Attributs
      */
     private List<Exception> exceptions;
-    private Modele modele;
+    private ModeleMinispec modeleMinispec;
 
     /*
      * Constructeur
      */
-    public VisitorCheckHeritage() {
+    public VisitorMinispecCheckHeritage() {
         super();
         this.exceptions = new ArrayList<>();
     }
 
     /*
-     * Merhode de l'interface Visitor
+     * Merhode de l'interface VisitorJava
      */
     @Override
-    public void visite(Modele modele) {
-        this.modele = modele;
+    public void visite(ModeleMinispec modeleMinispec) {
+        this.modeleMinispec = modeleMinispec;
 
-        for (Entity entity : this.modele.getEntities()) {
+        for (Entity entity : this.modeleMinispec.getEntities()) {
             entity.accept(this);
         }
     }
@@ -57,15 +60,15 @@ public class VisitorCheckHeritage implements Visitor {
         /*
          * Varraible dipliquée ?
          */
-        for (Attribute attribute : entity.getAttributes()) {
-            if (entityParent.getAttributes().contains(attribute)) {
-                this.exceptions.add(new Exception("Duplicate name Varrable : " + attribute.getName()));
+        for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
+            if (entityParent.getAttributeMinispecs().contains(attributeMinispec)) {
+                this.exceptions.add(new Exception("Duplicate name Varrable : " + attributeMinispec.getName()));
             }
         }
     }
 
     @Override
-    public void visite(Attribute attribute) {// initile
+    public void visite(AttributeMinispec attributeMinispec) {// initile
     }
 
     @Override
@@ -85,7 +88,7 @@ public class VisitorCheckHeritage implements Visitor {
      */
 
     private Entity getEmptity(String nameEmptity) {
-        for (Entity entity : this.modele.getEntities()) {
+        for (Entity entity : this.modeleMinispec.getEntities()) {
             if (entity.getName().equals(nameEmptity)) {
                 return entity;
             }

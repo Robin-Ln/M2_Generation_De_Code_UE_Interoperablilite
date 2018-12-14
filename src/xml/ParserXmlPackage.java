@@ -1,9 +1,8 @@
 package xml;
 
-import meta.modele.generateClass.*;
-import meta.modele.generatePackage.Dependence;
-import meta.modele.generatePackage.Primitive;
-import meta.modele.generatePackage.ReferenceModele;
+import meta.modele.minispec.generatePackage.Dependence;
+import meta.modele.minispec.generatePackage.Primitive;
+import meta.modele.minispec.generatePackage.ReferenceModele;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

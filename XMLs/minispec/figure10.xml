@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE modele SYSTEM "minispec.dtd">
+<!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
 
-<modele>
+<modeleMinispec>
 
     <entity name="Satelite">
 
-        <attribute name="nom">
+        <attributeMinispec name="nom">
             <typeElement type="String"/>
-        </attribute>
+        </attributeMinispec>
 
-        <attribute name="id">
+        <attributeMinispec name="id">
             <typeElement type="Integer"/>
-        </attribute>
+        </attributeMinispec>
 
-        <attribute name="parent">
+        <attributeMinispec name="parent">
             <typeElement type="Flotte"/>
-        </attribute>
+        </attributeMinispec>
 
     </entity>
 
     <entity name="Flotte">
-        <attribute name="satelites">
+        <attributeMinispec name="satelites">
             <collection typeCollection="List" max="10">
                 <typeElement type="Satelite"/>
             </collection>
-        </attribute>
+        </attributeMinispec>
     </entity>
 
-</modele>
+</modeleMinispec>

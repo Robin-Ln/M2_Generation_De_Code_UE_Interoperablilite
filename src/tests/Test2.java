@@ -7,14 +7,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import meta.modele.generateClass.Modele;
+import meta.modele.minispec.ModeleMinispec;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import visiteurs.VisitorCheckHeritage;
-import visiteurs.VisitorPrinter;
-import xml.ParserXmlClass;
+import visiteurs.minispec.VisitorMinispecCheckHeritage;
+import visiteurs.minispec.VisitorMinispecPrinter;
+import xml.ParserXmlMinispec;
 import xml.XmlErrorHandler;
 
 public class Test2 {
@@ -26,27 +26,27 @@ public class Test2 {
         DocumentBuilder builder = factory.newDocumentBuilder();
         XmlErrorHandler xmlErrorHandler = new XmlErrorHandler();
         builder.setErrorHandler(xmlErrorHandler);
-        File xml = new File("XMLs/partie2/figure10.xml");
+        File xml = new File("XMLs/minispec/figure10.xml");
         Document document = builder.parse(xml);
 
         /*
          * Validation de la DTD
          */
         if (xmlErrorHandler.isValide()) {
-            ParserXmlClass parserXml = new ParserXmlClass(document);
+            ParserXmlMinispec parserXml = new ParserXmlMinispec(document);
             parserXml.lire();
 
-            Modele modele = parserXml.getModele();
+            ModeleMinispec modeleMinispec = parserXml.getModeleMinispec();
 
-            VisitorCheckHeritage visitorCheckHeritage = new VisitorCheckHeritage();
-            modele.accept(visitorCheckHeritage);
+            VisitorMinispecCheckHeritage visitorCheckHeritage = new VisitorMinispecCheckHeritage();
+            modeleMinispec.accept(visitorCheckHeritage);
 
             /*
              * Verrification de l'héritage
              */
             if (visitorCheckHeritage.isValide()) {
-                VisitorPrinter visitorPrinter = new VisitorPrinter(System.out);
-                modele.accept(visitorPrinter);
+                VisitorMinispecPrinter visitorPrinter = new VisitorMinispecPrinter(System.out);
+                modeleMinispec.accept(visitorPrinter);
             } else {
                 for (Exception exception : visitorCheckHeritage.getExceptions()) {
                     System.out.println(exception);

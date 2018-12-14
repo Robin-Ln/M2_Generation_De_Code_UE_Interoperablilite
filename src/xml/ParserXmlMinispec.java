@@ -1,27 +1,31 @@
 package xml;
 
-import meta.modele.generateClass.*;
+import meta.modele.commun.Array;
+import meta.modele.commun.Collection;
+import meta.modele.commun.Type;
+import meta.modele.commun.TypeElement;
+import meta.modele.minispec.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ParserXmlClass {
+public class ParserXmlMinispec {
 
     /*
      * Attribut
      */
 
     private Document document;
-    private Modele modele;
+    private ModeleMinispec modeleMinispec;
 
     /*
      * Constructeur
      */
-    public ParserXmlClass(Document document) {
+    public ParserXmlMinispec(Document document) {
         super();
         this.document = document;
-        this.modele = new Modele();
+        this.modeleMinispec = new ModeleMinispec();
     }
 
     /*
@@ -34,7 +38,7 @@ public class ParserXmlClass {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                this.modele.getEntities().add(this.getEntity((Element) node));
+                this.modeleMinispec.getEntities().add(this.getEntity((Element) node));
             }
         }
     }
@@ -53,26 +57,26 @@ public class ParserXmlClass {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elementAttribute = (Element) node;
-                entity.getAttributes().add(this.getAttribute(elementAttribute));
+                entity.getAttributeMinispecs().add(this.getAttribute(elementAttribute));
             }
         }
         return entity;
     }
 
 
-    private Attribute getAttribute(Element element) {
-        Attribute attribute = new Attribute();
-        attribute.setName(element.getAttribute("name"));
+    private AttributeMinispec getAttribute(Element element) {
+        AttributeMinispec attributeMinispec = new AttributeMinispec();
+        attributeMinispec.setName(element.getAttribute("name"));
 
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elementType = (Element) node;
-                attribute.setType(this.getType(elementType));
+                attributeMinispec.setType(this.getType(elementType));
             }
         }
-        return attribute;
+        return attributeMinispec;
     }
 
     private Type getType(Element element) {
@@ -129,12 +133,12 @@ public class ParserXmlClass {
         this.document = document;
     }
 
-    public Modele getModele() {
-        return modele;
+    public ModeleMinispec getModeleMinispec() {
+        return modeleMinispec;
     }
 
-    public void setModele(Modele modele) {
-        this.modele = modele;
+    public void setModeleMinispec(ModeleMinispec modeleMinispec) {
+        this.modeleMinispec = modeleMinispec;
     }
 
 }

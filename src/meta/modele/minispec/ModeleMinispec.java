@@ -1,12 +1,12 @@
-package meta.modele.generateClass;
+package meta.modele.minispec;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import visiteurs.Visitable;
-import visiteurs.Visitor;
+import visiteurs.minispec.VisitableMinispec;
+import visiteurs.minispec.VisitorMinispec;
 
-public class Modele implements Visitable {
+public class ModeleMinispec implements VisitableMinispec {
 
     /*
      * Attributs
@@ -16,7 +16,7 @@ public class Modele implements Visitable {
     /*
      * Constructeur
      */
-    public Modele() {
+    public ModeleMinispec() {
         super();
         this.entities = new ArrayList<>();
     }
@@ -25,8 +25,8 @@ public class Modele implements Visitable {
      * Methodes
      */
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visite(this);
+    public void accept(VisitorMinispec visitorMinispec) {
+        visitorMinispec.visite(this);
     }
 
     /*

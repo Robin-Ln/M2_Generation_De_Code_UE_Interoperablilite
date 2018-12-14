@@ -1,18 +1,18 @@
-<!ELEMENT modele (entity)*>
-        <!ATTLIST modele >
+<!ELEMENT modeleMinispec (entity)*>
+        <!ATTLIST modeleMinispec >
 
         <!-- entity -->
-        <!ELEMENT entity (attribute)*>
+        <!ELEMENT entity (attributeMinispec)*>
         <!ATTLIST entity
                 name CDATA #REQUIRED
                 subtype CDATA #IMPLIED
                 >
-        <!-- attribute -->
-        <!ELEMENT attribute (
+        <!-- attributeMinispec -->
+        <!ELEMENT attributeMinispec (
                 array
                 |collection
                 |typeElement)>
-        <!ATTLIST attribute
+        <!ATTLIST attributeMinispec
                 name CDATA #REQUIRED
                 >
         <!-- typeElement -->

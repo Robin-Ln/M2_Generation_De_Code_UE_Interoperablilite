@@ -1,11 +1,12 @@
-package meta.modele.generateClass;
+package meta.modele.minispec;
 
-import visiteurs.Visitable;
-import visiteurs.Visitor;
+import meta.modele.commun.Type;
+import visiteurs.minispec.VisitableMinispec;
+import visiteurs.minispec.VisitorMinispec;
 
 import java.util.Objects;
 
-public class Attribute implements Visitable {
+public class AttributeMinispec implements VisitableMinispec {
 
     /*
      * Attributs
@@ -16,7 +17,7 @@ public class Attribute implements Visitable {
     /*
      * Constructeur
      */
-    public Attribute() {
+    public AttributeMinispec() {
         super();
     }
 
@@ -24,16 +25,16 @@ public class Attribute implements Visitable {
      * Methodes
      */
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visite(this);
+    public void accept(VisitorMinispec visitorMinispec) {
+        visitorMinispec.visite(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Attribute attribute = (Attribute) o;
-        return Objects.equals(name, attribute.name);
+        AttributeMinispec attributeMinispec = (AttributeMinispec) o;
+        return Objects.equals(name, attributeMinispec.name);
     }
 
     @Override

@@ -17,7 +17,7 @@ import visiteurs.minispec.VisitorMinispecPrinter;
 import xml.ParserXmlMinispec;
 import xml.XmlErrorHandler;
 
-public class Test2 {
+public class MinispecToJavaXml {
 
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
@@ -26,7 +26,7 @@ public class Test2 {
         DocumentBuilder builder = factory.newDocumentBuilder();
         XmlErrorHandler xmlErrorHandler = new XmlErrorHandler();
         builder.setErrorHandler(xmlErrorHandler);
-        File xml = new File("XMLs/minispec/figure10.xml");
+        File xml = new File("src/main/resources/XMLs/minispecXml/figure10.xml");
         Document document = builder.parse(xml);
 
         /*

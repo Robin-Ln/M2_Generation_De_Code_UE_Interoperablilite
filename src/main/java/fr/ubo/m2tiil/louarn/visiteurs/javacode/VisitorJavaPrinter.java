@@ -66,6 +66,10 @@ public class VisitorJavaPrinter implements VisitorJava {
             constructeur.accept(this);
         }
 
+        for (Methode methode : aClass.getMethodes()) {
+            methode.accept(this);
+        }
+
         out.println("}");
     }
 
@@ -84,7 +88,7 @@ public class VisitorJavaPrinter implements VisitorJava {
         this.out.print(" ");
         methode.getType().accept(this.visitorCommun);
         this.out.print(" " + methode.getName());
-        this.out.println(" {}");
+        this.out.println("() {}");
 
     }
 

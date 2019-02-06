@@ -1,20 +1,11 @@
 package fr.ubo.m2tiil.louarn.helpers;
 
-import fr.ubo.m2tiil.louarn.modele.commun.Array;
-import fr.ubo.m2tiil.louarn.modele.commun.Collection;
-import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
 import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
-import fr.ubo.m2tiil.louarn.visiteurs.minispec.VisitorMinispec;
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,15 +50,76 @@ public class ConverteurMinispecToJava {
     }
 
     List<AttributeJava> getAttributeJavas(Entity entity){
-        return null;
+        List<AttributeJava> attributeJavas = new ArrayList<>();
+        for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
+            AttributeJava attributeJava = new AttributeJava();
+            attributeJava.setName(attributeMinispec.getName());
+            attributeJava.setType(attributeMinispec.getType());
+            attributeJava.setVisibilite(Visibilite.PUBLIC);
+            attributeJavas.add(attributeJava);
+        }
+        return attributeJavas;
     }
 
     List<Methode> getMethodes(Entity entity){
-        return null;
+        List<Methode> methodes = new ArrayList<>();
+
+        // création des accesseurs
+        for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
+            Integer nameSize = attributeMinispec.getName().length();
+            String name = attributeMinispec.getName().substring(0, 1).toUpperCase()
+                    + attributeMinispec.getName().substring(1, nameSize);
+            methodes.add(this.getGetter(name, attributeMinispec));
+            methodes.add(this.getSetter(name, attributeMinispec));
+        }
+        return methodes;
+    }
+
+    Methode getGetter(String name, AttributeMinispec attributeMinispec) {
+        Methode methode = new Methode();
+        methode.setName("get" + name);
+        methode.setType(attributeMinispec.getType());
+        methode.setVisibilite(Visibilite.PUBLIC);
+        methode.setArguments(new ArrayList<>());
+
+        return methode;
+    }
+
+    Methode getSetter(String name, AttributeMinispec attributeMinispec) {
+
+        Methode methode = new Methode();
+        methode.setName("set" + name);
+        methode.setType(null);
+        methode.setVisibilite(Visibilite.PUBLIC);
+
+        List<Argument> arguments = new ArrayList<>();
+        Argument argument = new Argument();
+        argument.setName(attributeMinispec.getName());
+        argument.setType(attributeMinispec.getType());
+        arguments.add(argument);
+        methode.setArguments(arguments);
+
+        return methode;
     }
 
 
     /*
      * Métodes
      */
+
+    public ModeleMinispec getModeleMinispec() {
+        return modeleMinispec;
+    }
+
+    public void setModeleMinispec(ModeleMinispec modeleMinispec) {
+        this.modeleMinispec = modeleMinispec;
+    }
+
+    public ModeleJava getModeleJava() {
+        return modeleJava;
+    }
+
+    public void setModeleJava(ModeleJava modeleJava) {
+        this.modeleJava = modeleJava;
+    }
 }

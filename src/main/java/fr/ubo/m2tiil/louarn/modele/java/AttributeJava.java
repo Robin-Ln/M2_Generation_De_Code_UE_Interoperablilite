@@ -8,7 +8,7 @@ public class AttributeJava implements VisitableJava {
     /*
      * Attributs
      */
-    private String visibilite;
+    private Visibilite visibilite;
     private String name;
     private Type type;
 
@@ -29,4 +29,28 @@ public class AttributeJava implements VisitableJava {
     /*
      * Accesseurs
      */
+
+    public Visibilite getVisibilite() {
+        return visibilite;
+    }
+
+    public void setVisibilite(Visibilite visibilite) {
+        this.visibilite = visibilite;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

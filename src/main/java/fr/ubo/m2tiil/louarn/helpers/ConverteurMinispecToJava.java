@@ -1,5 +1,6 @@
 package fr.ubo.m2tiil.louarn.helpers;
 
+import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
@@ -89,7 +90,9 @@ public class ConverteurMinispecToJava {
 
         Methode methode = new Methode();
         methode.setName("set" + name);
-        methode.setType(null);
+        TypeElement typeElement = new TypeElement();
+        typeElement.setType("void");
+        methode.setType(typeElement);
         methode.setVisibilite(Visibilite.PUBLIC);
 
         List<Argument> arguments = new ArrayList<>();

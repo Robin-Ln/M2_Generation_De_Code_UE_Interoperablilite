@@ -38,18 +38,4 @@ public class VisitorMinispecDependencies implements VisitorMinispec {
 
     }
 
-    @Override
-    public void visite(Array array) {
-
-    }
-
-    @Override
-    public void visite(Collection collection) {
-
-    }
-
-    @Override
-    public void visite(TypeElement typeElement) {
-
-    }
 }

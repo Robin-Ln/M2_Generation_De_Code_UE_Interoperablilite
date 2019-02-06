@@ -1,7 +1,6 @@
 package fr.ubo.m2tiil.louarn.modele.commun;
 
-import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
-import fr.ubo.m2tiil.louarn.visiteurs.minispec.VisitorMinispec;
+import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 
 public class Collection implements Type {
 
@@ -24,13 +23,8 @@ public class Collection implements Type {
      * Methodes
      */
     @Override
-    public void accept(VisitorMinispec visitorMinispec) {
-        visitorMinispec.visite(this);
-    }
-
-    @Override
-    public void accept(VisitorJava visitorJava) {
-        visitorJava.visite(this);
+    public void accept(VisitorCommun visitorCommun) {
+        visitorCommun.visite(this);
     }
 
     /*

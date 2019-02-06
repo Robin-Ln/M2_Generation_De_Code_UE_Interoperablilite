@@ -1,18 +1,9 @@
 package fr.ubo.m2tiil.louarn.visiteurs.javacode;
 
-import fr.ubo.m2tiil.louarn.modele.commun.Array;
-import fr.ubo.m2tiil.louarn.modele.commun.Collection;
-import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.*;
 
 public interface VisitorJava {
-	
-	void visite(Array array);
-
-	void visite(Collection collection);
-
-	void visite(TypeElement typeElement);
 
 	void visite(Argument argument);
 

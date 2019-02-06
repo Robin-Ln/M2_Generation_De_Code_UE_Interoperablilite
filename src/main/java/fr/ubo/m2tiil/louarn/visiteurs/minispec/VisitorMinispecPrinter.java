@@ -1,9 +1,10 @@
 package fr.ubo.m2tiil.louarn.visiteurs.minispec;
 
-import fr.ubo.m2tiil.louarn.modele.commun.Array;
-import fr.ubo.m2tiil.louarn.modele.commun.Collection;
-import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.minispec.*;
+import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
+import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
+import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
+import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
+import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
 
 import java.io.PrintStream;
 
@@ -13,12 +14,14 @@ public class VisitorMinispecPrinter implements VisitorMinispec {
      * Attributs
      */
     private PrintStream out;
+    private VisitorCommun visitorCommun;
 
     /*
      * Constructeur
      */
     public VisitorMinispecPrinter(PrintStream out) {
         this.out = out;
+        this.visitorCommun = new VisitorCommunPrinter(this.out);
     }
 
     /*
@@ -49,29 +52,8 @@ public class VisitorMinispecPrinter implements VisitorMinispec {
     @Override
     public void visite(AttributeMinispec attributeMinispec) {
         out.print("\t");
-        attributeMinispec.getType().accept(this);
+        attributeMinispec.getType().accept(this.visitorCommun);
         out.println(" " + attributeMinispec.getName() + ";");
-    }
-
-    @Override
-    public void visite(Collection collection) {
-        out.print(collection.getTypeCollection());
-        out.print("<");
-        collection.getType().accept(this);
-        out.print(">");
-        if (collection.getMin() != null && collection.getMax() != null)
-        out.print("/* min : "+collection.getMin()+", max : "+collection.getMax()+"*/");
-    }
-
-    @Override
-    public void visite(TypeElement typeElement) {
-        out.print(typeElement.getType());
-    }
-
-    @Override
-    public void visite(Array array) {
-        array.getType().accept(this);
-        out.print("["+array.getSize()+"]");
     }
 
     private void printAccesseurs(Entity entity) {
@@ -81,13 +63,13 @@ public class VisitorMinispecPrinter implements VisitorMinispec {
                     + attributeMinispec.getName().substring(1, nameSize);
             
             out.print("\tpublic ");
-            attributeMinispec.getType().accept(this);
+            attributeMinispec.getType().accept(this.visitorCommun);
             out.println(" get" + name + "() {");
             out.println("\t\treturn this." + attributeMinispec.getName() + ";");
             out.println("\t}");
 
             out.print("\tpublic void set" + name + "(");
-            attributeMinispec.getType().accept(this);
+            attributeMinispec.getType().accept(this.visitorCommun);
             out.println(" " + attributeMinispec.getName() + ") {");
             out.println("\t\tthis." + attributeMinispec.getName() + " = " + attributeMinispec.getName() + ";");
             out.println("\t}");

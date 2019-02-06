@@ -71,18 +71,6 @@ public class VisitorMinispecCheckHeritage implements VisitorMinispec {
     public void visite(AttributeMinispec attributeMinispec) {// initile
     }
 
-    @Override
-    public void visite(Array array) {// initile
-    }
-
-    @Override
-    public void visite(Collection collection) {// inutile
-    }
-
-    @Override
-    public void visite(TypeElement typeElement) {// inutile
-    }
-
     /*
      * Methoded
      */

@@ -3,8 +3,8 @@ package fr.ubo.m2tiil.louarn.visiteurs.javacode;
 import fr.ubo.m2tiil.louarn.modele.commun.Array;
 import fr.ubo.m2tiil.louarn.modele.commun.Collection;
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.*;
 
 import java.io.PrintStream;
 
@@ -25,21 +25,6 @@ public class VisitorJavaPrinter implements VisitorJava {
     /*
      * Merhode de l'interface Visotor
      */
-
-    @Override
-    public void visite(Array array) {
-
-    }
-
-    @Override
-    public void visite(Collection collection) {
-
-    }
-
-    @Override
-    public void visite(TypeElement typeElement) {
-
-    }
 
     @Override
     public void visite(Argument argument) {

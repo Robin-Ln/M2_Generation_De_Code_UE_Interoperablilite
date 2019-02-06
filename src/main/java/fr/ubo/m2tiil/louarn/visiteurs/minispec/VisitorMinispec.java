@@ -1,9 +1,8 @@
 package fr.ubo.m2tiil.louarn.visiteurs.minispec;
 
-import fr.ubo.m2tiil.louarn.modele.commun.Array;
-import fr.ubo.m2tiil.louarn.modele.commun.Collection;
-import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.minispec.*;
+import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
+import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
+import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 
 public interface VisitorMinispec {
 
@@ -12,11 +11,5 @@ public interface VisitorMinispec {
 	void visite(Entity entity);
 
 	void visite(AttributeMinispec attributeMinispec);
-
-	void visite(Array array);
-
-	void visite(Collection collection);
-
-	void visite(TypeElement typeElement);
 
 }

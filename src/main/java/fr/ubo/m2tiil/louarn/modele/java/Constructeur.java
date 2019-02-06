@@ -8,7 +8,7 @@ public class Constructeur implements VisitableJava {
      * Attributs
      */
     private Visibilite visibilite;
-
+    private Class aClass;
 
     /*
      * Constructeurs
@@ -29,6 +29,14 @@ public class Constructeur implements VisitableJava {
     /*
      * Accesseurs
      */
+
+    public Class getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
+    }
 
     public Visibilite getVisibilite() {
         return visibilite;

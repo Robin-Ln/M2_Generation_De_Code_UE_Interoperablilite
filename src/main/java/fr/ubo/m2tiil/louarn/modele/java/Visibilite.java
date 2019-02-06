@@ -11,4 +11,8 @@ public enum Visibilite {
     Visibilite(String visibilite) {
         this.visibilite = visibilite;
     }
+
+    public String getVisibilite() {
+        return visibilite;
+    }
 }

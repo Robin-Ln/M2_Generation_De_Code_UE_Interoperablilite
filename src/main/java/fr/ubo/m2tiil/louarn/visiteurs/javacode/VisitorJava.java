@@ -16,4 +16,6 @@ public interface VisitorJava {
 	void visite(Methode methode);
 
 	void visite(ModeleJava modeleJava);
+
+	void visite(Visibilite visibilite);
 }

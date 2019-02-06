@@ -7,7 +7,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import fr.ubo.m2tiil.louarn.helpers.ConverteurMinispecToJava;
+import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
+import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
+import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJavaPrinter;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -47,6 +51,14 @@ public class MinispecToJavaXml {
             if (visitorCheckHeritage.isValide()) {
                 VisitorMinispecPrinter visitorPrinter = new VisitorMinispecPrinter(System.out);
                 modeleMinispec.accept(visitorPrinter);
+                /*
+                 * Convertion
+                 */
+                System.out.println("---------");
+
+                ModeleJava modeleJava = new ConverteurMinispecToJava(modeleMinispec).getModeleJava();
+                VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(System.out);
+                modeleJava.accept(visitorJavaPrinter);
             } else {
                 for (Exception exception : visitorCheckHeritage.getExceptions()) {
                     System.out.println(exception);

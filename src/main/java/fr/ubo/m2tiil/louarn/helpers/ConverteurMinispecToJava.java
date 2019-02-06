@@ -26,6 +26,10 @@ public class ConverteurMinispecToJava {
 
     public ConverteurMinispecToJava(ModeleMinispec modeleMinispec) {
         this.modeleMinispec = modeleMinispec;
+        this.modeleJava = new ModeleJava();
+        for(Entity entity : modeleMinispec.getEntities()){
+            modeleJava.getaClasses().add(this.getClass(entity));
+        }
     }
 
     /*

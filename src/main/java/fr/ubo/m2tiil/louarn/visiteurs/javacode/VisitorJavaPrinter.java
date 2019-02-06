@@ -83,7 +83,9 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(ModeleJava modeleJava) {
-
+        for (Class aClass : modeleJava.getaClasses()){
+            aClass.accept(this);
+        }
     }
 
     /*

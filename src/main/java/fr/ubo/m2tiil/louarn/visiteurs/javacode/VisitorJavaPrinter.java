@@ -35,11 +35,13 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(AttributeJava attributeJava) {
+        this.out.print("\t");
         attributeJava.getVisibilite().accept(this);
         this.out.print(" ");
         attributeJava.getType().accept(this.visitorCommun);
         this.out.print(" ");
         this.out.print(attributeJava.getName());
+        this.out.println(";");
     }
 
     @Override
@@ -50,7 +52,7 @@ public class VisitorJavaPrinter implements VisitorJava {
     @Override
     public void visite(Class aClass) {
         out.print("public class " + aClass.getName());
-        if (aClass.getSubtype() == null || aClass.getSubtype().equals("")) {
+        if (aClass.getSubtype() != null && !aClass.getSubtype().equals("")) {
             out.print(" extends " + aClass.getSubtype());
         }
 
@@ -69,16 +71,21 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(Constructeur constructeur) {
+        this.out.print("\t");
         constructeur.getVisibilite().accept(this);
-        out.print(" " + constructeur.getaClass().getName());
+        this.out.print(" ");
+        this.out.println(constructeur.getaClass().getName() + "() {\nsuper();\n}");
     }
 
     @Override
     public void visite(Methode methode) {
+        this.out.print("\t");
         methode.getVisibilite().accept(this);
         this.out.print(" ");
         methode.getType().accept(this.visitorCommun);
         this.out.print(" " + methode.getName());
+        this.out.println(" {}");
+
     }
 
     @Override

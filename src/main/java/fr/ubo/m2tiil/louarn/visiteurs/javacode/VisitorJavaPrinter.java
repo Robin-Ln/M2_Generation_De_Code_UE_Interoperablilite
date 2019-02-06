@@ -74,7 +74,7 @@ public class VisitorJavaPrinter implements VisitorJava {
         this.out.print("\t");
         constructeur.getVisibilite().accept(this);
         this.out.print(" ");
-        this.out.println(constructeur.getaClass().getName() + "() {\nsuper();\n}");
+        this.out.println(constructeur.getaClass().getName() + "() {\n\t\tsuper();\n\t}");
     }
 
     @Override

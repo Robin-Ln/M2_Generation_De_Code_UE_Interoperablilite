@@ -27,6 +27,7 @@ public class ConverteurMinispecToJava {
     public ConverteurMinispecToJava(ModeleMinispec modeleMinispec) {
         this.modeleMinispec = modeleMinispec;
         this.modeleJava = new ModeleJava();
+        this.modeleJava.setName(modeleMinispec.getName());
         for(Entity entity : modeleMinispec.getEntities()){
             modeleJava.getaClasses().add(this.getClass(entity));
         }
@@ -71,29 +72,36 @@ public class ConverteurMinispecToJava {
 
         // création des accesseurs
         for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
-            Integer nameSize = attributeMinispec.getName().length();
-            String name = attributeMinispec.getName().substring(0, 1).toUpperCase()
-                    + attributeMinispec.getName().substring(1, nameSize);
-            methodes.add(this.getGetter(name, attributeMinispec));
-            methodes.add(this.getSetter(name, attributeMinispec));
+            methodes.add(this.getGetter(attributeMinispec));
+            methodes.add(this.getSetter(attributeMinispec));
         }
         return methodes;
     }
 
-    Methode getGetter(String name, AttributeMinispec attributeMinispec) {
+    String getName(AttributeMinispec attributeMinispec) {
+        Integer nameSize = attributeMinispec.getName().length();
+        return attributeMinispec.getName().substring(0, 1).toUpperCase()
+                + attributeMinispec.getName().substring(1, nameSize);
+    }
+
+    Methode getGetter(AttributeMinispec attributeMinispec) {
         Methode methode = new Methode();
-        methode.setName("get" + name);
+        methode.setName("get" + this.getName(attributeMinispec));
         methode.setType(attributeMinispec.getType());
         methode.setVisibilite(Visibilite.PUBLIC);
         methode.setArguments(new ArrayList<>());
 
+        Bloc bloc = new Bloc();
+        bloc.getLignes().add("return this." + attributeMinispec.getName() + ";");
+        methode.setBloc(bloc);
+
         return methode;
     }
 
-    Methode getSetter(String name, AttributeMinispec attributeMinispec) {
+    Methode getSetter(AttributeMinispec attributeMinispec) {
 
         Methode methode = new Methode();
-        methode.setName("set" + name);
+        methode.setName("set" + this.getName(attributeMinispec));
         TypeElement typeElement = new TypeElement();
         typeElement.setType("void");
         methode.setType(typeElement);
@@ -105,6 +113,10 @@ public class ConverteurMinispecToJava {
         argument.setType(attributeMinispec.getType());
         arguments.add(argument);
         methode.setArguments(arguments);
+
+        Bloc bloc = new Bloc();
+        bloc.getLignes().add("this." + attributeMinispec.getName() + " = " + methode.getName() + ";");
+        methode.setBloc(bloc);
 
         return methode;
     }

@@ -6,20 +6,20 @@ import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeleJava implements VisitableJava {
+public class Bloc implements VisitableJava {
     /*
      * Attributs
      */
-    private String name;
-    private List<Class> aClasses;
+    List<String> lignes;
 
     /*
      * Constructeurs
      */
 
-    public ModeleJava() {
-        this.aClasses = new ArrayList<>();
+    public Bloc() {
+        this.lignes = new ArrayList<>();
     }
+
     /*
      * Methodes
      */
@@ -33,19 +33,11 @@ public class ModeleJava implements VisitableJava {
      * Accesseurs
      */
 
-    public String getName() {
-        return name;
+    public List<String> getLignes() {
+        return lignes;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Class> getaClasses() {
-        return aClasses;
-    }
-
-    public void setaClasses(List<Class> aClasses) {
-        this.aClasses = aClasses;
+    public void setLignes(List<String> lignes) {
+        this.lignes = lignes;
     }
 }

@@ -17,6 +17,7 @@ public class Methode implements VisitableJava {
     private String name;
     private Type type;
     private List<Argument> arguments;
+    private Bloc bloc;
 
 
     /*
@@ -69,5 +70,13 @@ public class Methode implements VisitableJava {
 
     public void setArguments(List<Argument> arguments) {
         this.arguments = arguments;
+    }
+
+    public Bloc getBloc() {
+        return bloc;
+    }
+
+    public void setBloc(Bloc bloc) {
+        this.bloc = bloc;
     }
 }

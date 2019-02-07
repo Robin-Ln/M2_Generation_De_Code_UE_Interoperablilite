@@ -34,6 +34,7 @@ public class ParserXmlMinispec {
 
     public void lire() {
         Element element = this.document.getDocumentElement();
+        this.modeleMinispec.setName(element.getAttribute("name"));
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);

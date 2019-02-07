@@ -11,6 +11,7 @@ public class ModeleMinispec implements VisitableMinispec {
     /*
      * Attributs
      */
+    private String name;
     private List<Entity> entities;
 
     /*
@@ -32,6 +33,15 @@ public class ModeleMinispec implements VisitableMinispec {
     /*
      * Accesseurs
      */
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Entity> getEntities() {
         return entities;
     }

@@ -1,5 +1,7 @@
 <!ELEMENT modeleMinispec (entity)*>
-        <!ATTLIST modeleMinispec >
+        <!ATTLIST modeleMinispec
+                name CDATA #REQUIRED
+                >
 
         <!-- entity -->
         <!ELEMENT entity (attributeMinispec)*>

@@ -18,4 +18,6 @@ public interface VisitorJava {
 	void visite(ModeleJava modeleJava);
 
 	void visite(Visibilite visibilite);
+
+	void visite(Bloc bloc);
 }

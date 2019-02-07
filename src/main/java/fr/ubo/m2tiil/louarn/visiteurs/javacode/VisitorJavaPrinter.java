@@ -6,6 +6,7 @@ import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
 
 import java.io.PrintStream;
+import java.util.Iterator;
 
 public class VisitorJavaPrinter implements VisitorJava {
 
@@ -88,8 +89,25 @@ public class VisitorJavaPrinter implements VisitorJava {
         this.out.print(" ");
         methode.getType().accept(this.visitorCommun);
         this.out.print(" " + methode.getName());
-        this.out.println("() {}");
+        this.out.print("(");
+        for (Iterator<Argument> iterator = methode.getArguments().iterator(); iterator.hasNext(); ) {
+            Argument argument = iterator.next();
+            argument.accept(this);
+            if (iterator.hasNext()) {
+                this.out.print(", ");
+            }
+        }
+        this.out.println("){");
+        methode.getBloc().accept(this);
+        this.out.println("\t}");
 
+    }
+
+    @Override
+    public void visite(Bloc bloc) {
+        for (String ligne : bloc.getLignes()){
+            this.out.println("\t\t" + ligne);
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@
 
 <!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
 
-<modeleMinispec>
+<modeleMinispec name="modele">
 
     <entity name="Satelite">
 

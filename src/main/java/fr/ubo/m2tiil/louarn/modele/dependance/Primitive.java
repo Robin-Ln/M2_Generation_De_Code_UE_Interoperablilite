@@ -1,6 +1,6 @@
-package fr.ubo.m2tiil.louarn.modele.minispec.generatePackage;
+package fr.ubo.m2tiil.louarn.modele.dependance;
 
-public class Primitive extends Dependence {
+public class Primitive extends Dependance {
     /*
      * Attributte
      */

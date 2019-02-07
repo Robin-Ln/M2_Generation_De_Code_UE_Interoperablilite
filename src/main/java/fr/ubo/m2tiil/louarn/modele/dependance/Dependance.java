@@ -1,6 +1,6 @@
-package fr.ubo.m2tiil.louarn.modele.minispec.generatePackage;
+package fr.ubo.m2tiil.louarn.modele.dependance;
 
-public abstract class Dependence {
+public abstract class Dependance {
 
     /*
      * Attributte
@@ -12,7 +12,7 @@ public abstract class Dependence {
      * Constructeur
      */
 
-    public Dependence() {
+    public Dependance() {
         super();
     }
 

@@ -1,5 +1,6 @@
 package fr.ubo.m2tiil.louarn.modele.java;
 
+import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
 import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitableJava;
 import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
 
@@ -17,6 +18,7 @@ public class Class implements VisitableJava {
     private List<AttributeJava> attributeJavas;
     private List<Constructeur> constructeurs;
     private List<Methode> methodes;
+    private List<Dependance> dependances;
 
     /*
      * Constructeur
@@ -50,6 +52,14 @@ public class Class implements VisitableJava {
     /*
      * Accesseurs
      */
+
+    public List<Dependance> getDependances() {
+        return dependances;
+    }
+
+    public void setDependances(List<Dependance> dependances) {
+        this.dependances = dependances;
+    }
 
     public String getName() {
         return name;

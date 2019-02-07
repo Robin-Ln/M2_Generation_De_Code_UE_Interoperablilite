@@ -115,7 +115,7 @@ public class ConverteurMinispecToJava {
         methode.setArguments(arguments);
 
         Bloc bloc = new Bloc();
-        bloc.getLignes().add("this." + attributeMinispec.getName() + " = " + methode.getName() + ";");
+        bloc.getLignes().add("this." + attributeMinispec.getName() + " = " + attributeMinispec.getName() + ";");
         methode.setBloc(bloc);
 
         return methode;

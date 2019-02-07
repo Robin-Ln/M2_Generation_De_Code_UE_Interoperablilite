@@ -30,7 +30,9 @@ public class MinispecToJavaXml {
         DocumentBuilder builder = factory.newDocumentBuilder();
         XmlErrorHandler xmlErrorHandler = new XmlErrorHandler();
         builder.setErrorHandler(xmlErrorHandler);
-        File xml = new File("src/main/resources/XMLs/minispecXml/figure10.xml");
+        //File xml = new File("src/main/resources/XMLs/minispecXml/figure10.xml");
+        File xml = new File("src/main/resources/XMLs/minispecXml/minispecEnMinispec.xml");
+
         Document document = builder.parse(xml);
 
         /*
@@ -50,11 +52,11 @@ public class MinispecToJavaXml {
              */
             if (visitorCheckHeritage.isValide()) {
                 VisitorMinispecPrinter visitorPrinter = new VisitorMinispecPrinter(System.out);
-                modeleMinispec.accept(visitorPrinter);
+                // modeleMinispec.accept(visitorPrinter);
                 /*
                  * Convertion
                  */
-                System.out.println("---------");
+                // System.out.println("---------");
 
                 ModeleJava modeleJava = new ConverteurMinispecToJava(modeleMinispec).getModeleJava();
                 VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(System.out);

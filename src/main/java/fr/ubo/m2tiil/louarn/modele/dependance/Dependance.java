@@ -1,6 +1,8 @@
 package fr.ubo.m2tiil.louarn.modele.dependance;
 
-public abstract class Dependance {
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitableDependance;
+
+public abstract class Dependance implements VisitableDependance {
 
     /*
      * Attributte

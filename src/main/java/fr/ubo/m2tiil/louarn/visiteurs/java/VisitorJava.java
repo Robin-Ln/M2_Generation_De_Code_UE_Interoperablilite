@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.visiteurs.javacode;
+package fr.ubo.m2tiil.louarn.visiteurs.java;
 
 import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.*;

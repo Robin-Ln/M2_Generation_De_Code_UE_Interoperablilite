@@ -1,8 +1,8 @@
 package fr.ubo.m2tiil.louarn.modele.java;
 
 import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
-import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitableJava;
-import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitableJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 import java.util.ArrayList;
 import java.util.List;

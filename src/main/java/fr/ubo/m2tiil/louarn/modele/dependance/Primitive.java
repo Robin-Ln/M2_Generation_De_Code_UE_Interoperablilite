@@ -1,5 +1,7 @@
 package fr.ubo.m2tiil.louarn.modele.dependance;
 
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
+
 public class Primitive extends Dependance {
     /*
      * Attributte
@@ -11,6 +13,15 @@ public class Primitive extends Dependance {
      */
     public Primitive() {
         super();
+    }
+
+    /*
+     * Méthodes
+     */
+
+    @Override
+    public void accept(VisitorDependance visitorDependance) {
+        visitorDependance.visite(this);
     }
 
     /*

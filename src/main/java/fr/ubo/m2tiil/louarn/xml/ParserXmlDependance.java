@@ -8,6 +8,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ParserXmlDependance {
@@ -17,7 +19,7 @@ public class ParserXmlDependance {
      */
 
     private Document document;
-    private Map<String, Dependance> dependencies;
+    private List<Dependance> dependencies;
 
     /*
      * Constructeur
@@ -25,6 +27,7 @@ public class ParserXmlDependance {
     public ParserXmlDependance(Document document) {
         super();
         this.document = document;
+        this.dependencies = new ArrayList<>();
     }
 
     /*
@@ -37,8 +40,9 @@ public class ParserXmlDependance {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Dependance dependance = this.getDependence(element);
-                this.dependencies.put(dependance.getName(), dependance);
+                Element NodeElement = (Element) node;
+                Dependance dependance = this.getDependence(NodeElement);
+                this.dependencies.add(dependance);
             }
         }
     }
@@ -67,19 +71,19 @@ public class ParserXmlDependance {
      * Accesseurs
      */
 
+    public List<Dependance> getDependencies() {
+        return dependencies;
+    }
+
+    public void setDependencies(List<Dependance> dependencies) {
+        this.dependencies = dependencies;
+    }
+
     public Document getDocument() {
         return document;
     }
 
     public void setDocument(Document document) {
         this.document = document;
-    }
-
-    public Map<String, Dependance> getDependencies() {
-        return dependencies;
-    }
-
-    public void setDependencies(Map<String, Dependance> dependencies) {
-        this.dependencies = dependencies;
     }
 }

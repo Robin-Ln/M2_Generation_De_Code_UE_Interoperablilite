@@ -1,8 +1,7 @@
 package fr.ubo.m2tiil.louarn.modele.java;
 
-import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
-import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitableJava;
-import fr.ubo.m2tiil.louarn.visiteurs.javacode.VisitorJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitableJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 public enum Visibilite implements VisitableJava {
 

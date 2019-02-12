@@ -4,6 +4,8 @@ import fr.ubo.m2tiil.louarn.helpers.ConverteurMinispecToJava;
 import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
@@ -79,5 +81,7 @@ public class MinispecToJavaXml {
 
         VisitorDependenciesUtile visitorDependenciesUtile = new VisitorDependenciesUtile(dependances);
         visitorDependenciesUtile.visite(modeleJava);
+        VisitorDependance visitorDependance = new VisitorDependancePrinter(System.out,visitorDependenciesUtile.getDependancesUtile());
+
     }
 }

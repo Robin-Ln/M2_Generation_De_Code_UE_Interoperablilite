@@ -8,7 +8,7 @@
 <!ELEMENT entity (attributeMinispec)*>
 <!ATTLIST entity
         name CDATA #REQUIRED
-        subtype CDATA #IMPLIED
+        supertype CDATA #IMPLIED
         >
 
 <!-- attributeMinispec -->

@@ -28,7 +28,6 @@ public class VisitorDependenciesUtile implements VisitorJava, VisitorCommun {
     public VisitorDependenciesUtile(List<Dependance> dependancesRef) {
         super();
         this.dependancesRef = dependancesRef;
-        this.dependancesUtile = new ArrayList<>();
     }
 
     /*
@@ -63,10 +62,14 @@ public class VisitorDependenciesUtile implements VisitorJava, VisitorCommun {
 
     @Override
     public void visite(Class aClass) {
-        this.addDependanceUtile(aClass.getName());
+        this.dependancesUtile = new ArrayList<>();
+
+        this.addDependanceUtile(aClass.getSupertype());
         for (AttributeJava attributeJava : aClass.getAttributeJavas()){
             attributeJava.accept(this);
         }
+
+        aClass.setDependances(this.dependancesUtile);
     }
 
     @Override

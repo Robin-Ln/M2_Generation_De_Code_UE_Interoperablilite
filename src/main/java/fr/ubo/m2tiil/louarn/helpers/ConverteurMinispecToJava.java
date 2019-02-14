@@ -29,7 +29,9 @@ public class ConverteurMinispecToJava {
         this.modeleJava = new ModeleJava();
         this.modeleJava.setName(modeleMinispec.getName());
         for(Entity entity : modeleMinispec.getEntities()){
-            modeleJava.getaClasses().add(this.getClass(entity));
+            Class aClass = this.getClass(entity);
+            aClass.setaPackage(modeleJava.getName());
+            modeleJava.getaClasses().add(aClass);
         }
     }
 
@@ -39,7 +41,7 @@ public class ConverteurMinispecToJava {
     Class getClass(Entity entity){
         Class aClass = new Class();
         aClass.setName(entity.getName());
-        aClass.setSubtype(entity.getSubtype());
+        aClass.setSupertype(entity.getSubtype());
         aClass.setAttributeJavas(this.getAttributeJavas(entity));
         aClass.setConstructeurs(this.getConstructeurs(aClass));
         aClass.setMethodes(this.getMethodes(entity));

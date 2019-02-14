@@ -1,11 +1,9 @@
 package fr.ubo.m2tiil.louarn.visiteurs.dependance;
 
-import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
 import fr.ubo.m2tiil.louarn.modele.dependance.Primitive;
 import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
 
 import java.io.PrintStream;
-import java.util.List;
 
 public class VisitorDependancePrinter implements VisitorDependance {
 
@@ -17,12 +15,8 @@ public class VisitorDependancePrinter implements VisitorDependance {
     /*
      * Constructeur
      */
-    public VisitorDependancePrinter(PrintStream out, List<Dependance> dependanceList) {
+    public VisitorDependancePrinter(PrintStream out) {
         this.out = out;
-
-        for (Dependance dependance : dependanceList) {
-            dependance.accept(this);
-        }
     }
 
     /*

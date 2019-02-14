@@ -7,6 +7,7 @@ import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
 import fr.ubo.m2tiil.louarn.xml.XmlErrorHandler;
@@ -73,15 +74,13 @@ public class MinispecToJavaXml {
             }
         }
 
-
-//        VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(System.out);
-//        modeleJava.accept(visitorJavaPrinter);
-
-//        VisitorDependance visitorDependance = new VisitorDependancePrinter(System.out,dependances);
-
         VisitorDependenciesUtile visitorDependenciesUtile = new VisitorDependenciesUtile(dependances);
         visitorDependenciesUtile.visite(modeleJava);
-        VisitorDependance visitorDependance = new VisitorDependancePrinter(System.out,visitorDependenciesUtile.getDependancesUtile());
+
+        String path = "/Users/rlouarn/Documents/GitHub/M2_Generation_De_Code_UE_Interoperablilite/src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec";
+        VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(path);
+        modeleJava.accept(visitorJavaPrinter);
+
 
     }
 }

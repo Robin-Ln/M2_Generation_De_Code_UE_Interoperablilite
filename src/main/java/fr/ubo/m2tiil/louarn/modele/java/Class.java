@@ -12,13 +12,13 @@ public class Class implements VisitableJava {
     /*
      * Attributs
      */
-
+    private String aPackage;
+    private List<Dependance> dependances;
     private String name;
-    private String subtype;
+    private String supertype;
     private List<AttributeJava> attributeJavas;
     private List<Constructeur> constructeurs;
     private List<Methode> methodes;
-    private List<Dependance> dependances;
 
     /*
      * Constructeur
@@ -29,14 +29,7 @@ public class Class implements VisitableJava {
         this.attributeJavas = new ArrayList<>();
         this.constructeurs = new ArrayList<>();
         this.methodes = new ArrayList<>();
-    }
-
-    public Class(String name, String subtype) {
-        this.name = name;
-        this.subtype = subtype;
-        this.attributeJavas = new ArrayList<>();
-        this.constructeurs = new ArrayList<>();
-        this.methodes = new ArrayList<>();
+        this.dependances = new ArrayList<>();
     }
 
     /*
@@ -52,6 +45,14 @@ public class Class implements VisitableJava {
     /*
      * Accesseurs
      */
+
+    public String getaPackage() {
+        return aPackage;
+    }
+
+    public void setaPackage(String aPackage) {
+        this.aPackage = aPackage;
+    }
 
     public List<Dependance> getDependances() {
         return dependances;
@@ -69,12 +70,12 @@ public class Class implements VisitableJava {
         this.name = name;
     }
 
-    public String getSubtype() {
-        return subtype;
+    public String getSupertype() {
+        return supertype;
     }
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
+    public void setSupertype(String supertype) {
+        this.supertype = supertype;
     }
 
     public List<AttributeJava> getAttributeJavas() {

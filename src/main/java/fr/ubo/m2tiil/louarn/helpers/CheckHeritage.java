@@ -1,12 +1,13 @@
-package fr.ubo.m2tiil.louarn.visiteurs.java;
+package fr.ubo.m2tiil.louarn.helpers;
 
 import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.*;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitorJavaCheckHeritage implements VisitorJava {
+public class CheckHeritage {
 
     /*
      * Attributs
@@ -17,7 +18,7 @@ public class VisitorJavaCheckHeritage implements VisitorJava {
     /*
      * Constructeur
      */
-    public VisitorJavaCheckHeritage() {
+    public CheckHeritage() {
         super();
         this.exceptions = new ArrayList<>();
     }
@@ -25,17 +26,15 @@ public class VisitorJavaCheckHeritage implements VisitorJava {
     /*
      * Merhode de l'interface VisitorJava
      */
-    @Override
-    public void visite(ModeleJava modeleJava) {
+    public void checkHeritage(ModeleJava modeleJava) {
         this.modeleJava = modeleJava;
 
         for (Class aClass : this.modeleJava.getaClasses()) {
-            aClass.accept(this);
+            checkHeritageFor(aClass);
         }
     }
 
-    @Override
-    public void visite(Class aClass) {
+    public void checkHeritageFor(Class aClass) {
 
         // verifier le bouclage
         // si pas de super class pas de bouclage
@@ -59,30 +58,6 @@ public class VisitorJavaCheckHeritage implements VisitorJava {
                 }
             }
         }
-    }
-
-    @Override
-    public void visite(Argument argument) {
-    }
-
-    @Override
-    public void visite(AttributeJava attributeJava) {
-    }
-
-    @Override
-    public void visite(Constructeur constructeur) {
-    }
-
-    @Override
-    public void visite(Methode methode) {
-    }
-
-    @Override
-    public void visite(Visibilite visibilite) {
-    }
-
-    @Override
-    public void visite(Bloc bloc) {
     }
 
     /*

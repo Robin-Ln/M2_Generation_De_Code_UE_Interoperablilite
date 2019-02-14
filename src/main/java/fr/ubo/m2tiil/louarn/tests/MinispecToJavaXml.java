@@ -7,6 +7,8 @@ import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaCheckHeritage;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
@@ -72,6 +74,12 @@ public class MinispecToJavaXml {
                 System.out.println("Line : " + saxParseException.getLineNumber() + ", colonne : "
                         + saxParseException.getColumnNumber() + " -----> " + saxParseException.getMessage());
             }
+        }
+
+        VisitorJavaCheckHeritage visitorJavaCheckHeritage = new VisitorJavaCheckHeritage();
+        visitorJavaCheckHeritage.visite(modeleJava);
+        if (!visitorJavaCheckHeritage.getExceptions().isEmpty()){
+            System.out.println("heritage KO");
         }
 
         VisitorDependenciesUtile visitorDependenciesUtile = new VisitorDependenciesUtile(dependances);

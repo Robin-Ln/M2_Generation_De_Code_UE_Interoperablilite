@@ -1,0 +1,42 @@
+package {{package}};
+
+{{#dependences}}
+import {{package}};
+{{/dependences}}
+
+public class {{name}} {{#superType}} extends {{superType}} {{/superType}} {
+
+    /*
+     * Attributs
+     */
+    {{#attributeJavas}}
+    {{visibilite}} {{type}} {{name}};
+    {{/attributeJavas}}
+
+    /*
+     * Constructeurs
+     */
+    {{#constructeurs}}
+    {{visibilite}} {{name}} {
+    {{#bloc}}
+    {{#lignes}}
+        {{ligne}};
+    {{/lignes}}
+    {{/bloc}}
+    }
+    {{/constructeurs}}
+
+    /*
+     * Accesseurs
+     */
+    {{#methodeJavas}}
+    {{visibilite}} {{name}} {
+    {{#bloc}}
+    {{#lignes}}
+        {{ligne}};
+    {{/lignes}}
+    {{/bloc}}
+    }
+    {{/methodeJavas}}
+
+}

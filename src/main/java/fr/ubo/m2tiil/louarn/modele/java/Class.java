@@ -12,6 +12,7 @@ public class Class implements VisitableJava {
     /*
      * Attributs
      */
+    private Visibilite visibilite;
     private String aPackage;
     private List<Dependance> dependances;
     private String name;
@@ -45,6 +46,14 @@ public class Class implements VisitableJava {
     /*
      * Accesseurs
      */
+
+    public Visibilite getVisibilite() {
+        return visibilite;
+    }
+
+    public void setVisibilite(Visibilite visibilite) {
+        this.visibilite = visibilite;
+    }
 
     public String getaPackage() {
         return aPackage;

@@ -2,7 +2,7 @@
 
 <!DOCTYPE java-code SYSTEM "java-code.dtd">
 <java-code>
-    <primitive name="String" type="String"/>
-    <primitive name="Integer" type="Integer"/>
+    <!--<primitive name="String" type="String"/>-->
+    <!--<primitive name="Integer" type="Integer"/>-->
     <primitive name="List" type="List" package="java.util.List"/>
 </java-code>

@@ -45,12 +45,13 @@ public class MinispecToJavaXml {
          * xmlMinispec
          * Validation de la DTD
          */
+        ModeleMinispec modeleMinispec = null;
         ModeleJava modeleJava = null;
         if (xmlErrorHandler.isValide()) {
             ParserXmlMinispec parserXml = new ParserXmlMinispec(document);
             parserXml.lire();
 
-            ModeleMinispec modeleMinispec = parserXml.getModeleMinispec();
+            modeleMinispec = parserXml.getModeleMinispec();
 
             modeleJava = new ConverteurMinispecToJava(modeleMinispec).getModeleJava();
         }

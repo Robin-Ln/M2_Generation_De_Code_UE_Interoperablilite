@@ -13,7 +13,7 @@ public class Entity implements VisitableMinispec {
 	 * Attributs
 	 */
 	private String name;
-	private String subtype;
+	private String superType;
 	private List<AttributeMinispec> attributeMinispecs;
 	
 	/*
@@ -60,12 +60,12 @@ public class Entity implements VisitableMinispec {
 		this.attributeMinispecs = attributeMinispecs;
 	}
 
-	public String getSubtype() {
-		return subtype;
+	public String getSuperType() {
+		return superType;
 	}
 
-	public void setSubtype(String subtype) {
-		this.subtype = subtype;
+	public void setSuperType(String superType) {
+		this.superType = superType;
 	}
 	
 	

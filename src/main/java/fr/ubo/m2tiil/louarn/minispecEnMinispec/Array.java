@@ -1,5 +1,5 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec;
-public class Array {
+public class Array extends Type {
 	public Type type;
 	public Integer size;
 	public Array() {

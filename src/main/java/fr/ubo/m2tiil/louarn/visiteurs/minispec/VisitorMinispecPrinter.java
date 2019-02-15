@@ -37,8 +37,8 @@ public class VisitorMinispecPrinter implements VisitorMinispec {
     @Override
     public void visite(Entity entity) {
         out.print("public class " + entity.getName());
-        if (entity.getSubtype() != null && !entity.getSubtype().equals("")) {
-            out.print(" extends " + entity.getSubtype());
+        if (entity.getSuperType() != null && !entity.getSuperType().equals("")) {
+            out.print(" extends " + entity.getSuperType());
         }
         out.println(" {");
         for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {

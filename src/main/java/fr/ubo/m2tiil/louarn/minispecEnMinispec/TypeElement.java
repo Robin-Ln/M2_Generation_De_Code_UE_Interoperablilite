@@ -1,5 +1,5 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec;
-public class TypeElement {
+public class TypeElement extends Type {
 	public String type;
 	public TypeElement() {
 		super();

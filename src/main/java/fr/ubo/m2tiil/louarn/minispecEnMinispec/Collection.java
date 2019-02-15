@@ -1,5 +1,5 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec;
-public class Collection {
+public class Collection extends Type {
 	public String typeCollection;
 	public Type type;
 	public Collection() {

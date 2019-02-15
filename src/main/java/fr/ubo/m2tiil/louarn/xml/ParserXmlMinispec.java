@@ -48,9 +48,9 @@ public class ParserXmlMinispec {
         Entity entity = new Entity();
         entity.setName(element.getAttribute("name"));
 
-        String subtype = element.getAttribute("subtype");
+        String subtype = element.getAttribute("supertype");
         if (subtype != null) {
-            entity.setSubtype(subtype);
+            entity.setSuperType(subtype);
         }
 
         NodeList nodeList = element.getChildNodes();

@@ -90,7 +90,7 @@ public class MinispecToJavaXml {
         String path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec";
         VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(path);
         modeleJava.accept(visitorJavaPrinter);
-        
+
 
     }
 }

@@ -10,7 +10,7 @@ import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitorCreerRepository implements VisitorCommun {
+public class VisitorCreerInstance implements VisitorCommun {
 
     /**
      * Attributes
@@ -22,7 +22,7 @@ public class VisitorCreerRepository implements VisitorCommun {
     /**
      * Constructeurs
      */
-    public VisitorCreerRepository() {
+    public VisitorCreerInstance() {
         this.isCollection = false;
     }
 

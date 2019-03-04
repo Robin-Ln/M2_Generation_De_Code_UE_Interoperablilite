@@ -7,7 +7,7 @@ import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
-import fr.ubo.m2tiil.louarn.visiteurs.repository.VisitorCreerRepository;
+import fr.ubo.m2tiil.louarn.visiteurs.repository.VisitorCreerInstance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
 import fr.ubo.m2tiil.louarn.xml.XmlErrorHandler;
@@ -105,8 +105,8 @@ public class MinispecToJavaXml {
         modeleJavaSatelite.accept(visitorJavaPrinter);
 
 
-        VisitorCreerRepository visitorCreerRepository = new VisitorCreerRepository();
-        ModeleJava modeleJavaSateliteInstance = visitorCreerRepository.creerInstanceModele(modeleJavaSatelite);
+        VisitorCreerInstance visitorCreerInstance = new VisitorCreerInstance();
+        ModeleJava modeleJavaSateliteInstance = visitorCreerInstance.creerInstanceModele(modeleJavaSatelite);
         visitorDependenciesUtile.visite(modeleJavaSateliteInstance);
 
         path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/instance";

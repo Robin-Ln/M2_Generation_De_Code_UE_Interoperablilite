@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec;
 public class Array extends Type {
 	public Type type;
 	public Integer size;

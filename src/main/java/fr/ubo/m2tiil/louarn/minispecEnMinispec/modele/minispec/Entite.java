@@ -1,10 +1,10 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec;
 import java.util.List;
-public class Entity {
+public class Entite {
 	public String name;
-	public Integer subype;
+	public String subype;
 	public List<Attribute> attributs;
-	public Entity() {
+	public Entite() {
 		super();
 	}
 	public String getName(){
@@ -13,10 +13,10 @@ public class Entity {
 	public void setName(String name){
 		this.name = name;
 	}
-	public Integer getSubype(){
+	public String getSubype(){
 		return this.subype;
 	}
-	public void setSubype(Integer subype){
+	public void setSubype(String subype){
 		this.subype = subype;
 	}
 	public List<Attribute> getAttributs(){

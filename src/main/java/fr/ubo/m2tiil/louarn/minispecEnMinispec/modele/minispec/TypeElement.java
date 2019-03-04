@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec;
 public class TypeElement extends Type {
 	public String type;
 	public TypeElement() {

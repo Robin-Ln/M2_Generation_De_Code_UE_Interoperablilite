@@ -8,10 +8,7 @@ import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.Iterator;
 
 public class VisitorJavaPrinter implements VisitorJava {
@@ -149,6 +146,14 @@ public class VisitorJavaPrinter implements VisitorJava {
      */
     private PrintStream newOutFor(String nameClass) {
         try {
+
+            File f = new File(this.pathCible + "/" + nameClass + ".java");
+            File p = f.getParentFile();
+            if (!p.exists()) {
+                p.mkdirs();
+            }
+
+
             OutputStream output = new FileOutputStream(this.pathCible + "/" + nameClass + ".java");
             PrintStream printStream = new PrintStream(output);
             return printStream;

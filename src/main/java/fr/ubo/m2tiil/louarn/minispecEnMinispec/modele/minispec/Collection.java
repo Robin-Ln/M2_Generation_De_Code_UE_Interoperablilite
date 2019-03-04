@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec;
 public class Collection extends Type {
 	public String typeCollection;
 	public Type type;

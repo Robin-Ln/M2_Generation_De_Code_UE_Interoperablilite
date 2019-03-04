@@ -2,7 +2,7 @@
 
 <!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
 
-<modeleMinispec name="modele">
+<modeleMinispec name="fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.autre">
 
     <entity name="Satelite">
 

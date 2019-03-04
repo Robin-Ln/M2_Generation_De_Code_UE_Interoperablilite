@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec;
 public class Attribute {
 	public String name;
 	public Type type;

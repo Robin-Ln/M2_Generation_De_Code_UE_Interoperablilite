@@ -1,15 +1,11 @@
 package fr.ubo.m2tiil.louarn.tests;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheFactory;
+import fr.ubo.m2tiil.louarn.helpers.CheckHeritage;
 import fr.ubo.m2tiil.louarn.helpers.ConverteurMinispecToJava;
 import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
-import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
-import fr.ubo.m2tiil.louarn.helpers.CheckHeritage;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
@@ -23,7 +19,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.List;
 
 public class MinispecToJavaXml {
@@ -37,23 +32,32 @@ public class MinispecToJavaXml {
         builder.setErrorHandler(xmlErrorHandler);
 
         File xmlMinispec = new File("src/main/resources/XMLs/minispecXml/minispecEnMinispec.xml");
+        File xmlSatelite = new File("src/main/resources/XMLs/minispecXml/figure10.xml");
         File xmlDependence = new File("src/main/resources/XMLs/java-code/figure16.xml");
 
         Document document = builder.parse(xmlMinispec);
+
 
         /*
          * xmlMinispec
          * Validation de la DTD
          */
         ModeleMinispec modeleMinispec = null;
+        ModeleMinispec modeleMinispecSatelite = null;
         ModeleJava modeleJava = null;
+        ModeleJava modeleJavaSatelite = null;
         if (xmlErrorHandler.isValide()) {
             ParserXmlMinispec parserXml = new ParserXmlMinispec(document);
             parserXml.lire();
-
             modeleMinispec = parserXml.getModeleMinispec();
-
             modeleJava = new ConverteurMinispecToJava(modeleMinispec).getModeleJava();
+
+
+            document = builder.parse(xmlSatelite);
+            parserXml = new ParserXmlMinispec(document);
+            parserXml.lire();
+            modeleMinispecSatelite = parserXml.getModeleMinispec();
+            modeleJavaSatelite = new ConverteurMinispecToJava(modeleMinispecSatelite).getModeleJava();
         }
 
         document = builder.parse(xmlDependence);
@@ -87,10 +91,17 @@ public class MinispecToJavaXml {
 
         VisitorDependenciesUtile visitorDependenciesUtile = new VisitorDependenciesUtile(dependances);
         visitorDependenciesUtile.visite(modeleJava);
+        visitorDependenciesUtile.visite(modeleJavaSatelite);
 
-        String path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec";
+        String path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/modele/minispec";
         VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(path);
         modeleJava.accept(visitorJavaPrinter);
+
+
+
+        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/modele/autre";
+        visitorJavaPrinter = new VisitorJavaPrinter(path);
+        modeleJavaSatelite.accept(visitorJavaPrinter);
 
 
     }

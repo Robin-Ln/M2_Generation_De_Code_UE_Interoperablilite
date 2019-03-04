@@ -1,42 +1,18 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 
-import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+public abstract class AbstractRepesitory<Instance> {
 
-public abstract class AbstractRepesitory<Entite, Instance> {
-
-    /**
-     * Consctructeur
-     */
 
     /**
      * Methodes abstraite
      */
 
-    abstract Entite lire(String pathFile);
+    abstract public Instance lire(Element element);
 
-    abstract void ecrire(Instance instance);
+    abstract public Element ecrire(Instance instance, Document document);
 
-    /**
-     * Methodes
-     */
-
-    /**
-     * ex utilisation : domImplementation.createDocument("", "Societe", null);
-     * @return
-     */
-    DOMImplementation getDocument() {
-        try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            return documentBuilder.getDOMImplementation();
-        } catch (ParserConfigurationException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 }

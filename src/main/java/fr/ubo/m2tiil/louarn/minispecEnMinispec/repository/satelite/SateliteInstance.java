@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.satelite;
 
 public class SateliteInstance {
 

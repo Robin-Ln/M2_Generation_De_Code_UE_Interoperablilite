@@ -13,12 +13,23 @@ public class Class implements VisitableJava {
      * Attributs
      */
     private Visibilite visibilite;
+
+    private Prototype prototype;
+
     private String aPackage;
+
     private List<Dependance> dependances;
+
     private String name;
+
     private String supertype;
+
+    private List<String> generiqueClasses;
+
     private List<AttributeJava> attributeJavas;
+
     private List<Constructeur> constructeurs;
+
     private List<Methode> methodes;
 
     /*
@@ -31,6 +42,7 @@ public class Class implements VisitableJava {
         this.constructeurs = new ArrayList<>();
         this.methodes = new ArrayList<>();
         this.dependances = new ArrayList<>();
+        this.generiqueClasses = new ArrayList<>();
     }
 
     /*
@@ -109,5 +121,21 @@ public class Class implements VisitableJava {
 
     public void setMethodes(List<Methode> methodes) {
         this.methodes = methodes;
+    }
+
+    public Prototype getPrototype() {
+        return prototype;
+    }
+
+    public void setPrototype(Prototype prototype) {
+        this.prototype = prototype;
+    }
+
+    public List<String> getGeneriqueClasses() {
+        return generiqueClasses;
+    }
+
+    public void setGeneriqueClasses(List<String> generiqueClasses) {
+        this.generiqueClasses = generiqueClasses;
     }
 }

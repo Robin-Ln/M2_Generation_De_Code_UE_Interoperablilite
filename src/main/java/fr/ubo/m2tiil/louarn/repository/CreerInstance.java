@@ -1,6 +1,7 @@
 package fr.ubo.m2tiil.louarn.repository;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
+import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
 import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 
@@ -27,7 +28,13 @@ public class CreerInstance {
     private Class creerInstanceClass(Class aClass) {
 
         Class instance = new Class();
+        instance.setVisibilite(aClass.getVisibilite());
+        instance.setPrototype(aClass.getPrototype());
         instance.setName(aClass.getName() + "Instance");
+
+        instance.setSupertype("AbstractInstance");
+
+        instance.getDependances().add(new ReferenceModele("AbstractInstance", CreerRepository.P_NAME + "." + "AbstractInstance"));
 
         for (AttributeJava attributeJava : aClass.getAttributeJavas()) {
             instance.getAttributeJavas().add(this.getAttribute(attributeJava.getName()));

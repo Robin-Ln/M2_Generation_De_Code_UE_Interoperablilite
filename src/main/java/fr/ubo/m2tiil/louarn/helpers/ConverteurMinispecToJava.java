@@ -41,6 +41,7 @@ public class ConverteurMinispecToJava {
     Class getClass(Entity entity){
         Class aClass = new Class();
         aClass.setVisibilite(Visibilite.PUBLIC);
+        aClass.setPrototype(Prototype.CLASS);
         aClass.setName(entity.getName());
         aClass.setSupertype(entity.getSuperType());
         aClass.setAttributeJavas(this.getAttributeJavas(entity));

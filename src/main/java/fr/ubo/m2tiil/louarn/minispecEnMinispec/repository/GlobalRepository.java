@@ -1,7 +1,6 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.autre.Flotte;
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.autre.Satelite;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl.FlotteInstanceRepository;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.SateliteInstance;
 import org.w3c.dom.*;

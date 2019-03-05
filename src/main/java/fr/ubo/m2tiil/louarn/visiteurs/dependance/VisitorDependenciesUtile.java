@@ -110,6 +110,10 @@ public class VisitorDependenciesUtile implements VisitorJava, VisitorCommun {
     public void visite(Bloc bloc) {
     }
 
+    @Override
+    public void visite(Prototype prototype) {
+    }
+
     /*
      * Methodes
      */

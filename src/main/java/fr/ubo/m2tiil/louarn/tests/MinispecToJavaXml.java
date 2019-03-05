@@ -108,7 +108,6 @@ public class MinispecToJavaXml {
 
         CreerInstance creerInstance = new CreerInstance();
         ModeleJava modeleJavaSateliteInstance = creerInstance.creerInstanceModele(modeleJavaSatelite);
-        visitorDependenciesUtile.visite(modeleJavaSateliteInstance);
 
         path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/instance";
         visitorJavaPrinter = new VisitorJavaPrinter(path);
@@ -116,7 +115,6 @@ public class MinispecToJavaXml {
 
         CreerRepository creerRepository = new CreerRepository();
         ModeleJava modeleJavaRepesitory = creerRepository.creerRepositoryModele(modeleJavaSateliteInstance);
-
 
 
         path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/impl";

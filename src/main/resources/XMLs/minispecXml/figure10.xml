@@ -10,10 +10,6 @@
             <typeElement type="String"/>
         </attributeMinispec>
 
-        <attributeMinispec name="id">
-            <typeElement type="Integer"/>
-        </attributeMinispec>
-
         <attributeMinispec name="parent">
             <typeElement type="Flotte"/>
         </attributeMinispec>

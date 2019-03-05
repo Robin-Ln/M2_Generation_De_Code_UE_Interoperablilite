@@ -7,6 +7,7 @@ import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.util.Iterator;
@@ -50,6 +51,11 @@ public class VisitorJavaPrinter implements VisitorJava {
     }
 
     @Override
+    public void visite(Prototype prototype) {
+        this.out.print(prototype.getPrototype());
+    }
+
+    @Override
     public void visite(Visibilite visibilite) {
         this.out.print(visibilite.getVisibilite());
     }
@@ -62,8 +68,28 @@ public class VisitorJavaPrinter implements VisitorJava {
             dependance.accept(this.visitorDependance);
         }
 
-        out.print("public class " + aClass.getName());
-        if (aClass.getSupertype() != null && !aClass.getSupertype().equals("")) {
+        aClass.getVisibilite().accept(this);
+
+        out.print(" ");
+
+        aClass.getPrototype().accept(this);
+
+        out.print(" " + aClass.getName());
+
+        if (!aClass.getGeneriqueClasses().isEmpty()) {
+            out.println(" <");
+            for (Iterator<String> iterator = aClass.getGeneriqueClasses().iterator();
+                 iterator.hasNext(); ) {
+                String generiqueClass = iterator.next();
+                this.out.print(generiqueClass);
+                if (iterator.hasNext()) {
+                    this.out.print(", ");
+                }
+            }
+            out.println("> ");
+        }
+
+        if (StringUtils.isNotBlank(aClass.getSupertype())) {
             out.print(" extends " + aClass.getSupertype());
         }
 

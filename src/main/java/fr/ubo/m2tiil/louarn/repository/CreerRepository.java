@@ -15,7 +15,7 @@ public class CreerRepository {
      */
 
     private static final String P_NAME_IMPL = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl";
-    private static final String P_NAME = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository";
+    public static final String P_NAME = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository";
 
 
     /**
@@ -29,11 +29,14 @@ public class CreerRepository {
      * Methodes
      */
 
-    private Class creerInstanceClass(Class instance) {
+    private Class creerRepositoryClass(Class instance) {
 
         Class repository = new Class();
         repository.setaPackage(P_NAME_IMPL);
         repository.setName(instance.getName() + "Repository");
+
+        repository.setVisibilite(instance.getVisibilite());
+        repository.setPrototype(instance.getPrototype());
 
         repository.getMethodes().add(this.getMethodeLire(instance));
         repository.getMethodes().add(this.getMethodeEcrire(instance));
@@ -45,6 +48,8 @@ public class CreerRepository {
                 + instance.getName()));
 
         repository.getDependances().add(new ReferenceModele("AbstractRepository", P_NAME + "." + "AbstractRepository"));
+        repository.getDependances().add(new ReferenceModele(instance.getName(), instance.getaPackage()+ "." + instance.getName()));
+
 
         repository.getDependances().add(
                 new ReferenceModele("Element", "org.w3c.dom.Element"));
@@ -63,7 +68,7 @@ public class CreerRepository {
         List<Class> instances = new ArrayList<>();
 
         for (Class instance : modeleJavaInstance.getaClasses()) {
-            Class repository = this.creerInstanceClass(instance);
+            Class repository = this.creerRepositoryClass(instance);
             instances.add(repository);
         }
 

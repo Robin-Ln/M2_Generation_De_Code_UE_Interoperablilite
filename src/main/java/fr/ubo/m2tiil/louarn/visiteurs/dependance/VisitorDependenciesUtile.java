@@ -69,6 +69,14 @@ public class VisitorDependenciesUtile implements VisitorJava, VisitorCommun {
             attributeJava.accept(this);
         }
 
+        for (Methode methode : aClass.getMethodes()){
+            methode.accept(this);
+
+            for (Argument argument : methode.getArguments()){
+                argument.accept(this);
+            }
+        }
+
         aClass.setDependances(this.dependancesUtile);
     }
 

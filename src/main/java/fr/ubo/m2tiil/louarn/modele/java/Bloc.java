@@ -10,14 +10,18 @@ public class Bloc implements VisitableJava {
     /*
      * Attributs
      */
-    List<String> lignes;
+    StringBuilder lignes;
 
     /*
      * Constructeurs
      */
 
     public Bloc() {
-        this.lignes = new ArrayList<>();
+        this.lignes = new StringBuilder();
+    }
+
+    public Bloc(StringBuilder bloc) {
+        this.lignes = bloc;
     }
 
     /*
@@ -33,11 +37,11 @@ public class Bloc implements VisitableJava {
      * Accesseurs
      */
 
-    public List<String> getLignes() {
+    public StringBuilder getLignes() {
         return lignes;
     }
 
-    public void setLignes(List<String> lignes) {
+    public void setLignes(StringBuilder lignes) {
         this.lignes = lignes;
     }
 }

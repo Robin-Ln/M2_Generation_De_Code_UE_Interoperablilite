@@ -14,6 +14,11 @@ public abstract class Dependance implements VisitableDependance {
      * Constructeur
      */
 
+    public Dependance(String name, String packageName) {
+        this.name = name;
+        this.packageName = packageName;
+    }
+
     public Dependance() {
         super();
     }

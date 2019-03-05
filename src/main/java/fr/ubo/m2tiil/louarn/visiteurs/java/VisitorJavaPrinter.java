@@ -115,9 +115,9 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(Bloc bloc) {
-        for (String ligne : bloc.getLignes()){
-            this.out.println("\t\t" + ligne);
-        }
+        String lignes = "\t\t"+bloc.getLignes().toString();
+        lignes = lignes.replaceAll(";",";\n\t\t");
+        this.out.println(lignes);
     }
 
     @Override

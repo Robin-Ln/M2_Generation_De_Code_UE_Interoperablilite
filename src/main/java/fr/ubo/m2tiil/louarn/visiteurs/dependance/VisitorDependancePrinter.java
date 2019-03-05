@@ -38,6 +38,6 @@ public class VisitorDependancePrinter implements VisitorDependance {
             return;
         }
 
-        this.out.println("import " + referenceModele.getPackageName());
+        this.out.println("import " + referenceModele.getPackageName() + ";");
     }
 }

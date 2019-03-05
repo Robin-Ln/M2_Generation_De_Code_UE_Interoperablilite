@@ -1,6 +1,7 @@
 package fr.ubo.m2tiil.louarn.modele.java;
 
 import fr.ubo.m2tiil.louarn.modele.commun.Type;
+import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitableJava;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
@@ -17,6 +18,13 @@ public class Argument implements VisitableJava {
      * Constructeurs
      */
 
+    public Argument() {
+    }
+
+    public Argument(String type, String name) {
+        this.type = new TypeElement(type);
+        this.name = name;
+    }
     /*
      * Methodes
      */

@@ -17,6 +17,10 @@ public class TypeElement implements Type {
         super();
     }
 
+    public TypeElement(String type) {
+        this.type = type;
+    }
+
     /*
      * Methodes
      */

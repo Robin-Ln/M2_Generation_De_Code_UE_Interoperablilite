@@ -81,21 +81,17 @@ public class ConverteurMinispecToJava {
         return methodes;
     }
 
-    String getName(AttributeMinispec attributeMinispec) {
-        Integer nameSize = attributeMinispec.getName().length();
-        return attributeMinispec.getName().substring(0, 1).toUpperCase()
-                + attributeMinispec.getName().substring(1, nameSize);
-    }
+
 
     Methode getGetter(AttributeMinispec attributeMinispec) {
         Methode methode = new Methode();
-        methode.setName("get" + this.getName(attributeMinispec));
+        methode.setName("get" + UtilsHelper.getName(attributeMinispec.getName()));
         methode.setType(attributeMinispec.getType());
         methode.setVisibilite(Visibilite.PUBLIC);
         methode.setArguments(new ArrayList<>());
 
         Bloc bloc = new Bloc();
-        bloc.getLignes().add("return this." + attributeMinispec.getName() + ";");
+        bloc.getLignes().append("return this." + attributeMinispec.getName() + ";");
         methode.setBloc(bloc);
 
         return methode;
@@ -104,7 +100,7 @@ public class ConverteurMinispecToJava {
     Methode getSetter(AttributeMinispec attributeMinispec) {
 
         Methode methode = new Methode();
-        methode.setName("set" + this.getName(attributeMinispec));
+        methode.setName("set" + UtilsHelper.getName(attributeMinispec.getName()));
         TypeElement typeElement = new TypeElement();
         typeElement.setType("void");
         methode.setType(typeElement);
@@ -118,7 +114,7 @@ public class ConverteurMinispecToJava {
         methode.setArguments(arguments);
 
         Bloc bloc = new Bloc();
-        bloc.getLignes().add("this." + attributeMinispec.getName() + " = " + attributeMinispec.getName() + ";");
+        bloc.getLignes().append("this." + attributeMinispec.getName() + " = " + attributeMinispec.getName() + ";");
         methode.setBloc(bloc);
 
         return methode;

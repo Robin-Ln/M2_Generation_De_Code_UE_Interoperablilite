@@ -7,14 +7,18 @@ public class Collection extends Type {
 	}
 	public String getTypeCollection(){
 		return this.typeCollection;
+		
 	}
 	public void setTypeCollection(String typeCollection){
 		this.typeCollection = typeCollection;
+		
 	}
 	public Type getType(){
 		return this.type;
+		
 	}
 	public void setType(Type type){
 		this.type = type;
+		
 	}
 }

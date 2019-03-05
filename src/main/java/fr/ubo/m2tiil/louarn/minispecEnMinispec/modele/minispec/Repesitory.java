@@ -6,8 +6,10 @@ public class Repesitory extends Type {
 	}
 	public Modele getModele(){
 		return this.modele;
+		
 	}
 	public void setModele(Modele modele){
 		this.modele = modele;
+		
 	}
 }

@@ -7,14 +7,18 @@ public class Array extends Type {
 	}
 	public Type getType(){
 		return this.type;
+		
 	}
 	public void setType(Type type){
 		this.type = type;
+		
 	}
 	public Integer getSize(){
 		return this.size;
+		
 	}
 	public void setSize(Integer size){
 		this.size = size;
+		
 	}
 }

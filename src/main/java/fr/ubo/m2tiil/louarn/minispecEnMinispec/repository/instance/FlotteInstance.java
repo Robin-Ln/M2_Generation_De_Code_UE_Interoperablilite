@@ -1,4 +1,7 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance;
-public class FlotteInstance {
+
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.AbstractInstance;
+
+public class FlotteInstance extends AbstractInstance {
 	public String satelites;
 }

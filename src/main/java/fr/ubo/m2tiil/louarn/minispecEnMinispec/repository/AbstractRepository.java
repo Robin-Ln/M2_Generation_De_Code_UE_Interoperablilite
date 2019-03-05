@@ -3,7 +3,7 @@ package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public abstract class AbstractRepository<Instance> {
+public abstract class AbstractRepository<Instance extends AbstractInstance> {
 
 
     /**

@@ -14,6 +14,5 @@ public class FlotteInstanceRepository extends AbstractRepository<FlotteInstance>
 		Element element = document.createElement("FlotteInstance");
 		element.setAttribute("satelites", instance.satelites);
 		return element;
-		
 	}
 }

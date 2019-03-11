@@ -1,6 +1,8 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl.FlotteInstanceRepository;
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.AbstractInstance;
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.AbstractRepository;
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.FlotteInstanceRepository;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.visiteurs.VisiteurInstanceEcrire;
 import org.w3c.dom.*;
 
@@ -38,7 +40,7 @@ public class GlobalRepository {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element instanceElement = (Element) node;
                 AbstractRepository<?> repository = this.repositoryMap.get(instanceElement.getTagName());
-                instances.add(repository.lire(instanceElement));
+                instances.add(repository.lire(instanceElement, document));
             }
         }
 
@@ -46,6 +48,9 @@ public class GlobalRepository {
     }
 
     public Document ecrire(List<AbstractInstance> instances) {
+
+        this.initId(instances);
+
         Document document = null;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -63,5 +68,12 @@ public class GlobalRepository {
             e.printStackTrace();
         }
         return document;
+    }
+
+    private void initId(List<AbstractInstance> instances) {
+        Integer cpt = 0;
+        for (AbstractInstance instance : instances) {
+            instance.id = (cpt++).toString();
+        }
     }
 }

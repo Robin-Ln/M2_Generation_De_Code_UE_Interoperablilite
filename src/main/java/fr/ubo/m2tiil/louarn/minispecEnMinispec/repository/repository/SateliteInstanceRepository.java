@@ -1,11 +1,11 @@
-package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl;
+package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository;
+
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.SateliteInstance;
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.AbstractRepository;
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.SateliteInstance;
-import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 public class SateliteInstanceRepository extends AbstractRepository<SateliteInstance> {
-	public SateliteInstance lire(Element element){
+
+	public SateliteInstance lire(Element element, Document document) {
 		SateliteInstance instance = new SateliteInstance();
 		instance.nom = element.getAttribute("nom");
 		instance.parent = element.getAttribute("parent");

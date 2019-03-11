@@ -1,9 +1,11 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance;
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.AbstractInstance;
+
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.visiteurs.VisiteurInstance;
 
+import java.util.List;
+
 public class FlotteInstance extends AbstractInstance {
-	public String satelites;
+	public List<SateliteInstance> satelites;
 
 	@Override
 	public void accept(VisiteurInstance visiteurInstance) {

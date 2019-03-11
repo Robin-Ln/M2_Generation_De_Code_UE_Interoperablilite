@@ -117,7 +117,7 @@ public class MinispecToJavaXml {
         ModeleJava modeleJavaRepesitory = creerRepository.creerRepositoryModele(modeleJavaSateliteInstance);
 
 
-        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/impl";
+        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/repository";
         visitorJavaPrinter = new VisitorJavaPrinter(path);
         modeleJavaRepesitory.accept(visitorJavaPrinter);
 

@@ -14,7 +14,7 @@ public class CreerRepository {
      * Attributes
      */
 
-    private static final String P_NAME_IMPL = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl";
+    private static final String P_NAME_IMPL = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository";
     public static final String P_NAME = "fr.ubo.m2tiil.louarn.minispecEnMinispec.repository";
 
 

@@ -1,8 +1,7 @@
 package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.autre.Flotte;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.impl.FlotteInstanceRepository;
-import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.SateliteInstance;
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.visiteurs.VisiteurInstanceEcrire;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,23 +15,13 @@ public class GlobalRepository {
 
     private Map<String, AbstractRepository> repositoryMap;
 
-    private Map<Class<?>, String> instanceMap;
-
-
     public GlobalRepository() {
+        this.repositoryMap = new HashMap<>();
         this.initRepositoryMap();
-        this.initInstanceMap();
 
-    }
-
-    private void initInstanceMap() {
-        this.instanceMap = new HashMap<>();
-        this.instanceMap.put(Flotte.class, "FlotteInstance");
-        this.instanceMap.put(SateliteInstance.class, "SateliteInstance");
     }
 
     private void initRepositoryMap() {
-        this.repositoryMap = new HashMap<>();
         this.repositoryMap.put("FlotteInstance", new FlotteInstanceRepository());
         this.repositoryMap.put("SateliteInstance", new FlotteInstanceRepository());
     }
@@ -57,17 +46,22 @@ public class GlobalRepository {
     }
 
     public Document ecrire(List<AbstractInstance> instances) {
+        Document document = null;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             DOMImplementation domImplementation = documentBuilder.getDOMImplementation();
 
-            Document document = domImplementation.createDocument("", "Instance", null);
+            document = domImplementation.createDocument("", "Instances", null);
 
+            VisiteurInstanceEcrire visiteur = new VisiteurInstanceEcrire(document);
+            for (AbstractInstance instance : instances) {
+                instance.accept(visiteur);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return document;
     }
 }

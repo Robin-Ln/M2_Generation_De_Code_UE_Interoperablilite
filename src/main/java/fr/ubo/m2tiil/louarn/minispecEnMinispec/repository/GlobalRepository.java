@@ -3,6 +3,7 @@ package fr.ubo.m2tiil.louarn.minispecEnMinispec.repository;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.AbstractInstance;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.AbstractRepository;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.FlotteInstanceRepository;
+import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.SateliteInstanceRepository;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.visiteurs.VisiteurInstanceEcrire;
 import org.w3c.dom.*;
 
@@ -25,7 +26,7 @@ public class GlobalRepository {
 
     private void initRepositoryMap() {
         this.repositoryMap.put("FlotteInstance", new FlotteInstanceRepository());
-        this.repositoryMap.put("SateliteInstance", new FlotteInstanceRepository());
+        this.repositoryMap.put("SateliteInstance", new SateliteInstanceRepository());
     }
 
     public List<AbstractInstance> lire(Document document) {
@@ -64,10 +65,12 @@ public class GlobalRepository {
                 instance.accept(visiteur);
             }
 
+            return document;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return document;
+        return null;
     }
 
     private void initId(List<AbstractInstance> instances) {

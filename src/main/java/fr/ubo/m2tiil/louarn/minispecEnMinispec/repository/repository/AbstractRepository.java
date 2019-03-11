@@ -6,6 +6,14 @@ import org.w3c.dom.Element;
 
 public abstract class AbstractRepository<Instance extends AbstractInstance> {
 
+    /**
+     * TODO
+     * ilfaut ajouter une map id instance
+     * pour ne pas recreer deux foit la meme instance et eviter un bouclage infinie
+     * ex : un objet A refaire une liste d'objet b
+     * objet b à une instance d'objet a
+     */
+
 
     /**
      * Methodes abstraite

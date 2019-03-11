@@ -5,6 +5,7 @@ import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.repository.SateliteIns
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.FlotteInstance;
 import fr.ubo.m2tiil.louarn.minispecEnMinispec.repository.instance.SateliteInstance;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 
 public class VisiteurInstanceEcrire implements VisiteurInstance {
@@ -18,13 +19,16 @@ public class VisiteurInstanceEcrire implements VisiteurInstance {
     @Override
     public void visite(FlotteInstance instance) {
         FlotteInstanceRepository repository = new FlotteInstanceRepository();
-        repository.ecrire(instance, this.document);
+        Element element = repository.ecrire(instance, this.document);
+        this.document.getDocumentElement().appendChild(element);
+
     }
 
     @Override
     public void visite(SateliteInstance instance) {
         SateliteInstanceRepository repository = new SateliteInstanceRepository();
-        repository.ecrire(instance, this.document);
+        Element element = repository.ecrire(instance, this.document);
+        this.document.getDocumentElement().appendChild(element);
     }
 
 }

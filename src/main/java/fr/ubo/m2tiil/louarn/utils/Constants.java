@@ -1,0 +1,18 @@
+package fr.ubo.m2tiil.louarn.utils;
+
+public class Constants {
+
+    /**
+     * Constructeurs
+     */
+    private Constants() {
+    }
+
+    /**
+     * Constants
+     */
+
+    public static final String PATH_TEST_RESOURCES = "src/test/resources";
+
+    public static final String PATH_BALISE_SAELITE_XML = "XMLs/minispecXml/balise-satellite.xml";
+}

@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.helpers;
+package fr.ubo.m2tiil.louarn.utils;
 
 public class UtilsHelper {
 

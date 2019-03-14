@@ -2,6 +2,8 @@ package fr.ubo.m2tiil.louarn.modele.commun;
 
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 
+import java.util.Objects;
+
 public class Collection implements Type {
 
     /*
@@ -19,12 +21,33 @@ public class Collection implements Type {
         super();
     }
 
+    public Collection(String typeCollection, Type type) {
+        this.typeCollection = typeCollection;
+        this.type = type;
+    }
+
     /*
      * Methodes
      */
     @Override
     public void accept(VisitorCommun visitorCommun) {
         visitorCommun.visite(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Collection that = (Collection) o;
+        return typeCollection.equals(that.typeCollection) &&
+                type.equals(that.type) &&
+                Objects.equals(min, that.min) &&
+                Objects.equals(max, that.max);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(typeCollection, type, min, max);
     }
 
     /*

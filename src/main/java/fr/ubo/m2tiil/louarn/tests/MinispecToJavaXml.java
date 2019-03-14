@@ -1,7 +1,7 @@
 package fr.ubo.m2tiil.louarn.tests;
 
-import fr.ubo.m2tiil.louarn.helpers.CheckHeritage;
-import fr.ubo.m2tiil.louarn.helpers.ConverteurMinispecToJava;
+import fr.ubo.m2tiil.louarn.utils.CheckHeritage;
+import fr.ubo.m2tiil.louarn.utils.ConverteurMinispecToJava;
 import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;

@@ -1,8 +1,7 @@
-package fr.ubo.m2tiil.louarn.helpers;
+package fr.ubo.m2tiil.louarn.utils;
 
 import fr.ubo.m2tiil.louarn.modele.java.Class;
 import fr.ubo.m2tiil.louarn.modele.java.*;
-import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 import java.util.ArrayList;
 import java.util.List;

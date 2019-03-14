@@ -90,14 +90,19 @@ public class ParserXmlMinispec {
             case "collection":
                 Collection collection = new Collection();
                 collection.setTypeCollection(element.getAttribute("typeCollection"));
+
+                // ce champ n'est pas obligatoire
+                // si une exeption survient il ne faut pas metre a jour la valeur
                 try {
                     collection.setMin(new Integer(element.getAttribute("min")));
-                } catch (NumberFormatException e) {
-                }
+                } catch (NumberFormatException e) {}
+
+                // ce champ n'est pas obligatoire
+                // si une exeption survient il ne faut pas metre a jour la valeur
                 try {
                     collection.setMax(new Integer(element.getAttribute("max")));
-                } catch (NumberFormatException e) {
-                }
+                } catch (NumberFormatException e) {}
+
                 collection.setType(this.getTypeElement(element));
                 return collection;
             case "typeElement":

@@ -1,0 +1,80 @@
+<?fr.ubo.m2tiil.louarn.xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
+
+<modeleMinispec name="fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec">
+
+    <entity name="Modele">
+        <attributeMinispec name="name">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="entites">
+            <collection typeCollection="List">
+                <typeElement type="Entite"/>
+            </collection>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="Entite">
+        <attributeMinispec name="name">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="subype">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="attributs">
+            <collection typeCollection="List">
+                <typeElement type="Attribute"/>
+            </collection>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="Attribute">
+        <attributeMinispec name="name">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="type">
+            <typeElement type="Type"/>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="Type">
+    </entity>
+
+    <entity name="Array" supertype="Type">
+        <attributeMinispec name="type">
+            <typeElement type="Type"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="size">
+            <typeElement type="Integer"/>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="Collection" supertype="Type">
+        <attributeMinispec name="typeCollection">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="type">
+            <typeElement type="Type"/>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="TypeElement" supertype="Type">
+        <attributeMinispec name="type">
+            <typeElement type="String"/>
+        </attributeMinispec>
+    </entity>
+
+    <entity name="Repesitory" supertype="Type">
+        <attributeMinispec name="modele">
+            <typeElement type="Modele"/>
+        </attributeMinispec>
+    </entity>
+
+</modeleMinispec>

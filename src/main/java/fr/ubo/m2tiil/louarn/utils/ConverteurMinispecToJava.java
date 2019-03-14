@@ -1,4 +1,4 @@
-package fr.ubo.m2tiil.louarn.helpers;
+package fr.ubo.m2tiil.louarn.utils;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.java.Class;

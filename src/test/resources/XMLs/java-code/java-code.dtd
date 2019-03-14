@@ -1,0 +1,11 @@
+<!ELEMENT java-code (model|primitive)*>
+        <!ELEMENT model (#PCDATA)>
+        <!ATTLIST model
+                name CDATA #REQUIRED
+                package CDATA #REQUIRED>
+
+        <!ELEMENT primitive (#PCDATA)>
+        <!ATTLIST primitive
+                name CDATA #REQUIRED
+                package CDATA #IMPLIED
+                type CDATA #REQUIRED>

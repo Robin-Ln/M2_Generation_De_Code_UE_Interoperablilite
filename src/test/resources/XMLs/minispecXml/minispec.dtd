@@ -1,0 +1,47 @@
+<!-- modeleMinispec -->
+<!ELEMENT modeleMinispec (entity)*>
+<!ATTLIST modeleMinispec
+        name CDATA #REQUIRED
+        >
+
+<!-- entity -->
+<!ELEMENT entity (attributeMinispec)*>
+<!ATTLIST entity
+        name CDATA #REQUIRED
+        supertype CDATA #IMPLIED
+        >
+
+<!-- attributeMinispec -->
+<!ELEMENT attributeMinispec (
+        array
+        |collection
+        |typeElement)>
+<!ATTLIST attributeMinispec
+        name CDATA #REQUIRED
+        >
+
+<!-- typeElement -->
+<!ELEMENT typeElement EMPTY>
+<!ATTLIST typeElement
+        type CDATA #REQUIRED
+        >
+
+<!-- array -->
+<!ELEMENT array (
+        array
+        |collection
+        |typeElement)>
+<!ATTLIST array
+        size CDATA #REQUIRED
+        >
+
+<!-- collection -->
+<!ELEMENT collection (
+        array
+        |collection
+        |typeElement)>
+<!ATTLIST collection
+        typeCollection CDATA #REQUIRED
+        min CDATA #IMPLIED
+        max CDATA #IMPLIED
+        >

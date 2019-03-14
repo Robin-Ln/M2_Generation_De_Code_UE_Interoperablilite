@@ -1,0 +1,27 @@
+<?fr.ubo.m2tiil.louarn.xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
+
+<modeleMinispec name="modele">
+
+    <entity name="Satellite">
+
+        <attributeMinispec name="nom">
+            <typeElement type="String"/>
+        </attributeMinispec>
+
+        <attributeMinispec name="parent">
+            <typeElement type="Flotte"/>
+        </attributeMinispec>
+
+    </entity>
+
+    <entity name="Flotte">
+        <attributeMinispec name="satellites">
+            <collection typeCollection="List">
+                <typeElement type="Satellite"/>
+            </collection>
+        </attributeMinispec>
+    </entity>
+
+</modeleMinispec>

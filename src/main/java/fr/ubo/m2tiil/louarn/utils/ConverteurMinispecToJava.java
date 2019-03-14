@@ -34,7 +34,7 @@ public class ConverteurMinispecToJava {
         for(Entity entity : modeleMinispec.getEntities()){
             Clazz clazz = this.getClass(entity);
             clazz.setaPackage(modeleJava.getName());
-            clazz.setDependances(visitorDependance.getDependances(clazz));
+            clazz.setDependances(visitorDependance.getClazzDependances(clazz));
             modeleJava.getClazzes().add(clazz);
         }
     }

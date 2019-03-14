@@ -6,15 +6,14 @@ import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Class implements VisitableJava {
 
     /*
      * Attributs
      */
-    private Visibilite visibilite;
-
-    private Prototype prototype;
+    private List<MotsCles> motsCles;
 
     private String aPackage;
 
@@ -43,6 +42,7 @@ public class Class implements VisitableJava {
         this.methodes = new ArrayList<>();
         this.dependances = new ArrayList<>();
         this.generiqueClasses = new ArrayList<>();
+        this.motsCles = new ArrayList<>();
     }
 
     /*
@@ -59,12 +59,12 @@ public class Class implements VisitableJava {
      * Accesseurs
      */
 
-    public Visibilite getVisibilite() {
-        return visibilite;
+    public List<MotsCles> getMotsCles() {
+        return motsCles;
     }
 
-    public void setVisibilite(Visibilite visibilite) {
-        this.visibilite = visibilite;
+    public void setMotsCles(List<MotsCles> motsCles) {
+        this.motsCles = motsCles;
     }
 
     public String getaPackage() {
@@ -99,6 +99,14 @@ public class Class implements VisitableJava {
         this.supertype = supertype;
     }
 
+    public List<String> getGeneriqueClasses() {
+        return generiqueClasses;
+    }
+
+    public void setGeneriqueClasses(List<String> generiqueClasses) {
+        this.generiqueClasses = generiqueClasses;
+    }
+
     public List<AttributeJava> getAttributeJavas() {
         return attributeJavas;
     }
@@ -121,21 +129,5 @@ public class Class implements VisitableJava {
 
     public void setMethodes(List<Methode> methodes) {
         this.methodes = methodes;
-    }
-
-    public Prototype getPrototype() {
-        return prototype;
-    }
-
-    public void setPrototype(Prototype prototype) {
-        this.prototype = prototype;
-    }
-
-    public List<String> getGeneriqueClasses() {
-        return generiqueClasses;
-    }
-
-    public void setGeneriqueClasses(List<String> generiqueClasses) {
-        this.generiqueClasses = generiqueClasses;
     }
 }

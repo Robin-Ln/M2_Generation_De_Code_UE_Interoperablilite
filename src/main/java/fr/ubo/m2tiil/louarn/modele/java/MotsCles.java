@@ -3,11 +3,19 @@ package fr.ubo.m2tiil.louarn.modele.java;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitableJava;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
-public enum Visibilite implements VisitableJava {
-
+public enum MotsCles implements VisitableJava {
     /*
      * Valueurs énumérées
      */
+
+    CLASS ("class"),
+    ENUM ("enum"),
+    ABSTRACT ("abstract"),
+    INTERFACE ("interface"),
+
+    IMPLEMETNS("implements"),
+    EXTENDS ("extends"),
+
 
     PRIVATE ("private"),
     PROTECTED ("protected"),
@@ -16,28 +24,29 @@ public enum Visibilite implements VisitableJava {
     /*
      * Attributs
      */
-    private String visibilite;
+    private String motCle;
 
     /*
      * Constructeurs
      */
-    Visibilite(String visibilite) {
-        this.visibilite = visibilite;
+    MotsCles(String motCle) {
+        this.motCle = motCle;
     }
 
     /*
      * Valueurs énumérées
      */
-    public String getVisibilite() {
-        return visibilite;
+
+    public String getMotCle() {
+        return motCle;
     }
 
-
     /*
-     * Métode visitable
+     * Métodes
      */
     @Override
     public void accept(VisitorJava visitorJava) {
         visitorJava.visite(this);
     }
+
 }

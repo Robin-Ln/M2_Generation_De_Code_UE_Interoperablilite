@@ -13,7 +13,7 @@ public class Methode implements VisitableJava {
      * Attributs
      */
 
-    private Visibilite visibilite;
+    private List<MotsCles> motsCles;
     private String name;
     private Type type;
     private List<Argument> arguments;
@@ -26,6 +26,7 @@ public class Methode implements VisitableJava {
 
     public Methode() {
         this.arguments = new ArrayList<>();
+        this.motsCles = new ArrayList<>();
     }
 
     /*
@@ -40,12 +41,12 @@ public class Methode implements VisitableJava {
      * Accesseurs
      */
 
-    public Visibilite getVisibilite() {
-        return visibilite;
+    public List<MotsCles> getMotsCles() {
+        return motsCles;
     }
 
-    public void setVisibilite(Visibilite visibilite) {
-        this.visibilite = visibilite;
+    public void setMotsCles(List<MotsCles> motsCles) {
+        this.motsCles = motsCles;
     }
 
     public String getName() {

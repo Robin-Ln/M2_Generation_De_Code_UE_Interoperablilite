@@ -1,7 +1,5 @@
 package fr.ubo.m2tiil.louarn.visiteurs.java;
 
-import fr.ubo.m2tiil.louarn.modele.java.Dependance;
-import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
@@ -175,7 +173,9 @@ public class VisitorJavaPrinter implements VisitorJava {
     @Override
     public void accept(Dependance dependance) {
         // affiachage des dependences
-        this.out.println(dependance.getPackageName() +"."+dependance.getType());
+        if (StringUtils.isNotBlank(dependance.getPackageName())) {
+            this.out.println(dependance.getPackageName() + "." + dependance.getType());
+        }
     }
 
     @Override

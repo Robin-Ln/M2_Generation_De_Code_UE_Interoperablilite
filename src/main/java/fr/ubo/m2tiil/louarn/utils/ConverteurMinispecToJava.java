@@ -24,11 +24,13 @@ public class ConverteurMinispecToJava {
      * Constructeurs
      */
 
-    public ConverteurMinispecToJava(ModeleMinispec modeleMinispec, List<Dependance> dependances) {
+    public ConverteurMinispecToJava(List<Dependance> dependances) {
+        this.visitorDependance = new VisitorDependance(dependances);
+    }
+
+    public ModeleJava convert(ModeleMinispec modeleMinispec) {
         this.modeleMinispec = modeleMinispec;
         this.modeleJava = new ModeleJava();
-        this.visitorDependance = new VisitorDependance(dependances);
-
         // Covertion du modele minispec en java
         this.modeleJava.setName(modeleMinispec.getName());
         for(Entity entity : modeleMinispec.getEntities()){
@@ -37,12 +39,13 @@ public class ConverteurMinispecToJava {
             clazz.setDependances(visitorDependance.getClazzDependances(clazz));
             modeleJava.getClazzes().add(clazz);
         }
+        return this.modeleJava;
     }
 
     /*
      * Métodes de concertions
      */
-    Clazz getClass(Entity entity){
+    private Clazz getClass(Entity entity){
         // Covertion du modele minispec en java
         Clazz aClazz = new Clazz();
         aClazz.getMotsCles().add(MotsCles.PUBLIC);
@@ -55,7 +58,7 @@ public class ConverteurMinispecToJava {
         return aClazz;
     }
 
-    List<Constructeur> getConstructeurs(Clazz clazz){
+    private List<Constructeur> getConstructeurs(Clazz clazz){
 
         List<Constructeur> constructeurs = new ArrayList<>();
 
@@ -71,7 +74,7 @@ public class ConverteurMinispecToJava {
         return constructeurs;
     }
 
-    List<AttributeJava> getAttributeJavas(Entity entity){
+    private List<AttributeJava> getAttributeJavas(Entity entity){
         // Convertion des attributs minispec en java
         List<AttributeJava> attributeJavas = new ArrayList<>();
         for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
@@ -84,7 +87,7 @@ public class ConverteurMinispecToJava {
         return attributeJavas;
     }
 
-    List<Methode> getAccesseurs(Entity entity){
+    private List<Methode> getAccesseurs(Entity entity){
         List<Methode> methodes = new ArrayList<>();
 
         // création des accesseurs
@@ -96,7 +99,7 @@ public class ConverteurMinispecToJava {
     }
 
 
-    Methode getGetter(AttributeMinispec attributeMinispec) {
+    private Methode getGetter(AttributeMinispec attributeMinispec) {
         Methode methode = new Methode();
         methode.setName("get" + UtilsHelper.getName(attributeMinispec.getName()));
         methode.setType(attributeMinispec.getType());
@@ -110,7 +113,7 @@ public class ConverteurMinispecToJava {
         return methode;
     }
 
-    Methode getSetter(AttributeMinispec attributeMinispec) {
+    private Methode getSetter(AttributeMinispec attributeMinispec) {
 
         Methode methode = new Methode();
         methode.setName("set" + UtilsHelper.getName(attributeMinispec.getName()));

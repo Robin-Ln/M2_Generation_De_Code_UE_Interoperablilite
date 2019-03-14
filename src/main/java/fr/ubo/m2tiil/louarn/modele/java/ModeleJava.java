@@ -11,14 +11,14 @@ public class ModeleJava implements VisitableJava {
      * Attributs
      */
     private String name;
-    private List<Class> aClasses;
+    private List<Clazz> clazzes;
 
     /*
      * Constructeurs
      */
 
     public ModeleJava() {
-        this.aClasses = new ArrayList<>();
+        this.clazzes = new ArrayList<>();
     }
     /*
      * Methodes
@@ -41,11 +41,11 @@ public class ModeleJava implements VisitableJava {
         this.name = name;
     }
 
-    public List<Class> getaClasses() {
-        return aClasses;
+    public List<Clazz> getClazzes() {
+        return clazzes;
     }
 
-    public void setaClasses(List<Class> aClasses) {
-        this.aClasses = aClasses;
+    public void setClazzes(List<Clazz> clazzes) {
+        this.clazzes = clazzes;
     }
 }

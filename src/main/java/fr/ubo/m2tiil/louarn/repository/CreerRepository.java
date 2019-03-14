@@ -2,7 +2,7 @@ package fr.ubo.m2tiil.louarn.repository;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 
 import java.util.ArrayList;
@@ -29,9 +29,9 @@ public class CreerRepository {
      * Methodes
      */
 
-    private Class creerRepositoryClass(Class instance) {
+    private Clazz creerRepositoryClass(Clazz instance) {
 
-        Class repository = new Class();
+        Clazz repository = new Clazz();
         repository.setaPackage(P_NAME_IMPL);
         repository.setName(instance.getName() + "Repository");
 
@@ -65,14 +65,14 @@ public class CreerRepository {
         ModeleJava modeleJavaRepository = new ModeleJava();
         modeleJavaInstance.setName(P_NAME_IMPL);
 
-        List<Class> instances = new ArrayList<>();
+        List<Clazz> instances = new ArrayList<>();
 
-        for (Class instance : modeleJavaInstance.getaClasses()) {
-            Class repository = this.creerRepositoryClass(instance);
+        for (Clazz instance : modeleJavaInstance.getClazzes()) {
+            Clazz repository = this.creerRepositoryClass(instance);
             instances.add(repository);
         }
 
-        modeleJavaRepository.setaClasses(instances);
+        modeleJavaRepository.setClazzes(instances);
         return modeleJavaRepository;
     }
 
@@ -81,7 +81,7 @@ public class CreerRepository {
      * Methode utilile
      */
 
-    private Methode getMethodeLire(Class instance) {
+    private Methode getMethodeLire(Clazz instance) {
 
         StringBuilder bloc = new StringBuilder();
 
@@ -105,7 +105,7 @@ public class CreerRepository {
         return methode;
     }
 
-    private Methode getMethodeEcrire(Class instance) {
+    private Methode getMethodeEcrire(Clazz instance) {
         StringBuilder bloc = new StringBuilder();
 
         bloc.append("Element element = document.createElement(\"" + instance.getName() + "\");");

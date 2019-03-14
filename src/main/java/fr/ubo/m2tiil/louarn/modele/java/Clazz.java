@@ -1,23 +1,21 @@
 package fr.ubo.m2tiil.louarn.modele.java;
 
-import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitableJava;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJava;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-public class Class implements VisitableJava {
+public class Clazz implements VisitableJava {
 
     /*
      * Attributs
      */
-    private List<MotsCles> motsCles;
-
     private String aPackage;
 
     private List<Dependance> dependances;
+
+    private List<MotsCles> motsCles;
 
     private String name;
 
@@ -35,7 +33,7 @@ public class Class implements VisitableJava {
      * Constructeur
      */
 
-    public Class() {
+    public Clazz() {
         super();
         this.attributeJavas = new ArrayList<>();
         this.constructeurs = new ArrayList<>();

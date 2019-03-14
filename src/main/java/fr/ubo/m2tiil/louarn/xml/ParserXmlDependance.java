@@ -1,6 +1,6 @@
 package fr.ubo.m2tiil.louarn.xml;
 
-import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
+import fr.ubo.m2tiil.louarn.modele.java.Dependance;
 import fr.ubo.m2tiil.louarn.modele.dependance.Primitive;
 import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
 import org.w3c.dom.Document;
@@ -10,7 +10,6 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ParserXmlDependance {
 

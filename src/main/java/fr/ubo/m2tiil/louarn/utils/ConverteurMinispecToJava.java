@@ -1,11 +1,12 @@
 package fr.ubo.m2tiil.louarn.utils;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
 import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,61 +18,73 @@ public class ConverteurMinispecToJava {
      */
     private ModeleMinispec modeleMinispec;
     private ModeleJava modeleJava;
-
-
+    private VisitorDependance visitorDependance;
 
     /*
      * Constructeurs
      */
 
-    public ConverteurMinispecToJava(ModeleMinispec modeleMinispec) {
+    public ConverteurMinispecToJava(ModeleMinispec modeleMinispec, List<Dependance> dependances) {
         this.modeleMinispec = modeleMinispec;
         this.modeleJava = new ModeleJava();
+        this.visitorDependance = new VisitorDependance(dependances);
+
+        // Covertion du modele minispec en java
         this.modeleJava.setName(modeleMinispec.getName());
         for(Entity entity : modeleMinispec.getEntities()){
-            Class aClass = this.getClass(entity);
-            aClass.setaPackage(modeleJava.getName());
-            modeleJava.getaClasses().add(aClass);
+            Clazz clazz = this.getClass(entity);
+            clazz.setaPackage(modeleJava.getName());
+            clazz.setDependances(visitorDependance.getDependances(clazz));
+            modeleJava.getClazzes().add(clazz);
         }
     }
 
     /*
      * Métodes de concertions
      */
-    Class getClass(Entity entity){
-        Class aClass = new Class();
-        aClass.setVisibilite(Visibilite.PUBLIC);
-        aClass.setPrototype(Prototype.CLASS);
-        aClass.setName(entity.getName());
-        aClass.setSupertype(entity.getSuperType());
-        aClass.setAttributeJavas(this.getAttributeJavas(entity));
-        aClass.setConstructeurs(this.getConstructeurs(aClass));
-        aClass.setMethodes(this.getMethodes(entity));
-        return aClass;
+    Clazz getClass(Entity entity){
+        // Covertion du modele minispec en java
+        Clazz aClazz = new Clazz();
+        aClazz.getMotsCles().add(MotsCles.PUBLIC);
+        aClazz.getMotsCles().add(MotsCles.CLASS);
+        aClazz.setName(entity.getName());
+        aClazz.setSupertype(entity.getSuperType());
+        aClazz.setAttributeJavas(this.getAttributeJavas(entity));
+        aClazz.setConstructeurs(this.getConstructeurs(aClazz));
+        aClazz.setMethodes(this.getAccesseurs(entity));
+        return aClazz;
     }
 
-    List<Constructeur> getConstructeurs(Class aClass){
+    List<Constructeur> getConstructeurs(Clazz clazz){
+
         List<Constructeur> constructeurs = new ArrayList<>();
+
+        // cration du constrcteur par default
         Constructeur constructeur = new Constructeur();
-        constructeur.setaClass(aClass);
-        constructeur.setVisibilite(Visibilite.PUBLIC);
+        constructeur.getMotsCles().add(MotsCles.PUBLIC);
+        constructeur.setName(clazz.getName());
+        constructeur.setArguments(new ArrayList<>());
+        // TODO : créer le block pour initialiser les collection
+        constructeur.setBloc(new Bloc());
+
         constructeurs.add(constructeur);
         return constructeurs;
     }
 
     List<AttributeJava> getAttributeJavas(Entity entity){
+        // Convertion des attributs minispec en java
         List<AttributeJava> attributeJavas = new ArrayList<>();
         for (AttributeMinispec attributeMinispec : entity.getAttributeMinispecs()) {
             AttributeJava attributeJava = new AttributeJava();
             attributeJava.setName(attributeMinispec.getName());
             attributeJava.setType(attributeMinispec.getType());
-            attributeJava.setVisibilite(Visibilite.PUBLIC);
+            attributeJava.getMotsCles().add(MotsCles.PUBLIC);
             attributeJavas.add(attributeJava);
         }
         return attributeJavas;
     }
 
-    List<Methode> getMethodes(Entity entity){
+    List<Methode> getAccesseurs(Entity entity){
         List<Methode> methodes = new ArrayList<>();
 
         // création des accesseurs
@@ -83,12 +96,11 @@ public class ConverteurMinispecToJava {
     }
 
 
-
     Methode getGetter(AttributeMinispec attributeMinispec) {
         Methode methode = new Methode();
         methode.setName("get" + UtilsHelper.getName(attributeMinispec.getName()));
         methode.setType(attributeMinispec.getType());
-        methode.setVisibilite(Visibilite.PUBLIC);
+        methode.getMotsCles().add(MotsCles.PUBLIC);
         methode.setArguments(new ArrayList<>());
 
         Bloc bloc = new Bloc();
@@ -105,7 +117,7 @@ public class ConverteurMinispecToJava {
         TypeElement typeElement = new TypeElement();
         typeElement.setType("void");
         methode.setType(typeElement);
-        methode.setVisibilite(Visibilite.PUBLIC);
+        methode.getMotsCles().add(MotsCles.PUBLIC);
 
         List<Argument> arguments = new ArrayList<>();
         Argument argument = new Argument();

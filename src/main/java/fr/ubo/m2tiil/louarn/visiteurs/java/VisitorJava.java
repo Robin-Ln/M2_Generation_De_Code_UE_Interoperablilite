@@ -1,7 +1,9 @@
 package fr.ubo.m2tiil.louarn.visiteurs.java;
 
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
+
+import java.util.List;
 
 public interface VisitorJava {
 
@@ -9,7 +11,7 @@ public interface VisitorJava {
 
 	void visite(AttributeJava attributeJava);
 
-	void visite(Class Class);
+	void visite(Clazz Clazz);
 
 	void visite(Constructeur constructeur);
 
@@ -20,4 +22,8 @@ public interface VisitorJava {
 	void visite(Bloc bloc);
 
 	void visite(MotsCles motsCles);
+
+	void visite(List<MotsCles> motsCles);
+
+	void accept(Dependance dependance);
 }

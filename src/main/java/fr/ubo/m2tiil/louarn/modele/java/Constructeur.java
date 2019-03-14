@@ -10,9 +10,10 @@ public class Constructeur implements VisitableJava {
     /*
      * Attributs
      */
+    private String name;
     private List<MotsCles> motsCles;
-    private Class aClass;
     private List<Argument> arguments;
+    private Bloc bloc;
 
     /*
      * Constructeurs
@@ -35,6 +36,14 @@ public class Constructeur implements VisitableJava {
      * Accesseurs
      */
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<MotsCles> getMotsCles() {
         return motsCles;
     }
@@ -43,19 +52,19 @@ public class Constructeur implements VisitableJava {
         this.motsCles = motsCles;
     }
 
-    public Class getaClass() {
-        return aClass;
-    }
-
-    public void setaClass(Class aClass) {
-        this.aClass = aClass;
-    }
-
     public List<Argument> getArguments() {
         return arguments;
     }
 
     public void setArguments(List<Argument> arguments) {
         this.arguments = arguments;
+    }
+
+    public Bloc getBloc() {
+        return bloc;
+    }
+
+    public void setBloc(Bloc bloc) {
+        this.bloc = bloc;
     }
 }

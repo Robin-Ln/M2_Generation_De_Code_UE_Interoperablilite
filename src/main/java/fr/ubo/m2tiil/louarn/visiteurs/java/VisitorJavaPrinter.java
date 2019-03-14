@@ -1,16 +1,15 @@
 package fr.ubo.m2tiil.louarn.visiteurs.java;
 
-import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Dependance;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommun;
 import fr.ubo.m2tiil.louarn.visiteurs.commun.VisitorCommunPrinter;
-import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
-import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependancePrinter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.util.Iterator;
+import java.util.List;
 
 public class VisitorJavaPrinter implements VisitorJava {
 
@@ -20,7 +19,6 @@ public class VisitorJavaPrinter implements VisitorJava {
     private String pathCible;
     private PrintStream out;
     private VisitorCommun visitorCommun;
-    private VisitorDependance visitorDependance;
 
     /*
      * Constructeur
@@ -41,44 +39,54 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(AttributeJava attributeJava) {
+        // affichage des mots clés
         this.out.print("\t");
-        attributeJava.getVisibilite().accept(this);
-        this.out.print(" ");
+        this.visite(attributeJava.getMotsCles());
+
+        // affichage du type de l'attribut
         attributeJava.getType().accept(this.visitorCommun);
         this.out.print(" ");
+
+        // fin de ligne
         this.out.print(attributeJava.getName());
         this.out.println(";");
     }
 
     @Override
-    public void visite(Prototype prototype) {
-        this.out.print(prototype.getPrototype());
+    public void visite(MotsCles motsCles) {
+        // afficahe du mote clé
+        this.out.print(motsCles.getMotCle());
     }
 
     @Override
-    public void visite(Visibilite visibilite) {
-        this.out.print(visibilite.getVisibilite());
+    public void visite(List<MotsCles> motsClesList) {
+        // affichage des la liste des mots clé
+        for (MotsCles motsCles : motsClesList) {
+            motsCles.accept(this);
+            this.out.print(" ");
+        }
     }
 
     @Override
-    public void visite(Class aClass) {
-        out.println("package " + aClass.getaPackage() + ";");
+    public void visite(Clazz clazz) {
+        // affiahce du package de la class
+        out.println(MotsCles.PACKAGE + " " + clazz.getaPackage() + ";");
 
-        for (Dependance dependance : aClass.getDependances()) {
-            dependance.accept(this.visitorDependance);
+        //affiachage des dépendences de la class
+        for (Dependance dependance : clazz.getDependances()) {
+            dependance.accept(this);
         }
 
-        aClass.getVisibilite().accept(this);
+        // affafichage des mots clés de la class
+        this.visite(clazz.getMotsCles());
 
-        out.print(" ");
+        // affichage du nom de la class
+        out.print(" " + clazz.getName());
 
-        aClass.getPrototype().accept(this);
-
-        out.print(" " + aClass.getName());
-
-        if (!aClass.getGeneriqueClasses().isEmpty()) {
+        //affichage des types génériques
+        if (!clazz.getGeneriqueClasses().isEmpty()) {
             out.println(" <");
-            for (Iterator<String> iterator = aClass.getGeneriqueClasses().iterator();
+            for (Iterator<String> iterator = clazz.getGeneriqueClasses().iterator();
                  iterator.hasNext(); ) {
                 String generiqueClass = iterator.next();
                 this.out.print(generiqueClass);
@@ -89,21 +97,25 @@ public class VisitorJavaPrinter implements VisitorJava {
             out.println("> ");
         }
 
-        if (StringUtils.isNotBlank(aClass.getSupertype())) {
-            out.print(" extends " + aClass.getSupertype());
+        // affichage des entite hérité
+        if (StringUtils.isNotBlank(clazz.getSupertype())) {
+            out.print(" extends " + clazz.getSupertype());
         }
 
         out.println(" {");
 
-        for (AttributeJava attributeJava : aClass.getAttributeJavas()) {
+        // affichage des attribut
+        for (AttributeJava attributeJava : clazz.getAttributeJavas()) {
             attributeJava.accept(this);
         }
 
-        for (Constructeur constructeur : aClass.getConstructeurs()) {
+        // affiachage des constructeurs
+        for (Constructeur constructeur : clazz.getConstructeurs()) {
             constructeur.accept(this);
         }
 
-        for (Methode methode : aClass.getMethodes()) {
+        // affichage des méthodes
+        for (Methode methode : clazz.getMethodes()) {
             methode.accept(this);
         }
 
@@ -112,19 +124,30 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(Constructeur constructeur) {
+        // affiahceges des mots clé
         this.out.print("\t");
-        constructeur.getVisibilite().accept(this);
+        this.visite(constructeur.getMotsCles());
+
+        // affichage du nom du comstructeur
         this.out.print(" ");
-        this.out.println(constructeur.getaClass().getName() + "() {\n\t\tsuper();\n\t}");
+        this.out.print(constructeur.getName());
+
+        // affiachege du block du constructeur
+        constructeur.getBloc().accept(this);
     }
 
     @Override
     public void visite(Methode methode) {
+
+        // affichage des mots clés
         this.out.print("\t");
-        methode.getVisibilite().accept(this);
-        this.out.print(" ");
+        this.visite(methode.getMotsCles());
+
+        // affichage du type de la methodes
         methode.getType().accept(this.visitorCommun);
         this.out.print(" " + methode.getName());
+
+        // affichages des l'argument
         this.out.print("(");
         for (Iterator<Argument> iterator = methode.getArguments().iterator(); iterator.hasNext(); ) {
             Argument argument = iterator.next();
@@ -133,6 +156,8 @@ public class VisitorJavaPrinter implements VisitorJava {
                 this.out.print(", ");
             }
         }
+
+        // affiahcage du block
         this.out.println("){");
         methode.getBloc().accept(this);
         this.out.println("\t}");
@@ -141,25 +166,34 @@ public class VisitorJavaPrinter implements VisitorJava {
 
     @Override
     public void visite(Bloc bloc) {
+        // affichage des ligne du block
         String lignes = "\t\t"+bloc.getLignes().toString();
         lignes = lignes.replaceAll(";",";\n\t\t");
         this.out.println(lignes);
     }
 
     @Override
+    public void accept(Dependance dependance) {
+        // affiachage des dependences
+        this.out.println(dependance.getPackageName() +"."+dependance.getType());
+    }
+
+    @Override
     public void visite(ModeleJava modeleJava) {
-        for (Class aClass : modeleJava.getaClasses()){
+        // pourcour des toutes les clases du modele
+        for (Clazz clazz : modeleJava.getClazzes()){
 
             if (this.out != null) {
                 this.out.close();
             }
 
-            this.out = this.newOutFor(aClass.getName());
+            this.out = this.createPrintStream(clazz.getName());
 
+            // initialisation des visiteurs commun
             this.visitorCommun = new VisitorCommunPrinter(this.out);
-            this.visitorDependance = new VisitorDependancePrinter(this.out);
 
-            aClass.accept(this);
+            // affiahce de la classe
+            clazz.accept(this);
         }
 
         if (this.out != null) {
@@ -170,7 +204,7 @@ public class VisitorJavaPrinter implements VisitorJava {
     /*
      * méthodes privées
      */
-    private PrintStream newOutFor(String nameClass) {
+    private PrintStream createPrintStream(String nameClass) {
         try {
 
             File f = new File(this.pathCible + "/" + nameClass + ".java");

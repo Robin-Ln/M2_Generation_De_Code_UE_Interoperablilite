@@ -2,7 +2,7 @@ package fr.ubo.m2tiil.louarn.repository;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 
 import java.util.ArrayList;
@@ -25,18 +25,18 @@ public class CreerInstance {
      */
 
 
-    private Class creerInstanceClass(Class aClass) {
+    private Clazz creerInstanceClass(Clazz aClazz) {
 
-        Class instance = new Class();
-        instance.setVisibilite(aClass.getVisibilite());
-        instance.setPrototype(aClass.getPrototype());
-        instance.setName(aClass.getName() + "Instance");
+        Clazz instance = new Clazz();
+        instance.setVisibilite(aClazz.getVisibilite());
+        instance.setPrototype(aClazz.getPrototype());
+        instance.setName(aClazz.getName() + "Instance");
 
         instance.setSupertype("AbstractInstance");
 
         instance.getDependances().add(new ReferenceModele("AbstractInstance", CreerRepository.P_NAME + "." + "AbstractInstance"));
 
-        for (AttributeJava attributeJava : aClass.getAttributeJavas()) {
+        for (AttributeJava attributeJava : aClazz.getAttributeJavas()) {
             instance.getAttributeJavas().add(this.getAttribute(attributeJava.getName()));
         }
         return instance;
@@ -49,15 +49,15 @@ public class CreerInstance {
         ModeleJava modeleJavaInstance = new ModeleJava();
         modeleJavaInstance.setName(CreerInstance.P_NAME);
 
-        List<Class> instances = new ArrayList<>();
+        List<Clazz> instances = new ArrayList<>();
 
-        for (Class aClass : modeleJava.getaClasses()) {
-            Class instance = this.creerInstanceClass(aClass);
+        for (Clazz aClazz : modeleJava.getClazzes()) {
+            Clazz instance = this.creerInstanceClass(aClazz);
             instance.setaPackage(CreerInstance.P_NAME);
             instances.add(instance);
         }
 
-        modeleJavaInstance.setaClasses(instances);
+        modeleJavaInstance.setClazzes(instances);
         return modeleJavaInstance;
     }
 

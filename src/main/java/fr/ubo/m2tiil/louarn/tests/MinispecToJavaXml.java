@@ -2,10 +2,10 @@ package fr.ubo.m2tiil.louarn.tests;
 
 import fr.ubo.m2tiil.louarn.utils.CheckHeritage;
 import fr.ubo.m2tiil.louarn.utils.ConverteurMinispecToJava;
-import fr.ubo.m2tiil.louarn.modele.dependance.Dependance;
+import fr.ubo.m2tiil.louarn.modele.java.Dependance;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
-import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependenciesUtile;
+import fr.ubo.m2tiil.louarn.visiteurs.dependance.VisitorDependance;
 import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
 import fr.ubo.m2tiil.louarn.repository.CreerRepository;
 import fr.ubo.m2tiil.louarn.repository.CreerInstance;
@@ -91,9 +91,9 @@ public class MinispecToJavaXml {
             System.out.println("heritage KO");
         }
 
-        VisitorDependenciesUtile visitorDependenciesUtile = new VisitorDependenciesUtile(dependances);
-        visitorDependenciesUtile.visite(modeleJava);
-        visitorDependenciesUtile.visite(modeleJavaSatelite);
+        VisitorDependance visitorDependance = new VisitorDependance(dependances);
+        visitorDependance.visite(modeleJava);
+        visitorDependance.visite(modeleJavaSatelite);
 
         String path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/modele/minispec";
         VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(path);

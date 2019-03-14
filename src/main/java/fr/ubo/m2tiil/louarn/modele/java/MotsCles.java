@@ -19,7 +19,11 @@ public enum MotsCles implements VisitableJava {
 
     PRIVATE ("private"),
     PROTECTED ("protected"),
-    PUBLIC ("public");
+    PUBLIC ("public"),
+
+    VOID ("void"),
+
+    PACKAGE("package");
 
     /*
      * Attributs

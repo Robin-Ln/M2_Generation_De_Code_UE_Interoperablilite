@@ -1,6 +1,6 @@
 package fr.ubo.m2tiil.louarn.utils;
 
-import fr.ubo.m2tiil.louarn.modele.java.Class;
+import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 
 import java.util.ArrayList;
@@ -28,32 +28,32 @@ public class CheckHeritage {
     public void checkHeritage(ModeleJava modeleJava) {
         this.modeleJava = modeleJava;
 
-        for (Class aClass : this.modeleJava.getaClasses()) {
-            checkHeritageFor(aClass);
+        for (Clazz aClazz : this.modeleJava.getClazzes()) {
+            checkHeritageFor(aClazz);
         }
     }
 
-    public void checkHeritageFor(Class aClass) {
+    public void checkHeritageFor(Clazz aClazz) {
 
         // verifier le bouclage
         // si pas de super class pas de bouclage
-        if (aClass.getSupertype() != null) {
-            List<Class> superClasses = this.getSuperClasses(aClass.getName());
+        if (aClazz.getSupertype() != null) {
+            List<Clazz> superClazzes = this.getSuperClasses(aClazz.getName());
 
-            for (Class superClass : superClasses) {
+            for (Clazz superClazz : superClazzes) {
                 // si egaliter il y a un bouclage
-                if (aClass.getSupertype().equals(superClass.getName())) {
-                    this.exceptions.add(new Exception("Bouclage entre : " + aClass.getName() + " et " + superClass.getName()));
+                if (aClazz.getSupertype().equals(superClazz.getName())) {
+                    this.exceptions.add(new Exception("Bouclage entre : " + aClazz.getName() + " et " + superClazz.getName()));
                 }
             }
         }
 
         // verifier les doublons des attributs
-        List<AttributeJava> superAttributes = this.getSuperAttributes(aClass.getName());
-        for (AttributeJava attribute : aClass.getAttributeJavas()) {
+        List<AttributeJava> superAttributes = this.getSuperAttributes(aClazz.getName());
+        for (AttributeJava attribute : aClazz.getAttributeJavas()) {
             for (AttributeJava superAttribute : superAttributes) {
                 if (attribute.getName().equals(superAttribute.getName())) {
-                    this.exceptions.add(new Exception("doublon l'attibut : " + attribute.getName() + " de la classe " + aClass.getName()));
+                    this.exceptions.add(new Exception("doublon l'attibut : " + attribute.getName() + " de la classe " + aClazz.getName()));
                 }
             }
         }
@@ -62,23 +62,23 @@ public class CheckHeritage {
     /*
      * Methode prive
      */
-    private List<Class> getSuperClasses(String name) {
-        List<Class> classes = new ArrayList<>();
+    private List<Clazz> getSuperClasses(String name) {
+        List<Clazz> clazzes = new ArrayList<>();
 
-        for (Class aClass : this.modeleJava.getaClasses()) {
-            if (name.equals(aClass.getSupertype())) {
-                classes.add(aClass);
+        for (Clazz aClazz : this.modeleJava.getClazzes()) {
+            if (name.equals(aClazz.getSupertype())) {
+                clazzes.add(aClazz);
             }
         }
-        return classes;
+        return clazzes;
     }
 
     private List<AttributeJava> getSuperAttributes(String name) {
         List<AttributeJava> attributes = new ArrayList<>();
 
-        for (Class aClass : this.modeleJava.getaClasses()) {
-            if (name.equals(aClass.getSupertype())) {
-                attributes.addAll(aClass.getAttributeJavas());
+        for (Clazz aClazz : this.modeleJava.getClazzes()) {
+            if (name.equals(aClazz.getSupertype())) {
+                attributes.addAll(aClazz.getAttributeJavas());
             }
         }
         return attributes;

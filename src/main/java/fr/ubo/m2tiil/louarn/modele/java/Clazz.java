@@ -23,6 +23,8 @@ public class Clazz implements VisitableJava {
 
     private List<String> generiqueClasses;
 
+    private List<String> implementsClasses;
+
     private List<AttributeJava> attributeJavas;
 
     private List<Constructeur> constructeurs;
@@ -41,6 +43,7 @@ public class Clazz implements VisitableJava {
         this.dependances = new ArrayList<>();
         this.generiqueClasses = new ArrayList<>();
         this.motsCles = new ArrayList<>();
+        this.implementsClasses = new ArrayList<>();
     }
 
     /*
@@ -127,5 +130,13 @@ public class Clazz implements VisitableJava {
 
     public void setMethodes(List<Methode> methodes) {
         this.methodes = methodes;
+    }
+
+    public List<String> getImplementsClasses() {
+        return implementsClasses;
+    }
+
+    public void setImplementsClasses(List<String> implementsClasses) {
+        this.implementsClasses = implementsClasses;
     }
 }

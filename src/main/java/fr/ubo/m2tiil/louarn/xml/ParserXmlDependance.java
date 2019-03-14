@@ -1,8 +1,6 @@
 package fr.ubo.m2tiil.louarn.xml;
 
 import fr.ubo.m2tiil.louarn.modele.java.Dependance;
-import fr.ubo.m2tiil.louarn.modele.dependance.Primitive;
-import fr.ubo.m2tiil.louarn.modele.dependance.ReferenceModele;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -47,22 +45,11 @@ public class ParserXmlDependance {
     }
 
     private Dependance getDependence(Element element){
-        switch (element.getNodeName()) {
-            case "model":
-                ReferenceModele referenceModele = new ReferenceModele();
-                referenceModele.setName(element.getAttribute("name"));
-                referenceModele.setPackageName(element.getAttribute("package"));
-                return referenceModele;
-            case "primitive":
-                Primitive primitive = new Primitive();
-                primitive.setType(element.getAttribute("type"));
-                primitive.setName(element.getAttribute("name"));
-                primitive.setPackageName(element.getAttribute("package"));
-                return primitive;
-            default:
-                System.out.println("Problème switch private Type getType(Element element)");
-                return null;
-        }
+        Dependance dependance = new Dependance();
+        dependance.setName(element.getAttribute("name"));
+        dependance.setType(element.getAttribute("type"));
+        dependance.setPackageName(element.getAttribute("package"));
+        return dependance;
     }
 
 

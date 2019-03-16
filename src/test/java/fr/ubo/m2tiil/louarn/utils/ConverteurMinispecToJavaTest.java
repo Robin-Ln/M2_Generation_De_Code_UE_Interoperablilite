@@ -1,14 +1,11 @@
 package fr.ubo.m2tiil.louarn.utils;
 
-import fr.ubo.m2tiil.louarn.modele.commun.Array;
 import fr.ubo.m2tiil.louarn.modele.commun.Collection;
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.java.AttributeJava;
 import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.java.MotsCles;
-import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
-import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
@@ -23,9 +20,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,7 +93,7 @@ class ConverteurMinispecToJavaTest {
         assertEquals(satellite.getGeneriqueClasses().size(), 0);
         assertEquals(satellite.getImplementsClasses().size(), 0);
         assertEquals(satellite.getAttributeJavas().size(), 2);
-        assertEquals(satellite.getMethodes().size(), 4);
+        assertEquals(satellite.getAccesseurs().size(), 4);
         assertTrue(satellite.getMotsCles().containsAll(Arrays.asList(MotsCles.PUBLIC)));
     }
 

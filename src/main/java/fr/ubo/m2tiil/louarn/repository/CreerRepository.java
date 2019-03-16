@@ -30,8 +30,8 @@ public class CreerRepository {
 //        repository.setVisibilite(instance.getVisibilite());
 //        repository.setPrototype(instance.getPrototype());
 //
-//        repository.getMethodes().add(this.getMethodeLire(instance));
-//        repository.getMethodes().add(this.getMethodeEcrire(instance));
+//        repository.getAccesseurs().add(this.getMethodeLire(instance));
+//        repository.getAccesseurs().add(this.getMethodeEcrire(instance));
 //
 //        repository.setSupertype("AbstractRepository<" + instance.getName() + ">");
 //

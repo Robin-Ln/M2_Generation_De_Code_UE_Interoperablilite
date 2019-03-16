@@ -92,7 +92,7 @@ public class VisitorDependance implements VisitorCommun {
             this.getConstructeurDependances(constructeur);
         }
 
-        for (Methode methode : clazz.getMethodes()) {
+        for (Methode methode : clazz.getAccesseurs()) {
             this.getMethodesDependances(methode);
         }
 

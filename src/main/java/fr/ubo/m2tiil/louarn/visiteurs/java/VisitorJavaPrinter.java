@@ -113,7 +113,7 @@ public class VisitorJavaPrinter implements VisitorJava {
         }
 
         // affichage des méthodes
-        for (Methode methode : clazz.getMethodes()) {
+        for (Methode methode : clazz.getAccesseurs()) {
             methode.accept(this);
         }
 

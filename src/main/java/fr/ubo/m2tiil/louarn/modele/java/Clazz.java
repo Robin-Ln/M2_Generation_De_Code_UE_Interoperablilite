@@ -29,7 +29,10 @@ public class Clazz implements VisitableJava {
 
     private List<Constructeur> constructeurs;
 
+    private List<Methode> accesseurs;
+
     private List<Methode> methodes;
+
 
     /*
      * Constructeur
@@ -39,11 +42,12 @@ public class Clazz implements VisitableJava {
         super();
         this.attributeJavas = new ArrayList<>();
         this.constructeurs = new ArrayList<>();
-        this.methodes = new ArrayList<>();
+        this.accesseurs = new ArrayList<>();
         this.dependances = new ArrayList<>();
         this.generiqueClasses = new ArrayList<>();
         this.motsCles = new ArrayList<>();
         this.implementsClasses = new ArrayList<>();
+        this.methodes = new ArrayList<>();
     }
 
     /*
@@ -124,12 +128,12 @@ public class Clazz implements VisitableJava {
         this.constructeurs = constructeurs;
     }
 
-    public List<Methode> getMethodes() {
-        return methodes;
+    public List<Methode> getAccesseurs() {
+        return accesseurs;
     }
 
-    public void setMethodes(List<Methode> methodes) {
-        this.methodes = methodes;
+    public void setAccesseurs(List<Methode> accesseurs) {
+        this.accesseurs = accesseurs;
     }
 
     public List<String> getImplementsClasses() {
@@ -138,5 +142,13 @@ public class Clazz implements VisitableJava {
 
     public void setImplementsClasses(List<String> implementsClasses) {
         this.implementsClasses = implementsClasses;
+    }
+
+    public List<Methode> getMethodes() {
+        return methodes;
+    }
+
+    public void setMethodes(List<Methode> methodes) {
+        this.methodes = methodes;
     }
 }

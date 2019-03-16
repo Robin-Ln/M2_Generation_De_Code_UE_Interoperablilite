@@ -54,7 +54,7 @@ public class ConverteurMinispecToJava {
         aClazz.setSupertype(entity.getSuperType());
         aClazz.setAttributeJavas(this.getAttributeJavas(entity));
         aClazz.setConstructeurs(this.getConstructeurs(aClazz));
-        aClazz.setMethodes(this.getAccesseurs(entity));
+        aClazz.setAccesseurs(this.getAccesseurs(entity));
         return aClazz;
     }
 

@@ -21,6 +21,7 @@ public class Constructeur implements VisitableJava {
 
     public Constructeur() {
         this.motsCles = new ArrayList<>();
+        this.arguments = new ArrayList<>();
     }
 
     /*

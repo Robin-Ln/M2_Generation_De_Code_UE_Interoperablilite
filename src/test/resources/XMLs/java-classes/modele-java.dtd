@@ -20,6 +20,8 @@
         <!ATTLIST collection
                 typeCollection CDATA #REQUIRED>
         <!ELEMENT constructeur (motsCles|argument|bloc)*>
+        <!ATTLIST constructeur
+                name CDATA #REQUIRED>
         <!ELEMENT argument (typeElement|collection)*>
         <!ATTLIST argument
                 name CDATA #REQUIRED>

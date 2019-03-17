@@ -33,7 +33,7 @@
             </collection>
         </attribute>
 
-        <constructeur>
+        <constructeur name="UneClass">
             <motsCles>
                 <motCle>PUBLIC</motCle>
             </motsCles>

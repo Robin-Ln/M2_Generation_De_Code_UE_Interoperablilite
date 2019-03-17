@@ -77,10 +77,13 @@ public class ParserXmlJava {
                         clazz.getAttributeJavas().add(this.getAttribute(element));
                         break;
                     case "constructeur":
+                        clazz.getConstructeurs().add(this.getConstructeur(element));
                         break;
                     case "accesseurs":
+                        clazz.setAccesseurs(this.getMethodes(element));
                         break;
                     case "methodes":
+                        clazz.setMethodes(this.getMethodes(element));
                         break;
                     default:
                         throw new RuntimeException("fail default switch getClass");
@@ -179,13 +182,14 @@ public class ParserXmlJava {
         return null;
     }
 
-    private List<MotsCles> getMotsCles(Element element){
+    private List<MotsCles> getMotsCles(Element motsCleselement){
         List<MotsCles> motsCles = new ArrayList<>();
-        NodeList nodeList = element.getChildNodes();
+        NodeList nodeList = motsCleselement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                motsCles.add(MotsCles.valueOf(element.getNodeValue()));
+                Element element = (Element) node;
+                motsCles.add(MotsCles.valueOf(element.getFirstChild().getNodeValue()));
             }
         }
         return motsCles;
@@ -197,7 +201,7 @@ public class ParserXmlJava {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                interfaces.add(node.getNodeValue());
+                interfaces.add(node.getFirstChild().getNodeValue());
             }
         }
         return interfaces;
@@ -236,10 +240,51 @@ public class ParserXmlJava {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                bloc.getLignes().append(node.getNodeValue());
+                bloc.getLignes().append(node.getFirstChild().getNodeValue());
             }
         }
         return bloc;
+    }
+
+    private List<Methode> getMethodes(Element methodesElement){
+        List<Methode> methodes = new ArrayList<>();
+        NodeList nodeList = methodesElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                methodes.add(this.getMethode(element));
+            }
+        }
+        return methodes;
+    }
+
+    private Methode getMethode (Element methodeElement){
+        Methode methode = new Methode();
+        NodeList nodeList = methodeElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                switch (element.getNodeName()) {
+                    case "motsCles":
+                        methode.setMotsCles(this.getMotsCles(element));
+                        break;
+                    case "argument":
+                        methode.getArguments().add(this.getArgument(element));
+                        break;
+                    case "bloc":
+                        methode.setBloc(this.getBloc(element));
+                        break;
+                    case "returnType":
+                        methode.setType(this.getType(element));
+                        break;
+                    default:
+                        throw new RuntimeException("fail default switch getMethode");
+                }
+            }
+        }
+        return methode;
     }
 
     /*

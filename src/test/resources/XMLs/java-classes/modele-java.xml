@@ -2,7 +2,7 @@
 
 <!DOCTYPE modeleJava SYSTEM "modele-java.dtd">
 
-<modeleJava>
+<modeleJava name="repository">
     <class name="UneClass" package="repository">
 
         <motsCles>

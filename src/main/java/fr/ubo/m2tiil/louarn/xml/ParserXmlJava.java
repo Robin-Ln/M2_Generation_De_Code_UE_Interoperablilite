@@ -5,8 +5,6 @@ import fr.ubo.m2tiil.louarn.modele.commun.Collection;
 import fr.ubo.m2tiil.louarn.modele.commun.Type;
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
 import fr.ubo.m2tiil.louarn.modele.java.*;
-import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
-import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -31,7 +29,6 @@ public class ParserXmlJava {
     public ParserXmlJava(Document document) {
         super();
         this.document = document;
-        this.modeleJava = new ModeleJava();
     }
 
     /*
@@ -40,6 +37,9 @@ public class ParserXmlJava {
 
     public void lire() {
         Element element = this.document.getDocumentElement();
+        this.modeleJava = new ModeleJava();
+        modeleJava.setName(element.getAttribute("name"));
+
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -52,9 +52,7 @@ public class ParserXmlJava {
     private Clazz getClass(Element classElement) {
         Clazz clazz = new Clazz();
         clazz.setName(classElement.getAttribute("name"));
-
-
-
+        clazz.setApackage(classElement.getAttribute("package"));
         NodeList nodeList = classElement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -65,7 +63,7 @@ public class ParserXmlJava {
                         clazz.setMotsCles(this.getMotsCles(element));
                         break;
                     case "superType":
-                        String subtype = element.getAttribute("supertype");
+                        String subtype = element.getAttribute("name");
                         if (StringUtils.isNotBlank(subtype)) {
                             clazz.setSupertype(subtype);
                         }
@@ -209,6 +207,7 @@ public class ParserXmlJava {
 
     private Constructeur getConstructeur(Element constructeurElement){
         Constructeur constructeur = new Constructeur();
+        constructeur.setName(constructeurElement.getAttribute("name"));
 
         NodeList nodeList = constructeurElement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -261,6 +260,8 @@ public class ParserXmlJava {
 
     private Methode getMethode (Element methodeElement){
         Methode methode = new Methode();
+        methode.setName(methodeElement.getAttribute("name"));
+
         NodeList nodeList = methodeElement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -277,7 +278,7 @@ public class ParserXmlJava {
                         methode.setBloc(this.getBloc(element));
                         break;
                     case "returnType":
-                        methode.setType(this.getType(element));
+                        methode.setType(this.getTypeElement(element));
                         break;
                     default:
                         throw new RuntimeException("fail default switch getMethode");

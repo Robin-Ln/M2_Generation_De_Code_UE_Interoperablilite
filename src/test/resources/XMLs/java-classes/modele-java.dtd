@@ -1,4 +1,6 @@
 <!ELEMENT modeleJava (class)*>
+        <!ATTLIST modeleJava
+                name CDATA #REQUIRED>
         <!ELEMENT class (motsCles|superType|interfaces|attribute|constructeur|accesseurs|methodes)*>
         <!ATTLIST class
                 name CDATA #REQUIRED

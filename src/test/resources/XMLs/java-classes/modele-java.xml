@@ -46,8 +46,8 @@
                 </collection>
             </argument>
             <bloc>
-                <ligne>this.nom = nom</ligne>
-                <ligne>this.uneList = uneList</ligne>
+                <ligne>this.nom = nom;</ligne>
+                <ligne>this.uneList = uneList;</ligne>
             </bloc>
         </constructeur>
 
@@ -60,7 +60,7 @@
                     <typeElement type="String"/>
                 </returnType>
                 <bloc>
-                    <ligne>return this.nom</ligne>
+                    <ligne>return this.nom;</ligne>
                 </bloc>
             </methode>
             <methode name="setNom">
@@ -72,7 +72,7 @@
                     <typeElement type="String"/>
                 </argument>
                 <bloc>
-                    <ligne>this.nom = nom</ligne>
+                    <ligne>this.nom = nom;</ligne>
                 </bloc>
             </methode>
         </accesseurs>

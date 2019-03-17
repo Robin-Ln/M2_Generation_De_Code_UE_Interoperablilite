@@ -3,6 +3,7 @@ package fr.ubo.m2tiil.louarn.xml;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.utils.Constants;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -25,7 +26,7 @@ class ParserXmlJavaTest {
          */
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        File file = new File(getClass().getClassLoader().getResource(Constants.PATH_CLASS_XML).getFile());
+        File file = new File(getClass().getClassLoader().getResource(Constants.PATH_CLASS_XML).getPath());
         if (!file.exists()) {
             fail("La resource " + Constants.PATH_CLASS_XML + " n'est pas disponible");
         }
@@ -38,5 +39,8 @@ class ParserXmlJavaTest {
         parserXmlJava.lire();
         ModeleJava modeleJava = parserXmlJava.getModeleJava();
     }
+
+    @Test
+    void test(){}
 
 }

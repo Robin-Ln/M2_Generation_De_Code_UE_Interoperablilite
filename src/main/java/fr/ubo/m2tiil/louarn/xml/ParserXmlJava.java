@@ -4,14 +4,17 @@ import fr.ubo.m2tiil.louarn.modele.commun.Array;
 import fr.ubo.m2tiil.louarn.modele.commun.Collection;
 import fr.ubo.m2tiil.louarn.modele.commun.Type;
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
+import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
 import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
-import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParserXmlJava {
 
@@ -37,50 +40,95 @@ public class ParserXmlJava {
 
     public void lire() {
         Element element = this.document.getDocumentElement();
-        this.modeleJava.setName(element.getAttribute("name"));
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-//                this.modeleJava.getClazzes().add(this.getEntity((Element) node));
+                this.modeleJava.getClazzes().add(this.getClass((Element) node));
             }
         }
     }
 
-    private Entity getEntity(Element element) {
-        Entity entity = new Entity();
-        entity.setName(element.getAttribute("name"));
+    private Clazz getClass(Element classElement) {
+        Clazz clazz = new Clazz();
+        clazz.setName(classElement.getAttribute("name"));
 
-        String subtype = element.getAttribute("supertype");
-        if (subtype != null) {
-            entity.setSuperType(subtype);
-        }
 
-        NodeList nodeList = element.getChildNodes();
+
+        NodeList nodeList = classElement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element elementAttribute = (Element) node;
-                entity.getAttributeMinispecs().add(this.getAttribute(elementAttribute));
+                Element element = (Element) node;
+                switch (element.getNodeName()) {
+                    case "motsCles":
+                        clazz.setMotsCles(this.getMotsCles(element));
+                        break;
+                    case "superType":
+                        String subtype = element.getAttribute("supertype");
+                        if (StringUtils.isNotBlank(subtype)) {
+                            clazz.setSupertype(subtype);
+                        }
+                        break;
+                    case "interfaces":
+                        clazz.setImplementsClasses(this.getIntefaces(element));
+                        break;
+                    case "attribute":
+                        clazz.getAttributeJavas().add(this.getAttribute(element));
+                        break;
+                    case "constructeur":
+                        break;
+                    case "accesseurs":
+                        break;
+                    case "methodes":
+                        break;
+                    default:
+                        throw new RuntimeException("fail default switch getClass");
+                }
             }
         }
-        return entity;
+        return clazz;
     }
 
 
-    private AttributeMinispec getAttribute(Element element) {
-        AttributeMinispec attributeMinispec = new AttributeMinispec();
-        attributeMinispec.setName(element.getAttribute("name"));
+    private AttributeJava getAttribute(Element AttributeElement) {
+        AttributeJava attributeJava = new AttributeJava();
+        attributeJava.setName(AttributeElement.getAttribute("name"));
+
+        NodeList nodeList = AttributeElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                switch (element.getNodeName()) {
+                    case "motsCles":
+                        attributeJava.setMotsCles(this.getMotsCles(element));
+                        break;
+                    case "typeElement": // meme traitement que collection
+                    case "collection":
+                        attributeJava.setType(this.getType(element));
+                        break;
+                    default:
+                        throw new RuntimeException("fail default switch getAttribute");
+                }
+            }
+        }
+        return attributeJava;
+    }
+
+    private Argument getArgument(Element element) {
+        Argument argument = new Argument();
+        argument.setName(element.getAttribute("name"));
 
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elementType = (Element) node;
-                attributeMinispec.setType(this.getType(elementType));
+                argument.setType(this.getType(elementType));
             }
         }
-        return attributeMinispec;
+        return argument;
     }
 
     private Type getType(Element element) {
@@ -129,6 +177,69 @@ public class ParserXmlJava {
             }
         }
         return null;
+    }
+
+    private List<MotsCles> getMotsCles(Element element){
+        List<MotsCles> motsCles = new ArrayList<>();
+        NodeList nodeList = element.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                motsCles.add(MotsCles.valueOf(element.getNodeValue()));
+            }
+        }
+        return motsCles;
+    }
+
+    private List<String> getIntefaces(Element element){
+        List<String> interfaces = new ArrayList<>();
+        NodeList nodeList = element.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                interfaces.add(node.getNodeValue());
+            }
+        }
+        return interfaces;
+    }
+
+    private Constructeur getConstructeur(Element constructeurElement){
+        Constructeur constructeur = new Constructeur();
+
+        NodeList nodeList = constructeurElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                switch (element.getNodeName()) {
+                    case "motsCles":
+                        constructeur.setMotsCles(this.getMotsCles(element));
+                        break;
+                    case "argument":
+                        constructeur.getArguments().add(this.getArgument(element));
+                        break;
+                    case "bloc":
+                        constructeur.setBloc(this.getBloc(element));
+                        break;
+                    default:
+                        throw new RuntimeException("fail default switch getConstructeur");
+                }
+            }
+        }
+
+        return constructeur;
+    }
+
+    private Bloc getBloc (Element blocElement){
+        Bloc bloc = new Bloc();
+        NodeList nodeList = blocElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                bloc.getLignes().append(node.getNodeValue());
+            }
+        }
+        return bloc;
     }
 
     /*

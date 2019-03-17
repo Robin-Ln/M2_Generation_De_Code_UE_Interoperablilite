@@ -18,7 +18,7 @@ public class Constants {
 
     public static final String PATH_DEPENDANCES_XML = "XMLs/java-code/dependances.xml";
 
-    public static final String PATH_CLASS_XML = "/XMLs/java-classes/modele-java.xml";
+    public static final String PATH_CLASS_XML = "XMLs/java-classes/modele-java.xml";
 
     public static final String PATH_MUSTACHE_TEMPLATE_CLASS = "Templates/class.mustache";
 }

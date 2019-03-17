@@ -1,7 +1,6 @@
 package fr.ubo.m2tiil.louarn.utils;
 
 import fr.ubo.m2tiil.louarn.modele.commun.TypeElement;
-import fr.ubo.m2tiil.louarn.modele.java.Clazz;
 import fr.ubo.m2tiil.louarn.modele.java.*;
 import fr.ubo.m2tiil.louarn.modele.minispec.AttributeMinispec;
 import fr.ubo.m2tiil.louarn.modele.minispec.Entity;
@@ -36,9 +35,21 @@ public class ConverteurMinispecToJava {
         for(Entity entity : modeleMinispec.getEntities()){
             Clazz clazz = this.getClass(entity);
             clazz.setApackage(modeleJava.getName());
-            clazz.setDependances(visitorDependance.getClazzDependances(clazz));
             modeleJava.getClazzes().add(clazz);
         }
+
+        // ajout du modele dans les depandances
+        for (Clazz clazz : modeleJava.getClazzes()) {
+            Dependance dependance = new Dependance(clazz.getName(), clazz.getApackage() + "." + clazz.getName(), clazz.getName());
+            this.visitorDependance.getDependances().add(dependance);
+        }
+
+        // ajout des depandance dans les class du modele
+        for (Clazz clazz : modeleJava.getClazzes()) {
+            clazz.setDependances(visitorDependance.getClazzDependances(clazz));
+        }
+
+
         return this.modeleJava;
     }
 

@@ -36,7 +36,7 @@ public class Dependance implements VisitableJava {
      */
     @Override
     public void accept(VisitorJava visitorJava) {
-        visitorJava.accept(this);
+        visitorJava.visite(this);
     }
 
     /**

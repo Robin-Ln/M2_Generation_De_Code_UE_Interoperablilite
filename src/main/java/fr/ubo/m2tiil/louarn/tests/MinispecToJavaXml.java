@@ -79,13 +79,13 @@ public class MinispecToJavaXml {
 //
 //        String path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/modele/minispec";
 //        VisitorJavaPrinter visitorJavaPrinter = new VisitorJavaPrinter(path);
-//        modeleJava.accept(visitorJavaPrinter);
+//        modeleJava.visite(visitorJavaPrinter);
 //
 //
 //
 //        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/modele/autre";
 //        visitorJavaPrinter = new VisitorJavaPrinter(path);
-//        modeleJavaSatelite.accept(visitorJavaPrinter);
+//        modeleJavaSatelite.visite(visitorJavaPrinter);
 //
 //
 //        CreerInstance creerInstance = new CreerInstance();
@@ -93,7 +93,7 @@ public class MinispecToJavaXml {
 //
 //        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/instance";
 //        visitorJavaPrinter = new VisitorJavaPrinter(path);
-//        modeleJavaSateliteInstance.accept(visitorJavaPrinter);
+//        modeleJavaSateliteInstance.visite(visitorJavaPrinter);
 //
 //        CreerRepository creerRepository = new CreerRepository();
 //        ModeleJava modeleJavaRepesitory = creerRepository.creerRepositoryModele(modeleJavaSateliteInstance);
@@ -101,7 +101,7 @@ public class MinispecToJavaXml {
 //
 //        path = "src/main/java/fr/ubo/m2tiil/louarn/minispecEnMinispec/repository/repository";
 //        visitorJavaPrinter = new VisitorJavaPrinter(path);
-//        modeleJavaRepesitory.accept(visitorJavaPrinter);
+//        modeleJavaRepesitory.visite(visitorJavaPrinter);
 
     }
 }

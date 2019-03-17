@@ -22,5 +22,5 @@ public class Constants {
 
     public static final String PATH_MUSTACHE_TEMPLATE_CLASS = "Templates/class.mustache";
 
-    public static final String PATH_TARGET_GENERATE_SOURCE = "/Users/rlouarn/Desktop";
+    public static final String PATH_TARGET_GENERATE_SOURCE = "/Users/rlouarn/Desktop/ProjetGenere/src";
 }

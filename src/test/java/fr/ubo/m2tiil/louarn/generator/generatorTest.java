@@ -4,9 +4,11 @@ import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.utils.Constants;
 import fr.ubo.m2tiil.louarn.utils.ConverteurMinispecToJava;
+import fr.ubo.m2tiil.louarn.visiteurs.java.VisitorJavaPrinter;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlDependance;
 import fr.ubo.m2tiil.louarn.xml.ParserXmlMinispec;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -19,6 +21,8 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class generatorTest {
+
+    private ModeleJava modeleJava;
 
     @BeforeEach
     void init() throws ParserConfigurationException, IOException, SAXException {
@@ -52,9 +56,14 @@ public class generatorTest {
         parserDependance.lire();
 
 
-
         ConverteurMinispecToJava converteur = new ConverteurMinispecToJava(parserDependance.getDependencies());
-        ModeleJava modeleJava = converteur.convert(modeleMinispec);
+        this.modeleJava = converteur.convert(modeleMinispec);
+    }
+
+    @Test
+    void printerTest(){
+        VisitorJavaPrinter printer = new VisitorJavaPrinter(Constants.PATH_TARGET_GENERATE_SOURCE);
+        this.modeleJava.accept(printer);
     }
 
 }

@@ -112,5 +112,14 @@ public class VisitorDependance implements VisitorCommun {
     }
 
 
+    /**
+     * Accesseurs
+     */
+    public List<Dependance> getDependances() {
+        return dependances;
+    }
 
+    public void setDependances(List<Dependance> dependances) {
+        this.dependances = dependances;
+    }
 }

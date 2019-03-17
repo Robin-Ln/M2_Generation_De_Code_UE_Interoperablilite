@@ -25,5 +25,5 @@ public interface VisitorJava {
 
 	void visite(List<MotsCles> motsCles);
 
-	void accept(Dependance dependance);
+	void visite(Dependance dependance);
 }

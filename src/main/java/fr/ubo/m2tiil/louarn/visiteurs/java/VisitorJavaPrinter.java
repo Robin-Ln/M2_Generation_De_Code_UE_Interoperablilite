@@ -68,7 +68,7 @@ public class VisitorJavaPrinter implements VisitorJava {
     @Override
     public void visite(Clazz clazz) {
         // affiahce du package de la class
-        out.println(MotsCles.PACKAGE + " " + clazz.getApackage() + ";");
+        out.println(MotsCles.PACKAGE.getMotCle() + " " + clazz.getApackage() + ";");
 
         //affiachage des dépendences de la class
         for (Dependance dependance : clazz.getDependances()) {
@@ -130,8 +130,20 @@ public class VisitorJavaPrinter implements VisitorJava {
         this.out.print(" ");
         this.out.print(constructeur.getName());
 
-        // affiachege du block du constructeur
+        // affichages des l'argument
+        this.out.print("(");
+        for (Iterator<Argument> iterator = constructeur.getArguments().iterator(); iterator.hasNext(); ) {
+            Argument argument = iterator.next();
+            argument.accept(this);
+            if (iterator.hasNext()) {
+                this.out.print(", ");
+            }
+        }
+
+        // affiahcage du block
+        this.out.println(") {");
         constructeur.getBloc().accept(this);
+        this.out.println("\t}");
     }
 
     @Override
@@ -171,10 +183,10 @@ public class VisitorJavaPrinter implements VisitorJava {
     }
 
     @Override
-    public void accept(Dependance dependance) {
+    public void visite(Dependance dependance) {
         // affiachage des dependences
         if (StringUtils.isNotBlank(dependance.getPackageName())) {
-            this.out.println(dependance.getPackageName() + "." + dependance.getType());
+            this.out.println("import " + dependance.getPackageName() + ";");
         }
     }
 
@@ -187,7 +199,7 @@ public class VisitorJavaPrinter implements VisitorJava {
                 this.out.close();
             }
 
-            this.out = this.createPrintStream(clazz.getName());
+            this.out = this.createPrintStream(clazz);
 
             // initialisation des visiteurs commun
             this.visitorCommun = new VisitorCommunPrinter(this.out);
@@ -204,17 +216,17 @@ public class VisitorJavaPrinter implements VisitorJava {
     /*
      * méthodes privées
      */
-    private PrintStream createPrintStream(String nameClass) {
+    private PrintStream createPrintStream(Clazz clazz) {
         try {
 
-            File f = new File(this.pathCible + "/" + nameClass + ".java");
+            File f = new File(this.pathCible + "/" + clazz.getApackage() + "/" + clazz.getName() + ".java");
             File p = f.getParentFile();
             if (!p.exists()) {
                 p.mkdirs();
             }
 
 
-            OutputStream output = new FileOutputStream(this.pathCible + "/" + nameClass + ".java");
+            OutputStream output = new FileOutputStream(f);
             PrintStream printStream = new PrintStream(output);
             return printStream;
         } catch (IOException e) {

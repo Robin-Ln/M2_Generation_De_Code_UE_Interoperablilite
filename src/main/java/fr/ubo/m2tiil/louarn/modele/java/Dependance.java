@@ -25,6 +25,12 @@ public class Dependance implements VisitableJava {
         super();
     }
 
+    public Dependance(String name, String packageName, String type) {
+        this.name = name;
+        this.packageName = packageName;
+        this.type = type;
+    }
+
     /**
      * Méthodes
      */

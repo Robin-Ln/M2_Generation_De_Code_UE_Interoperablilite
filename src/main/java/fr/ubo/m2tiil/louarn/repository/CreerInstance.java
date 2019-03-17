@@ -45,7 +45,7 @@ public class CreerInstance {
 //
 //        for (Clazz aClazz : modeleJava.getClazzes()) {
 //            Clazz instance = this.creerInstanceClass(aClazz);
-//            instance.setaPackage(CreerInstance.P_NAME);
+//            instance.setApackage(CreerInstance.P_NAME);
 //            instances.add(instance);
 //        }
 //

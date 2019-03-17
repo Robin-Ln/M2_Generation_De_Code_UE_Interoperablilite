@@ -11,7 +11,7 @@ public class Clazz implements VisitableJava {
     /*
      * Attributs
      */
-    private String aPackage;
+    private String apackage;
 
     private List<Dependance> dependances;
 
@@ -72,12 +72,12 @@ public class Clazz implements VisitableJava {
         this.motsCles = motsCles;
     }
 
-    public String getaPackage() {
-        return aPackage;
+    public String getApackage() {
+        return apackage;
     }
 
-    public void setaPackage(String aPackage) {
-        this.aPackage = aPackage;
+    public void setApackage(String apackage) {
+        this.apackage = apackage;
     }
 
     public List<Dependance> getDependances() {

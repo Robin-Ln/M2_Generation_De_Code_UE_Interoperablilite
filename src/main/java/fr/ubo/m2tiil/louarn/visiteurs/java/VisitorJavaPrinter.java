@@ -68,7 +68,7 @@ public class VisitorJavaPrinter implements VisitorJava {
     @Override
     public void visite(Clazz clazz) {
         // affiahce du package de la class
-        out.println(MotsCles.PACKAGE + " " + clazz.getaPackage() + ";");
+        out.println(MotsCles.PACKAGE + " " + clazz.getApackage() + ";");
 
         //affiachage des dépendences de la class
         for (Dependance dependance : clazz.getDependances()) {

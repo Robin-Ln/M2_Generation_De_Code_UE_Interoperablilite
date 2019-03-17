@@ -3,6 +3,7 @@ package fr.ubo.m2tiil.louarn.mustache;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import fr.ubo.m2tiil.louarn.modele.java.Dependance;
 import fr.ubo.m2tiil.louarn.modele.java.ModeleJava;
 import fr.ubo.m2tiil.louarn.modele.minispec.ModeleMinispec;
 import fr.ubo.m2tiil.louarn.utils.Constants;
@@ -21,6 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -66,8 +71,15 @@ public class MustacheTest {
     void test() throws IOException {
         MustacheFactory mustacheFactory = new DefaultMustacheFactory();
         Mustache mustache = mustacheFactory.compile(Constants.PATH_MUSTACHE_TEMPLATE_CLASS);
+        Map<String,Object> context = new HashMap<>();
+        context.put("function",this.handler());
+        context.put("class", this.modele.getClazzes().get(0));
 
-        mustache.execute(new PrintWriter(System.out), this.modele).flush();
+        mustache.execute(new PrintWriter(System.out), context).flush();
+    }
+
+    public Function<String, String> handler() {
+        return (obj) -> String.format("function -> ", obj);
     }
 
 }

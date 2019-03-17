@@ -24,7 +24,7 @@ public class CreerRepository {
 //    private Clazz creerRepositoryClass(Clazz instance) {
 //
 //        Clazz repository = new Clazz();
-//        repository.setaPackage(P_NAME_IMPL);
+//        repository.setApackage(P_NAME_IMPL);
 //        repository.setName(instance.getName() + "Repository");
 //
 //        repository.setVisibilite(instance.getVisibilite());
@@ -35,12 +35,12 @@ public class CreerRepository {
 //
 //        repository.setSupertype("AbstractRepository<" + instance.getName() + ">");
 //
-//        repository.getDependances().add(new ReferenceModele(instance.getName(), instance.getaPackage()
+//        repository.getDependances().add(new ReferenceModele(instance.getName(), instance.getApackage()
 //                + "."
 //                + instance.getName()));
 //
 //        repository.getDependances().add(new ReferenceModele("AbstractRepository", P_NAME + "." + "AbstractRepository"));
-//        repository.getDependances().add(new ReferenceModele(instance.getName(), instance.getaPackage()+ "." + instance.getName()));
+//        repository.getDependances().add(new ReferenceModele(instance.getName(), instance.getApackage()+ "." + instance.getName()));
 //
 //
 //        repository.getDependances().add(

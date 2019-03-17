@@ -1,6 +1,6 @@
-<!-- modeleMinispec -->
-<!ELEMENT modeleMinispec (entity)*>
-<!ATTLIST modeleMinispec
+<!-- modeleJava -->
+<!ELEMENT modeleJava (entity)*>
+<!ATTLIST modeleJava
         name CDATA #REQUIRED
         >
 

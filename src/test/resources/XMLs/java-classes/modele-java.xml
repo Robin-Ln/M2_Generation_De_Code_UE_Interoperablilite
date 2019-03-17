@@ -1,0 +1,90 @@
+<?fr.ubo.m2tiil.louarn.xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE modeleJava SYSTEM "modele-java.dtd">
+
+<modeleJava>
+    <class name="UneClass" package="repository">
+
+        <motsCles>
+            <motCle>PUBLIC</motCle>
+            <motCle>CLASS</motCle>
+        </motsCles>
+
+        <superType name="ExteandClass" />
+
+        <interfaces>
+            <interface>Interface1</interface>
+            <interface>Interface2</interface>
+        </interfaces>
+
+        <attribute name="nom">
+            <motsCles>
+                <motCle>PRIVATE</motCle>
+            </motsCles>
+            <typeElement type="String"/>
+        </attribute>
+
+        <attribute name="uneList">
+            <motsCles>
+                <motCle>PRIVATE</motCle>
+            </motsCles>
+            <collection typeCollection="List">
+                <typeElement type="String"/>
+            </collection>
+        </attribute>
+
+        <constructeur>
+            <motsCles>
+                <motCle>PUBLIC</motCle>
+            </motsCles>
+            <argument name="nom">
+                <typeElement type="String"/>
+            </argument>
+            <argument name="uneList">
+                <collection typeCollection="List">
+                    <typeElement type="String"/>
+                </collection>
+            </argument>
+            <bloc>
+                <ligne>this.nom = nom</ligne>
+                <ligne>this.uneList = uneList</ligne>
+            </bloc>
+        </constructeur>
+
+        <accesseurs>
+            <methode name="getNom">
+                <motsCles>
+                    <motCle>PUBLIC</motCle>
+                </motsCles>
+                <returnType>
+                    <typeElement type="String"/>
+                </returnType>
+                <bloc>
+                    <ligne>return this.nom</ligne>
+                </bloc>
+            </methode>
+            <methode name="setNom">
+                <motsCles>
+                    <motCle>PUBLIC</motCle>
+                    <motCle>VOID</motCle>
+                </motsCles>
+                <argument name="nom">
+                    <typeElement type="String"/>
+                </argument>
+                <bloc>
+                    <ligne>this.nom = nom</ligne>
+                </bloc>
+            </methode>
+        </accesseurs>
+
+        <methodes>
+            <methode name="uneMethode">
+                <motsCles>
+                    <motCle>PUBLIC</motCle>
+                    <motCle>VOID</motCle>
+                </motsCles>
+            </methode>
+        </methodes>
+
+    </class>
+</modeleJava>

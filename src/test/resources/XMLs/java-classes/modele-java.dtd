@@ -1,0 +1,33 @@
+<!ELEMENT modeleJava (class)*>
+        <!ELEMENT class (motsCles|superType|interfaces|attribute|constructeur|accesseurs|methodes)*>
+        <!ATTLIST class
+                name CDATA #REQUIRED
+                package CDATA #REQUIRED>
+        <!ELEMENT motsCles (motCle)*>
+        <!ELEMENT motCle (#PCDATA)>
+        <!ELEMENT superType EMPTY>
+        <!ATTLIST superType
+                name CDATA #REQUIRED>
+        <!ELEMENT interfaces (interface)*>
+        <!ELEMENT interface (#PCDATA)>
+        <!ELEMENT attribute (motsCles|typeElement|collection)*>
+        <!ATTLIST attribute
+                name CDATA #REQUIRED>
+        <!ELEMENT typeElement EMPTY>
+        <!ATTLIST typeElement
+                type CDATA #REQUIRED>
+        <!ELEMENT collection (typeElement)*>
+        <!ATTLIST collection
+                typeCollection CDATA #REQUIRED>
+        <!ELEMENT constructeur (motsCles|argument|bloc)*>
+        <!ELEMENT argument (typeElement|collection)*>
+        <!ATTLIST argument
+                name CDATA #REQUIRED>
+        <!ELEMENT bloc (ligne)*>
+        <!ELEMENT ligne (#PCDATA)>
+        <!ELEMENT accesseurs (methode)*>
+        <!ELEMENT methode (motsCles|returnType|bloc|argument)*>
+        <!ATTLIST methode
+                name CDATA #REQUIRED>
+        <!ELEMENT returnType (typeElement)*>
+        <!ELEMENT methodes (methode)*>

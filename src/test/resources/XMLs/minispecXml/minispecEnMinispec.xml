@@ -1,8 +1,8 @@
 <?fr.ubo.m2tiil.louarn.xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE modeleMinispec SYSTEM "minispec.dtd">
+<!DOCTYPE modeleJava SYSTEM "minispec.dtd">
 
-<modeleMinispec name="fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec">
+<modeleJava name="fr.ubo.m2tiil.louarn.minispecEnMinispec.modele.minispec">
 
     <entity name="Modele">
         <attributeMinispec name="name">
@@ -77,4 +77,4 @@
         </attributeMinispec>
     </entity>
 
-</modeleMinispec>
+</modeleJava>

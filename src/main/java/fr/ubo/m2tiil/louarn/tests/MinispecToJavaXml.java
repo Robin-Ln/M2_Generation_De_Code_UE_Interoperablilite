@@ -33,14 +33,14 @@ public class MinispecToJavaXml {
 //        if (xmlErrorHandler.isValide()) {
 //            ParserXmlMinispec parserXml = new ParserXmlMinispec(document);
 //            parserXml.lire();
-//            modeleMinispec = parserXml.getModeleMinispec();
+//            modeleMinispec = parserXml.getModeleJava();
 //            modeleJava = new ConverteurMinispecToJava(modeleMinispec).getModeleJava();
 //
 //
 //            document = builder.parse(xmlSatelite);
 //            parserXml = new ParserXmlMinispec(document);
 //            parserXml.lire();
-//            modeleMinispecSatelite = parserXml.getModeleMinispec();
+//            modeleMinispecSatelite = parserXml.getModeleJava();
 //            modeleJavaSatelite = new ConverteurMinispecToJava(modeleMinispecSatelite).getModeleJava();
 //        }
 //

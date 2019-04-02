@@ -45,16 +45,20 @@ public class generatorTest {
         ModeleMinispec modeleMinispec = parserXmlMinispec.getModeleMinispec();
 
         /**
-         * Initialiation du modele java
+         * Initialisation du parserDependance
          */
         file = new File(getClass().getClassLoader().getResource(Constants.PATH_DEPENDANCES_XML).getPath());
         if (!file.exists()) {
             fail("La resource " + Constants.PATH_DEPENDANCES_XML + " n'est pas disponible");
         }
+
         document = builder.parse(file);
         ParserXmlDependance parserDependance = new ParserXmlDependance(document);
         parserDependance.lire();
 
+        /**
+         * Initialiation du modele java
+         */
 
         ConverteurMinispecToJava converteur = new ConverteurMinispecToJava(parserDependance.getDependencies());
         this.modeleJava = converteur.convert(modeleMinispec);
